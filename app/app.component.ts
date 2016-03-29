@@ -5,6 +5,7 @@ import {UsersListComponent} from "./Users/UsersList.component";
 import {UserEditComponent} from "./Users/UserEdit.component";
 import {RolesListComponent} from "./Roles/RolesList.component";
 import {RoleEditComponent} from "./Roles/RoleEdit.component";
+import {Login} from "./Login/Login.component";
 
 @Component({
     selector: '[ui-app]',
@@ -41,6 +42,8 @@ import {RoleEditComponent} from "./Roles/RoleEdit.component";
                 <li><a [routerLink]="['HomePage']">Главная</a>
                     </li>
                     <li><a [routerLink]="['UsersList']">Пользователи</a>
+                    </li>
+					<li><a [routerLink]="['Login']">Вход</a>
                     </li>
                     <li><a [routerLink]="['RolesList']">Роли</a>
                 
@@ -246,6 +249,12 @@ import {RoleEditComponent} from "./Roles/RoleEdit.component";
 	  path: '/roles/:id',
 	  name: 'RoleEdit',
 	  component: RoleEditComponent
+	},
+	
+	{
+	  path: '/login',
+	  name: 'Login',
+	  component: Login
 	}
 	
 ])
