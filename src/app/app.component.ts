@@ -4,6 +4,7 @@ import {UsersListComponent} from './users/UsersList.component';
 import {UserEditComponent} from './users/UserEdit.component';
 import {RolesListComponent} from './roles/RolesList.component';
 import {RoleEditComponent} from './roles/RoleEdit.component';
+import {LoginComponent} from './login/Login.component';
 import {Home} from './home';
 import {AppState} from './app.service';
 import {RouterActive} from './router-active';
@@ -22,6 +23,7 @@ import {RouterActive} from './router-active';
   { path: '/users/:id',  name: 'UserEdit',  component: UserEditComponent },
   { path: '/roles',  name: 'Roles',  component: RolesListComponent },
   { path: '/roles/:id',  name: 'RoleEdit',  component: RoleEditComponent },
+  { path: '/login',  name: 'Login',  component: LoginComponent },
 ])
 export class App {
   constructor(public appState: AppState) {}
