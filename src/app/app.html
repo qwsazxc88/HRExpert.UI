@@ -1,0 +1,25 @@
+<header>
+      <nav>        
+        <ul>
+          <li router-active>
+            <a [routerLink]=" ['Index'] ">Главная</a>
+          </li>
+          <li router-active>
+            <a [routerLink]=" ['Users'] ">Пользователи</a>
+          </li>
+          <li router-active>
+            <a [routerLink]=" ['Roles'] ">Роли</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer>     
+      <div>
+        
+      </div>
+    </footer>
