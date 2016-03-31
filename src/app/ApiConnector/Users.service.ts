@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 //Libs
 import {ApiSettings} from "./ApiSettings"
 import {User} from "../Model/User";
+import {HttpOptionsFactory} from "./HttpOptionsFactory"
 
 @Injectable()
 export class UsersService {
@@ -19,7 +20,8 @@ export class UsersService {
 	private _delete = ApiSettings.baseUrl+'/api/Users';
     //List
     List() {
-        return this.http.get(this._list)
+		var options = HttpOptionsFactory.Create();
+        return this.http.get(this._list,options)
                         .map(res => <User[]> res.json())
                         .catch(this.handleError);
     }    
@@ -27,22 +29,21 @@ export class UsersService {
 	Create(user)
 	{
 		let body = JSON.stringify(user);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        var options = HttpOptionsFactory.Create();
 		return this.http.post(this._create,body,options)                        
                         .map(res => <User> res.json())
                         .catch(this.handleError);
 	}
 	Read(id) {
-        return this.http.get(this._read+'/'+id)
+		var options = HttpOptionsFactory.Create();
+        return this.http.get(this._read+'/'+id,options)
                         .map(res => <User> res.json())
                         .catch(this.handleError);
     }
 	Update(user)
 	{
 		let body = JSON.stringify(user);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        var options = HttpOptionsFactory.Create();
 		return this.http.put(this._update,body,options)                        
                         .map(res => <User> res.json())
                         .catch(this.handleError);
@@ -50,8 +51,7 @@ export class UsersService {
 	Delete(user)
 	{
 		let body = JSON.stringify(user);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+        var options = HttpOptionsFactory.Create();
 		return this.http.delete(this._delete+"/"+user.Id,options)
 						.map(res => <User> res.json())
                         .catch(this.handleError);

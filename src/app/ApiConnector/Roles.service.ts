@@ -20,7 +20,6 @@ export class RolesService {
 	//List
     List() {       
 	    var options = HttpOptionsFactory.Create();
-		console.log(options);
         return this.http.get(this._list,options)
                         .map(res => <Role[]> res.json())
                         .catch(this.handleError);
@@ -29,22 +28,21 @@ export class RolesService {
 	Create(role)
 	{
 		let body = JSON.stringify(role);
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+		var options = HttpOptionsFactory.Create();
 		return this.http.post(this._create,body,options)                        
                         .map(res => <Role> res.json())
                         .catch(this.handleError);
 	}
 	Read(id) {
-        return this.http.get(this._read+'/'+id)
+		var options = HttpOptionsFactory.Create();
+        return this.http.get(this._read+'/'+id,options)
                         .map(res => <Role> res.json())
                         .catch(this.handleError);
     }	
 	Update(role)
 	{
 		let body = JSON.stringify(role);
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+		var options = HttpOptionsFactory.Create();
 		return this.http.put(this._update,body,options)                        
                         .map(res => <Role> res.json())
                         .catch(this.handleError);
@@ -52,8 +50,7 @@ export class RolesService {
 	Delete(role)
 	{
 		let body = JSON.stringify(role);
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+		var options = HttpOptionsFactory.Create();
 		return this.http.delete(this._delete+"/"+role.Id,options) 
 						.map(res => <Role> res.json())		
                         .catch(this.handleError);
