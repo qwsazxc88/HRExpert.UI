@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="x_panel ">	
+		<button class="btn btn-default" (click)="Create()">Добавить</button>
+	<table class="table table-bordered table-striped">
+	<thead>
+	<tr><th></th><th>Id</th><th>Имя</th></tr>
+	</thead>
+	<tbody>
+	<tr *ngFor="#user of Model">
+		<td>
+			<span (click)="Edit(user)">редактировать</span>
+		</td>
+		<td>{{user.Id}}</td>
+		<td>{{user.Name}}</td>
+	</tr>
+	</tbody>
+	</table>
+	</div></div></div>

@@ -1,38 +1,41 @@
+//Vendor libs
 import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
-import {UsersService} from "./Users.service";
 import {OnInit} from "angular2/core";
-import {User} from "./User";
+//Libs
+import {ApiConnector} from "../../ApiConnector";
+import {User} from "../../Model/User";
+
 @Component({
     selector: 'users-list',
     template: require('./List.html'),
-	providers: [UsersService]
+	providers: [ApiConnector]
 })
 
 export class UsersListComponent implements OnInit
 { 
-	constructor (private _usersService: UsersService,private _router: Router) {}
+	constructor (private Api: ApiConnector,private _router: Router) {}
 
     errorMessage: string;
-    users: User[];
+    Model: User[];
 
     ngOnInit() {
-        this.getUsers();
+        this.Get();
     }
     //обращаемся к созданному нами сервису
-    getUsers() {
-        this._usersService.getUsers()
+    Get() {
+        this.Api.Users.List()
                                 .subscribe(
-                                    users => {this.users = users; },
+                                    users => {this.Model = users; },
                                     error => this.errorMessage = <any>error
                                 );
     }
-	gotoEdit(user: User) {
+	Edit(user: User) {
 	  let link = ['UserEdit', { id: user.Id }];
 	  this._router.navigate(link);
 	}
-	gotoCreate() {
+	Create() {
 	  let link = ['UserEdit', { id: 0}];
 	  this._router.navigate(link);
-	}
+	}	
 }

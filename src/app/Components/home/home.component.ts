@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {AppState} from '../app.service';
+import {AppState} from '../../app.service';
 
 @Component({
   selector: 'home',  

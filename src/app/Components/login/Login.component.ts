@@ -1,21 +1,25 @@
+//Vendor libs
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Http, Headers, RequestOptions, Response} from "angular2/http";
-import {LoginService} from "./Login.service"
+//Libs
+import {ApiConnector} from "../../ApiConnector";
+import {Login} from "../../Model/Login";
+
 @Component({
 	template: require('./Login.html'),
     selector: 'login',
-	providers: [LoginService]
+	providers: [ApiConnector]
 })
 export class LoginComponent {
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, private Api: ApiConnector) {
+  this.Model = new Login();
   }
 	jwt:string;
 	errorMessage:string;
-	username:string;
-	password:string;
+	Model:Login;
   submit() {    
-    this.loginService.login(this.username,this.password).subscribe(
+    this.Api.Login.login(this.Model).subscribe(
                                     jwt => {
 									this.jwt = jwt; 
 									localStorage.setItem('jwt', jwt);
