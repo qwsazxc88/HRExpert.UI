@@ -14,7 +14,10 @@ import {Role} from "../../Model/Role";
 
 export class RoleEditComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _routeParams: RouteParams) {}
+	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
+	{
+		this.Model=new Role(0,'');
+	}
 
     errorMessage: string;
     Model: Role;
@@ -24,10 +27,6 @@ export class RoleEditComponent implements OnInit
 		if(id>0)
 		{
 			this.Get(id);
-		}
-		else
-		{
-			this.Model=new Role(0,'');
 		}
     }
 	Save()

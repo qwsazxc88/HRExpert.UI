@@ -14,7 +14,11 @@ import {User} from "../../Model/User";
 
 export class UserEditComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _routeParams: RouteParams) {}
+	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
+	{
+		this.Model=new User(0,'');
+	}
+	
 
     errorMessage: string;
     Model: User;
@@ -24,10 +28,6 @@ export class UserEditComponent implements OnInit
 		if(id>0)
 		{
 			this.Get(id);
-		}
-		else
-		{
-			this.Model=new User(0,'');			
 		}
     }
 	Save()

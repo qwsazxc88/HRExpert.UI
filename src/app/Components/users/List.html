@@ -1,19 +1,26 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="x_panel ">	
-		<button class="btn btn-default" (click)="Create()">Добавить</button>
-	<table class="table table-bordered table-striped">
-	<thead>
-	<tr><th></th><th>Id</th><th>Имя</th></tr>
-	</thead>
-	<tbody>
-	<tr *ngFor="#user of Model">
-		<td>
-			<span (click)="Edit(user)">редактировать</span>
-		</td>
-		<td>{{user.Id}}</td>
-		<td>{{user.Name}}</td>
-	</tr>
-	</tbody>
-	</table>
-	</div></div></div>
+        <div class="panel panel-primary">
+			<div class="panel-heading">Пользователи</div>  
+			<div class="panel-body">
+				<div class="well well-sm">
+					<button class="btn btn-primary" (click)="Create()">Добавить</button>
+				</div>
+				<table class="table table-bordered table-striped">
+				<thead>
+				<tr><th width="10%">Id</th><th>Имя</th><th width="10%"></th></tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="#user of Model">					
+					<td>{{user.Id}}</td>
+					<td>{{user.Name}}</td>
+					<td>
+						<a (click)="Edit(user)" class="btn btn-info btn-xs">редактировать</a>
+					</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

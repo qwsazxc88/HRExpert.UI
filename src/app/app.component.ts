@@ -1,6 +1,7 @@
 //Vendor libs
 import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
+import {NgClass} from 'angular2/common';
 //Libs
 import {UsersListComponent} from './Components/users/UsersList.component';
 import {UserEditComponent} from './Components/users/UserEdit.component';
@@ -15,10 +16,10 @@ import {AppState} from './app.service';
 import {RouterActive} from './router-active';
 
 @Component({
-  selector: 'app',
+  selector: '[app]',
   pipes: [ ],
   providers: [ UsersService,RolesService,LoginService],
-  directives: [ RouterActive,LoggedInRouterOutlet ],
+  directives: [ RouterActive,LoggedInRouterOutlet],
   styles: [],
   template: require('./app.html')
 })
@@ -31,7 +32,12 @@ import {RouterActive} from './router-active';
   { path: '/login',  name: 'Login',  component: LoginComponent },
 ])
 export class App {
-  constructor(public appState: AppState) {}
+  isOn : boolean;
+  toggle()
+  {
+    this.isOn=!this.isOn;
+  }
+  constructor(public appState: AppState) { this.isOn=true;}
 
   ngOnInit() {
     console.log('Initial App State', this.appState.state);
