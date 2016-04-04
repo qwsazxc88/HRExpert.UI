@@ -5,6 +5,7 @@ import {OnInit} from "angular2/core";
 //Libs
 import {ApiConnector} from "../../ApiConnector";
 import {Role} from "../../Model/Role";
+import {ComponentBase} from "../ComponentBase"
 
 @Component({
     selector: 'roles-edit',
@@ -12,7 +13,7 @@ import {Role} from "../../Model/Role";
 	providers: [ApiConnector]
 })
 
-export class RoleEditComponent implements OnInit
+export class RoleEditComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
 	{
@@ -29,6 +30,7 @@ export class RoleEditComponent implements OnInit
 			this.Get(id);
 		}
     }
+	
 	Save()
 	{
 		var data = this.Model;

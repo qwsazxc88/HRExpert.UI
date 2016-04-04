@@ -5,6 +5,8 @@ import {OnInit} from "angular2/core";
 //Libs
 import {ApiConnector} from "../../ApiConnector";
 import {User} from "../../Model/User";
+import {Role} from "../../Model/Role";
+import {ComponentBase} from "../ComponentBase"
 
 @Component({
     selector: 'users-edit',
@@ -12,17 +14,20 @@ import {User} from "../../Model/User";
 	providers: [ApiConnector]
 })
 
-export class UserEditComponent implements OnInit
+export class UserEditComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
 	{
 		this.Model=new User(0,'');
+		this.Roles=[];
+		this.Roles.push(new Role(1,"test"));
 	}
 	
 
     errorMessage: string;
     Model: User;
-
+	Roles: Role[];
+	SelectedRole: Role;
     ngOnInit() {
 		let id=+ this._routeParams.get('id');
 		if(id>0)
@@ -57,6 +62,15 @@ export class UserEditComponent implements OnInit
 						.subscribe(
 							error => this.errorMessage = <any>error
 						);
+	}
+	AddRole()
+	{
+		this.Model.Roles.push(this.SelectedRole);
+	}
+	ChangeSelected(value)
+	{
+		console.log(value);
+		this.SelectedRole=value;
 	}
     Get(id) {
         this.Api.Users.Read(id)

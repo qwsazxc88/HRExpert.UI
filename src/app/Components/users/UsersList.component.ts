@@ -5,6 +5,7 @@ import {OnInit} from "angular2/core";
 //Libs
 import {ApiConnector} from "../../ApiConnector";
 import {User} from "../../Model/User";
+import {ComponentBase} from "../ComponentBase"
 
 @Component({
     selector: 'users-list',
@@ -12,7 +13,7 @@ import {User} from "../../Model/User";
 	providers: [ApiConnector]
 })
 
-export class UsersListComponent implements OnInit
+export class UsersListComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector,private _router: Router) {}
 

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated"  [ngClass]="{fadeInDown: active,fadeOutUp: !active}">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-primary">
 			<div class="panel-heading">Пользователь {{Model.Name}}</div>  
@@ -11,6 +11,39 @@
 				<div class="form-group">
 				  <label>Имя:</label>
 				  <input type="text" class="form-control" [(ngModel)]="Model.Name" placeholder="Имя">
+				</div>
+				<div class="form-group">
+					  <label for="sel1">Роли:</label>
+				<div class="well well-sm">
+					<div class="form-group">
+					<div *ngIf="SelectedRole">
+					{{SelectedRole.Name}} {{SelectedRole.Id}}
+					</div>
+						<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon3">Добавить роль:</span>
+						  <select class="form-control" aria-describedby="basic-addon3" #RoleSelection [(ngModel)]="SelectedRole" (change)="ChangeSelected($event.target.value)" >
+							<option *ngFor="#role of Roles" [value]="role">{{role.Name}}</option>
+						  </select>
+						  <span class="input-group-btn">
+							<button (click)="AddRole()" class="btn btn-success glyphicon glyphicon-plus" type="button"> </button>
+						  </span>
+						</div>						
+					</div>
+					<table class="table table-bordered table-striped">
+					<thead>
+					<tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
+					</thead>
+					<tbody>
+					<tr *ngFor="#role of Model.Roles" >						
+						<td>{{role.Id}}</td>
+						<td>{{role.Name}}</td>
+						<td>
+							<a (click)="RemoveRole(role)" class="btn btn-info btn-xs">удалить</a>
+						</td>
+					</tr>
+					</tbody>
+					</table>
+				</div>
 				</div>
 				</div>
 				<button class="btn btn-primary" (click)="Save()">Сохранить</button>
