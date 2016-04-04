@@ -1,6 +1,6 @@
 //Vendor libs
 import {Component} from 'angular2/core';
-import {Router,OnActivate,onDeactivate,ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {OnInit} from "angular2/core";
 import {NgClass} from 'angular2/common';
 //Libs
@@ -18,7 +18,7 @@ export class RolesListComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _router: Router) 
 	{
-		this.active=true;
+		super();
 	}
 
     errorMessage: string;

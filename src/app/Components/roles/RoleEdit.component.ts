@@ -17,6 +17,7 @@ export class RoleEditComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
 	{
+		super();
 		this.Model=new Role(0,'');
 	}
 

@@ -1,0 +1,37 @@
+body{
+  background-color:#A5C1D4 !important;
+  color: #2B5175 !important;
+  }
+  .sidebar-nav li a
+  {
+	color:#fff !important;
+  }
+  .sidebar-nav > .sidebar-brand a
+  {
+	color:#fff !important;
+  }
+  .bgcolor1{
+  background-color:#2B5175 !important;
+  }
+  .bgcolor2{
+  background-color:#517597 !important;
+  }
+  .bgcolor3{
+  background-color:#A6C0D1 !important;
+  }
+  .bgcolor4{
+  background-color:#586D7A !important;
+  }
+  .bgcolor5{
+  background-color:#214D6A !important;
+  } 
+  .toppanel{
+	border:0px;
+	border-radius:0;
+	margin-left:-20px;
+	margin-right:-20px;
+	margin-top:-20px;
+  }
+  .logolink{
+  height:67px;
+  }

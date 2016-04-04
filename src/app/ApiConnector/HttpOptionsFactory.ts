@@ -5,7 +5,6 @@ export class HttpOptionsFactory {
 	{
 	    var helper = new TokenHelper();
 		let jwt = localStorage.getItem('jwt');
-		console.log(helper.decodeToken(jwt));
 		let headers = new Headers({ 'Content-Type': 'application/json','Accept': 'application/json' });		
 		if(jwt)
 			headers.append("Authorization","Bearer " +jwt);

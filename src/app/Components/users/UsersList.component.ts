@@ -15,7 +15,10 @@ import {ComponentBase} from "../ComponentBase"
 
 export class UsersListComponent extends ComponentBase implements OnInit
 { 
-	constructor (private Api: ApiConnector,private _router: Router) {}
+	constructor (private Api: ApiConnector,private _router: Router) 
+	{
+		super();
+	}
 
     errorMessage: string;
     Model: User[];

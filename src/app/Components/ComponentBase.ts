@@ -1,11 +1,11 @@
 //Vendor libs
 import {Component} from 'angular2/core';
-import {Router,OnActivate,onDeactivate,ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router,ROUTER_DIRECTIVES,OnActivate,OnDeactivate,ComponentInstruction} from 'angular2/router';
 
 @Component({
 	directives: [ROUTER_DIRECTIVES]
 })
-export class ComponentBase implements OnActivate, onDeactivate
+export class ComponentBase implements OnActivate , OnDeactivate
 {
 	constructor(){
 		this.active=true;

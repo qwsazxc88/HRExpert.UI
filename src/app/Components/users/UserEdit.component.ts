@@ -18,6 +18,7 @@ export class UserEditComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
 	{
+		super();
 		this.Model=new User(0,'');
 		this.Roles=[];
 		this.Roles.push(new Role(1,"test"));
