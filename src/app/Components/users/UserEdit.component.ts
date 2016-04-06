@@ -1,5 +1,6 @@
 //Vendor libs
 import {Component,Input} from 'angular2/core';
+import {NgSelectOption,NgModel} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 import {OnInit} from "angular2/core";
 //Libs
@@ -7,10 +8,12 @@ import {ApiConnector} from "../../ApiConnector";
 import {User} from "../../Model/User";
 import {Role} from "../../Model/Role";
 import {ComponentBase} from "../ComponentBase"
-
+import {ArrayTools} from "../../Tools/ArrayTools"
+import {ArrayFilterPipe} from "../../Tools/ArrayFilterPipe"
 @Component({
     selector: 'users-edit',
     template: require('./Edit.html'),
+	directives:[NgSelectOption,NgModel],
 	providers: [ApiConnector]
 })
 
@@ -19,22 +22,29 @@ export class UserEditComponent extends ComponentBase implements OnInit
 	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
 	{
 		super();
+		this.ArrayTool = new ArrayTools();
 		this.Model=new User(0,'');
 		this.Roles=[];
-		this.Roles.push(new Role(1,"test"));
 	}
 	
 
     errorMessage: string;
+	ArrayTool: ArrayTools;
     Model: User;
 	Roles: Role[];
-	SelectedRole: Role;
+	SelectedRole: number;
     ngOnInit() {
 		let id=+ this._routeParams.get('id');
 		if(id>0)
 		{
 			this.Get(id);
 		}
+		this.Api.Roles.List()
+					.subscribe(
+						roles => {this.Roles = roles; },
+						error => this.errorMessage = <any>error
+					);
+
     }
 	Save()
 	{
@@ -66,13 +76,20 @@ export class UserEditComponent extends ComponentBase implements OnInit
 	}
 	AddRole()
 	{
-		this.Model.Roles.push(this.SelectedRole);
+		if(!this.SelectedRole) return;
+		var role = this.Roles.find(x=>x.Id==this.SelectedRole);
+		if(role)
+		{
+			this.Model.Roles.push(role);
+			this.ArrayTool.RemoveFromArray(this.Roles,role);
+		}
 	}
-	ChangeSelected(value)
+	RemoveRole(role)
 	{
-		console.log(value);
-		this.SelectedRole=value;
+		this.ArrayTool.RemoveFromArray(this.Model.Roles,role);
+		this.Roles.push(role);
 	}
+	
     Get(id) {
         this.Api.Users.Read(id)
 					.subscribe(

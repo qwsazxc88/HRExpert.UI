@@ -29,10 +29,10 @@ export class UsersListComponent extends ComponentBase implements OnInit
     //обращаемся к созданному нами сервису
     Get() {
         this.Api.Users.List()
-                                .subscribe(
-                                    users => {this.Model = users; },
-                                    error => this.errorMessage = <any>error
-                                );
+					.subscribe(
+						users => {this.Model = users; },
+						error => this.errorMessage = <any>error
+					);
     }
 	Edit(user: User) {
 	  let link = ['UserEdit', { id: user.Id }];

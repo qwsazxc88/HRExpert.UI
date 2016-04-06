@@ -17,12 +17,11 @@
 				<div class="well well-sm">
 					<div class="form-group">
 					<div *ngIf="SelectedRole">
-					{{SelectedRole.Name}} {{SelectedRole.Id}}
 					</div>
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon3">Добавить роль:</span>
-						  <select class="form-control" aria-describedby="basic-addon3" #RoleSelection [(ngModel)]="SelectedRole" (change)="ChangeSelected($event.target.value)" >
-							<option *ngFor="#role of Roles" [value]="role">{{role.Name}}</option>
+						  <select class="form-control" aria-describedby="basic-addon3" [(ngModel)]="SelectedRole" >
+							<option *ngFor="#role of Roles" value="{{role.Id}}">{{role.Name}}</option>
 						  </select>
 						  <span class="input-group-btn">
 							<button (click)="AddRole()" class="btn btn-success glyphicon glyphicon-plus" type="button"> </button>
