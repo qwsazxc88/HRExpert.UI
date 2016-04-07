@@ -21,7 +21,7 @@
 						<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon3">Добавить роль:</span>
 						  <select class="form-control" aria-describedby="basic-addon3" [(ngModel)]="SelectedRole" >
-							<option *ngFor="#role of Roles" value="{{role.Id}}">{{role.Name}}</option>
+							<option *ngFor="#role of Roles| arrayFilter: UserRoles" value="{{role.Id}}">{{role.Name}}</option>
 						  </select>
 						  <span class="input-group-btn">
 							<button (click)="AddRole()" class="btn btn-success glyphicon glyphicon-plus" type="button"> </button>

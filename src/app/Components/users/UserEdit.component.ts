@@ -1,19 +1,19 @@
 //Vendor libs
-import {Component,Input} from 'angular2/core';
+import {Component,Input,OnInit} from 'angular2/core';
 import {NgSelectOption,NgModel} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
-import {OnInit} from "angular2/core";
 //Libs
 import {ApiConnector} from "../../ApiConnector";
 import {User} from "../../Model/User";
 import {Role} from "../../Model/Role";
-import {ComponentBase} from "../ComponentBase"
-import {ArrayTools} from "../../Tools/ArrayTools"
-import {ArrayFilterPipe} from "../../Tools/ArrayFilterPipe"
+import {ComponentBase} from "../ComponentBase";
+import {ArrayTools} from "../../Tools/ArrayTools";
+import {ArrayFilterPipe} from "../../Tools/ArrayFilterPipe";
 @Component({
     selector: 'users-edit',
     template: require('./Edit.html'),
-	directives:[NgSelectOption,NgModel],
+	directives:[],
+    pipes:[ArrayFilterPipe],
 	providers: [ApiConnector]
 })
 
@@ -33,6 +33,7 @@ export class UserEditComponent extends ComponentBase implements OnInit
     Model: User;
 	Roles: Role[];
 	SelectedRole: number;
+    get UserRoles(){ return this.Model.Roles;}
     ngOnInit() {
 		let id=+ this._routeParams.get('id');
 		if(id>0)
@@ -81,13 +82,13 @@ export class UserEditComponent extends ComponentBase implements OnInit
 		if(role)
 		{
 			this.Model.Roles.push(role);
-			this.ArrayTool.RemoveFromArray(this.Roles,role);
-		}
+		}        
+        this.Model=this.Model;
 	}
 	RemoveRole(role)
 	{
 		this.ArrayTool.RemoveFromArray(this.Model.Roles,role);
-		this.Roles.push(role);
+        this.Model=this.Model;
 	}
 	
     Get(id) {
