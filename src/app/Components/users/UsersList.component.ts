@@ -3,7 +3,7 @@ import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {OnInit} from "angular2/core";
 //Libs
-import {ApiConnector} from "../../ApiConnector";
+import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {User} from "../../Model/User";
 import {ComponentBase} from "../ComponentBase"
 

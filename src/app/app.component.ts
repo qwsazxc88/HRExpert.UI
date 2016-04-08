@@ -12,7 +12,10 @@ import {SectionEditComponent} from './Components/sections/SectionEdit.component'
 import {SectionsListComponent} from './Components/sections/SectionsList.component';
 import {LoginComponent} from './Components/login/Login.component';
 import {LoggedInRouterOutlet} from './LoggedInOutlet';
-import {UsersService,RolesService,LoginService,SectionsService} from './ApiConnector';
+import {UsersService} from './ApiConnector/Users.service';
+import {RolesService} from './ApiConnector/Roles.service';
+import {LoginService} from './ApiConnector/Login.service';
+import {SectionsService} from './ApiConnector/Sections.service';
 import {Home} from './Components/home';
 
 import {AppState} from './app.service';
@@ -34,7 +37,7 @@ import {RouterActive} from './router-active';
   { path: '/roles/:id',  name: 'RoleEdit',  component: RoleEditComponent },
   { path: '/login',  name: 'Login',  component: LoginComponent },
   { path: '/sections',  name: 'Sections',  component: SectionsListComponent },
-  { path: '/sections/:id',  name: 'SectionEdit',  component: SectionsListComponent },
+  { path: '/sections/:id',  name: 'SectionEdit',  component: SectionEditComponent },
 ])
 export class App {
   isOn : boolean;

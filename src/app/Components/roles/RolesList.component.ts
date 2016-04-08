@@ -4,7 +4,7 @@ import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {OnInit} from "angular2/core";
 import {NgClass} from 'angular2/common';
 //Libs
-import {ApiConnector} from "../../ApiConnector";
+import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Role} from "../../Model/Role";
 import {ComponentBase} from "../ComponentBase"
 @Component({

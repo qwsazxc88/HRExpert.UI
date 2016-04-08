@@ -1,9 +1,8 @@
 //Vendor libs
-import {Component,Input} from 'angular2/core';
+import {Component,OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
-import {OnInit} from "angular2/core";
 //Libs
-import {ApiConnector} from "../../ApiConnector";
+import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Section} from "../../Model/Section";
 import {ComponentBase} from "../ComponentBase"
 
@@ -38,18 +37,18 @@ export class SectionEditComponent extends ComponentBase implements OnInit
 		if(data.Id>0)
 		{
 			this.Api.Sections.Update(data)
-                                .subscribe(
-                                    result => {this.Model = result; },
-                                    error => this.errorMessage = <any>error
-                                );
+				.subscribe(
+					result => {this.Model = result; },
+					error => this.errorMessage = <any>error
+				);
 		}
 		else
 		{
 			this.Api.Sections.Create(data)
-                                .subscribe(
-                                    result => {this.Model = result; },
-                                    error => this.errorMessage = <any>error
-                                );
+				.subscribe(
+					result => {this.Model = result; },
+					error => this.errorMessage = <any>error
+				);
 		}
 	}
 	Delete()
@@ -58,16 +57,16 @@ export class SectionEditComponent extends ComponentBase implements OnInit
 		if(data.Id>0)
 		{
 			this.Api.Sections.Delete(data)
-                                .subscribe(                                  
-                                    error => this.errorMessage = <any>error
-                                );
+				.subscribe(                                  
+					error => this.errorMessage = <any>error
+				);
 		}
 	}
     Get(id) {
         this.Api.Sections.Read(id)
-                                .subscribe(
-                                    result => {this.Model = result; },
-                                    error => this.errorMessage = <any>error
-                                );
+			.subscribe(
+				result => {this.Model = result; },
+				error => this.errorMessage = <any>error
+			);
     }
 }

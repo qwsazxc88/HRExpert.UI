@@ -3,7 +3,7 @@ import {Component,Input,OnInit} from 'angular2/core';
 import {NgSelectOption,NgModel} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 //Libs
-import {ApiConnector} from "../../ApiConnector";
+import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {User} from "../../Model/User";
 import {Role} from "../../Model/Role";
 import {ComponentBase} from "../ComponentBase";

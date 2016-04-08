@@ -3,7 +3,7 @@ import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Http, Headers, RequestOptions, Response} from "angular2/http";
 //Libs
-import {ApiConnector} from "../../ApiConnector";
+import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Login} from "../../Model/Login";
 
 @Component({
