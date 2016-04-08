@@ -13,6 +13,7 @@ export class ApiConnector
 		public Users : UsersService;
 		public Roles : RolesService;		
 		public Login : LoginService;
+		
 	constructor
 	(
 	    users : UsersService,

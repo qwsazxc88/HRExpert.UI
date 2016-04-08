@@ -88,7 +88,6 @@ export class UserEditComponent extends ComponentBase implements OnInit
 	RemoveRole(role)
 	{
 		this.ArrayTool.RemoveFromArray(this.Model.Roles,role);
-        this.Model=this.Model;
 	}
 	
     Get(id) {

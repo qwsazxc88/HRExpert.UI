@@ -2,7 +2,8 @@ import {Pipe, PipeTransform} from 'angular2/core';
 import {Referency} from '../Model/Referency'
 
 @Pipe({
-  name: 'arrayFilter'
+  name: 'arrayFilter',
+  pure: false
 })
 
 export class ArrayFilterPipe implements PipeTransform {

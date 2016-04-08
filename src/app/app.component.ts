@@ -3,6 +3,7 @@ import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 import {NgClass} from 'angular2/common';
 //Libs
+import {MenuComponent} from './Components/menu/Menu.component';
 import {UsersListComponent} from './Components/users/UsersList.component';
 import {UserEditComponent} from './Components/users/UserEdit.component';
 import {RolesListComponent} from './Components/roles/RolesList.component';
@@ -19,7 +20,7 @@ import {RouterActive} from './router-active';
   selector: '[app]',
   pipes: [ ],
   providers: [ UsersService,RolesService,LoginService],
-  directives: [ RouterActive,LoggedInRouterOutlet],
+  directives: [ RouterActive,LoggedInRouterOutlet,MenuComponent],
   styles: [],
   template: require('./app.html')
 })
@@ -29,7 +30,7 @@ import {RouterActive} from './router-active';
   { path: '/users/:id',  name: 'UserEdit',  component: UserEditComponent },
   { path: '/roles',  name: 'Roles',  component: RolesListComponent },
   { path: '/roles/:id',  name: 'RoleEdit',  component: RoleEditComponent },
-  { path: '/login',  name: 'Login',  component: LoginComponent },
+   { path: '/login',  name: 'Login',  component: LoginComponent },
 ])
 export class App {
   isOn : boolean;

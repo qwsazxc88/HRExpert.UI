@@ -2,32 +2,15 @@
         <!-- Sidebar -->
 		
         <div id="sidebar-wrapper" class="bgcolor2">
-			<div id="sidebar-wrapper-second" class="bgcolor2"></div>
-			<ul class="sidebar-nav ">			
-			  <li router-active class="sidebar-brand">
-			  <a [routerLink]=" ['Index'] " class="bgcolor1 logolink">
-			    <object type="image/svg+xml" data="/assets/img/logo.svg" style="margin-top:3px;" width="50" height="50"></object><span style="vertical-align:top;font-size:x-large;font-family:'Times New Roman', Times, serif">Русконсалт</span></a>
-				
-			  </li>
-			  <li router-active>
-				<a [routerLink]=" ['Users'] ">Пользователи</a>
-			  </li>
-			  <li router-active>
-				<a [routerLink]=" ['Roles'] ">Роли</a>
-			  </li>
-			  <li router-active>
-				<a [routerLink]=" ['Login'] ">Вход</a>
-			  </li>
-			</ul>
-                 
+			<app-menu></app-menu>                 
         </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">		
-			<div class="panel panel-default toppanel bgcolor2">
+			<div class="panel-default toppanel">
 			  <div class="panel-body">
-				<button (click)="toggle()" class="btn btn-default"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+				<a (click)="toggle()"><span style="font-size:1.5em;cursor:pointer;" class="glyphicon glyphicon-menu-hamburger"></span></a>
 			  </div>
 			</div>
             <div class="container-fluid">				
