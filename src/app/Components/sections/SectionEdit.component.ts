@@ -8,7 +8,7 @@ import {Section} from "../../Model/Section";
 import {ComponentBase} from "../ComponentBase"
 
 @Component({
-    selector: 'module-edit',
+    selector: 'section-edit',
     template: require('./Edit.html'),
 	providers: [ApiConnector]
 })

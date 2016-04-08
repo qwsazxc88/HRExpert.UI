@@ -8,7 +8,7 @@ import {ApiConnector} from "../../ApiConnector";
 import {Section} from "../../Model/Section";
 import {ComponentBase} from "../ComponentBase"
 @Component({
-    selector: 'modules-list',
+    selector: 'sections-list',
     template: require('./List.html'),
 	providers: [ApiConnector],
 	directives: [ROUTER_DIRECTIVES]
