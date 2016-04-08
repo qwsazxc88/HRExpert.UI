@@ -10,7 +10,7 @@ import {RolesListComponent} from './Components/roles/RolesList.component';
 import {RoleEditComponent} from './Components/roles/RoleEdit.component';
 import {LoginComponent} from './Components/login/Login.component';
 import {LoggedInRouterOutlet} from './LoggedInOutlet';
-import {UsersService,RolesService,LoginService} from './ApiConnector'
+import {UsersService,RolesService,LoginService,SectionsService} from './ApiConnector';
 import {Home} from './Components/home';
 
 import {AppState} from './app.service';
@@ -19,7 +19,7 @@ import {RouterActive} from './router-active';
 @Component({
   selector: '[app]',
   pipes: [ ],
-  providers: [ UsersService,RolesService,LoginService],
+  providers: [ UsersService,RolesService,LoginService,SectionsService],
   directives: [ RouterActive,LoggedInRouterOutlet,MenuComponent],
   styles: [],
   template: require('./app.html')
