@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 //Libs
 import {ApiSettings} from "./ApiSettings"
 import {User} from "../Model/User";
+import {Profile} from "../Model/Profile";
 import {HttpOptionsFactory} from "./HttpOptionsFactory"
 
 @Injectable()
@@ -18,6 +19,14 @@ export class UsersService {
 	private _read = ApiSettings.baseUrl+'/api/Users';
 	private _update = ApiSettings.baseUrl+'/api/Users';
 	private _delete = ApiSettings.baseUrl+'/api/Users';
+    private _profile = ApiSettings.baseUrl+'/api/Profile';
+    Profile()
+    {
+        var options = HttpOptionsFactory.Create();
+        return this.http.get(this._profile,options)
+                        .map(res => <Profile> res.json())
+                        .catch(this.handleError);
+    }
     //List
     List() {
 		var options = HttpOptionsFactory.Create();

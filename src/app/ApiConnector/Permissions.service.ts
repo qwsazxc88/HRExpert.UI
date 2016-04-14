@@ -5,23 +5,23 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx'; 
 //Libs
 import {ApiSettings} from "./ApiSettings"
-import {Section} from "../Model/Section";
+import {Permission} from "../Model/Permission";
 import {HttpOptionsFactory} from "./HttpOptionsFactory"
 @Injectable()
-export class SectionsService {
+export class PermissionsService {
 
     constructor (private http: Http) {}
 
-    private _list = ApiSettings.baseUrl+'/api/Sections';
-	private _create = ApiSettings.baseUrl+'/api/Sections';
-	private _read = ApiSettings.baseUrl+'/api/Sections';
-	private _update = ApiSettings.baseUrl+'/api/Sections';
-	private _delete = ApiSettings.baseUrl+'/api/Sections';	
+    private _list = ApiSettings.baseUrl+'/api/Permissions';
+	private _create = ApiSettings.baseUrl+'/api/Permissions';
+	private _read = ApiSettings.baseUrl+'/api/Permissions';
+	private _update = ApiSettings.baseUrl+'/api/Permissions';
+	private _delete = ApiSettings.baseUrl+'/api/Permissions';	
 	//List
     List() {       
 	    var options = HttpOptionsFactory.Create();
         return this.http.get(this._list,options)
-                        .map(res => <Section[]> res.json())
+                        .map(res => <Permission[]> res.json())
                         .catch(this.handleError);
     } 
 	//CRUD
@@ -30,13 +30,13 @@ export class SectionsService {
 		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
 		return this.http.post(this._create,body,options)                        
-                        .map(res => <Section> res.json())
+                        .map(res => <Permission> res.json())
                         .catch(this.handleError);
 	}
 	Read(id) {
 		var options = HttpOptionsFactory.Create();
         return this.http.get(this._read+'/'+id,options)
-                        .map(res => <Section> res.json())
+                        .map(res => <Permission> res.json())
                         .catch(this.handleError);
     }	
 	Update(entity)
@@ -44,7 +44,7 @@ export class SectionsService {
 		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
 		return this.http.put(this._update,body,options)                        
-                        .map(res => <Section> res.json())
+                        .map(res => <Permission> res.json())
                         .catch(this.handleError);
 	}
 	Delete(entity)
@@ -52,7 +52,7 @@ export class SectionsService {
 		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
 		return this.http.delete(this._delete+"/"+entity.Id,options) 
-						.map(res => <Section> res.json())		
+						.map(res => <Permission> res.json())		
                         .catch(this.handleError);
 	}
 	//End of CRUD

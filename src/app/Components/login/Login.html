@@ -1,17 +1,27 @@
-<div class="panel panel-primary">
-<div class="panel-heading">Вход</div>
-  <div class="panel-body">
-	<div class="form-group">
-		<label for="username">Логин</label>
-		<input type="text" [(ngModel)]="Model.UserName" class="form-control" placeholder="Логин">
-	</div>
-	<div class="form-group">
-		<label for="password">Пароль</label>
-		<input type="password" class="form-control" [(ngModel)]="Model.Password" placeholder="Пароль">
-	</div>
-	<div>
-		<button type="submit" class="btn btn-primary" (click)="submit()">Войти</button>
-	</div>
- </div>
-  <div class="panel-footer"></div>
+<div *ngIf="!jwt" >
+<!-- Modal -->
+  <div class="modal" style="display:block;" id="LoginModal" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">          
+          <h4 class="modal-title">Вход</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+                <label for="username">Логин</label>
+                <input type="text" [(ngModel)]="Model.UserName" class="form-control" placeholder="Логин">
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" class="form-control" [(ngModel)]="Model.Password" placeholder="Пароль">
+            </div>	
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="submit()">Войти</button>
+        </div>
+      </div>      
+    </div>
+  </div>
 </div>
+<a *ngIf="jwt"  (click)="logout()">Выйти</a>

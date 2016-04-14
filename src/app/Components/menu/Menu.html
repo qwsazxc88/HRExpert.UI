@@ -6,7 +6,7 @@
                 Русконсалт</span>
         </a>    
     </li>
-    <li><a>Администрирование</a>
+    <li *ngIf="findPermissionById(1)" ><a>Администрирование</a>
         <ul>
             <li router-active>
                 <a [routerLink]=" ['Users'] ">Пользователи</a>
@@ -15,7 +15,7 @@
                 <a [routerLink]=" ['Roles'] ">Роли</a>
             </li>
             <li router-active>
-                <a [routerLink]=" ['Users'] ">Права доступа</a>
+                <a [routerLink]=" ['Permissions'] ">Права доступа</a>
             </li>
             <li router-active>
                 <a [routerLink]=" ['Sections'] ">Модули</a>
@@ -23,6 +23,6 @@
         </ul>        
     </li>
     <li>
-        <login-menu></login-menu>
+        
     </li>
 </ul>

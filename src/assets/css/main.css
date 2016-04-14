@@ -49,6 +49,10 @@ body{
 	margin-right:-20px;
 	margin-top:-20px;
   }
+  .sidebar-nav ul{
+      padding-left: 10px;
+      list-style: none;
+  }
   .logolink{
   height:65px;
   padding-top:3px;

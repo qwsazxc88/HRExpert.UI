@@ -5,11 +5,16 @@ import {OnInit} from "angular2/core";
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Role} from "../../Model/Role";
-import {ComponentBase} from "../ComponentBase"
-
+import {Section} from "../../Model/Section";
+import {Permission} from "../../Model/Permission";
+import {ComponentBase} from "../ComponentBase";
+import {ArrayTools} from "../../Tools/ArrayTools";
+import {ArrayFilterPipe} from "../../Tools/ArrayFilterPipe";
+import {IdFilterPipe} from "../../Tools/IdFilterPipe"
 @Component({
     selector: 'roles-edit',
-    template: require('./Edit.html'),
+    template: require('./Edit.html'),    
+    pipes:[ArrayFilterPipe,IdFilterPipe],
 	providers: [ApiConnector]
 })
 
@@ -19,17 +24,35 @@ export class RoleEditComponent extends ComponentBase implements OnInit
 	{
 		super();
 		this.Model=new Role(0,'');
+        this.Permissions = [];
+        this.Sections = [];        
+		this.ArrayTool = new ArrayTools();
 	}
 
     errorMessage: string;
     Model: Role;
-
+    Sections : Section[];
+    Permissions: Permission[];
+    SelectedPermission: number;
+    SelectedSection: number;
+    ArrayTool: ArrayTools;
+    
     ngOnInit() {
 		let id =+this._routeParams.get('id');
 		if(id>0)
 		{
 			this.Get(id);
 		}
+        this.Api.Permissions.List()
+                .subscribe(
+                    data => {this.Permissions = data; },
+                    error => this.errorMessage = <any>error
+                );
+        this.Api.Sections.List()
+                .subscribe(
+                    data => {this.Sections = data; },
+                    error => this.errorMessage = <any>error
+                );
     }
 	
 	Save()
@@ -71,4 +94,18 @@ export class RoleEditComponent extends ComponentBase implements OnInit
                                     error => this.errorMessage = <any>error
                                 );
     }
+    AddPermission()
+	{
+		if(!this.SelectedPermission) return;
+		var role = this.Permissions.find(x=>x.Id==this.SelectedPermission);
+		if(role)
+		{
+			this.Model.Permissions.push(role);
+		}        
+        this.Model=this.Model;
+	}
+	RemovePermission(permission)
+	{
+		this.ArrayTool.RemoveFromArray(this.Model.Permissions,permission);
+	}
 }

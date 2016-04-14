@@ -2,15 +2,16 @@
         <!-- Sidebar -->
 		
         <div id="sidebar-wrapper" class="bgcolor2">
-			<app-menu></app-menu>                 
+			<app-menu [profile]="profile"></app-menu>                 
         </div>
         <!-- /#sidebar-wrapper -->
-
         <!-- Page Content -->
         <div id="page-content-wrapper">		
 			<div class="panel-default toppanel">
 			  <div class="panel-body">
 				<a (click)="toggle()"><span style="font-size:1.5em;cursor:pointer;" class="glyphicon glyphicon-menu-hamburger"></span></a>
+                <span *ngIf="profile" >{{profile.UserName}}</span>
+                <login [(jwt)]="jwt" [(decodedJwt)]="decodedJwt" [(profile)]="profile"></login>
 			  </div>
 			</div>
             <div class="container-fluid">				

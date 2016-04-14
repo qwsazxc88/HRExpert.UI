@@ -33,7 +33,18 @@ export class LoginService {
                         .map(res => <string> (res.json().access_token))
                         .catch(this.handleError);
 	}	
-	
+	referesh()
+    {
+        let jwt = localStorage.getItem('jwt');
+        let body = this.transformRequest({
+            token: jwt,
+			grant_type:'refresh_token'});
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+		return this.http.post(this._login,body,options)                        
+                .map(res => <string> (res.json().access_token))
+                .catch(this.handleError);
+    }
     private handleError (error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
