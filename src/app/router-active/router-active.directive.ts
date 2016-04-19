@@ -27,7 +27,7 @@ import {Instruction, RouterLink} from 'angular2/router';
 })
 export class RouterActive {
   @Input() routerActive: string = null;
-  routerActiveAttr: string = 'active';
+  routerActiveAttr: string = 'menu-router-active';
 
   constructor(
     public router: Router,
@@ -35,7 +35,6 @@ export class RouterActive {
     public renderer: Renderer,
     @Query(RouterLink) public routerLink: QueryList<RouterLink>,
     @Optional() @Attribute('router-active') routerActiveAttr?: string) {
-
       this.routerActiveAttr = this._defaultAttrValue(routerActiveAttr);
   }
 

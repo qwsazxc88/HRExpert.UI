@@ -1,6 +1,12 @@
 //Vendor libs
 import {Component,OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
+import {MdButton, MdAnchor} from '@angular2-material/button';
+import {MdToolbar} from '@angular2-material/toolbar';
+import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
+import {MdCheckbox} from '@angular2-material/checkbox';
+import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
+import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Section} from "../../Model/Section";
@@ -10,6 +16,7 @@ import {ComponentBase} from "../ComponentBase"
 @Component({
     selector: 'permission-edit',
     template: require('./Edit.html'),
+    directives:[MD_INPUT_DIRECTIVES,MdButton,MD_CARD_DIRECTIVES],
 	providers: [ApiConnector]
 })
 

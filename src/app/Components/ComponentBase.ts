@@ -13,14 +13,9 @@ export class ComponentBase implements OnActivate , OnDeactivate
 	active:boolean;
 	routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
 		this.active=true;
-		return new Promise(resolve => {
-			setTimeout(() => resolve(null), 800);
-		});
 	}
 	routerOnDeactivate(next: ComponentInstruction, prev: ComponentInstruction) {
 		this.active=false;
-		return new Promise(resolve => {
-			setTimeout(() => resolve(null), 800);
-		});
+		
 	}
 }

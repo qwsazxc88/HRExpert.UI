@@ -1,37 +1,27 @@
-<div class="row animated" [ngClass]="{fadeInDown: active,fadeOutUp: !active}">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="panel panel-primary">
-			<div class="panel-heading">Роль  {{Model.Name}}</div>  
-			<div class="panel-body">  
-				<div *ngIf="Model">
-				<div class="form-group">
-				  <label>Id:</label>
-				  <span>{{Model.Id}}</span>
-				</div>	
-				<div class="form-group">
-				  <label>Название:</label>
-				  <input type="text" class="form-control" [(ngModel)]="Model.Name" placeholder="Название">
-				</div>
+<div class="mdl-grid">	
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <md-card>
+        <md-card-subtitle>Роль</md-card-subtitle>
+        <md-card-title>{{Model.Name}}</md-card-title>   
+        <md-card-content>
+                <label>Id:</label>
+                <span>{{Model.Id}}</span>
+                <md-input [(ngModel)]="Model.Name" placeholder="Название"></md-input>
                 <div class="form-group">
-					  <label for="sel1">Роли:</label>
-                      <ul class="nav nav-pills">
-                            <li *ngFor="#section of Sections" [ngClass]="{active:section.Id==SelectedSection}" ><a (click)="SelectedSection=section.Id" >{{section.Name}}</a></li>
-                        </ul>
+                      <span *ngFor="#section of Sections" [ngClass]="{active:section.Id==SelectedSection}" ><a md-button (click)="SelectedSection=section.Id" >{{section.Name}}</a></span>                        
 				<div class="well well-sm">
 					<div class="form-group">                        
-                        
 						<div class="input-group">
-						  <span class="input-group-addon" id="basic-addon3">Добавить права:</span>
-                          
+						  <span class="input-group-addon" id="basic-addon3">Добавить права:</span>                          
 						  <select class="form-control" aria-describedby="basic-addon3" [(ngModel)]="SelectedPermission" >
 							<option *ngFor="#permission of Permissions| arrayFilter: Model.Permissions | idFilter : SelectedSection :'Section'" value="{{permission.Id}}">{{permission.Name}}</option>
 						  </select>
 						  <span class="input-group-btn">
-							<button (click)="AddPermission()" class="btn btn-success glyphicon glyphicon-plus" type="button"> </button>
+							<button (click)="AddPermission()" md-raised-button color="primary" type="button">Добавить</button>
 						  </span>
 						</div>						
 					</div>
-					<table class="table table-bordered table-striped">
+					<table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
 					<thead>
 					<tr><th width="10%">Id</th><th>Название</th><th>Модуль</th><th width="10%"></th></tr>
 					</thead>
@@ -48,10 +38,11 @@
 					</table>
 				</div>
 				</div>
-				</div>
-				<button class="btn btn-primary" (click)="Save()">Сохранить</button>
-				<button class="btn btn-default" (click)="Delete()">Удалить</button>
-			</div>
-		</div>
-	</div>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
+                <button md-raised-button (click)="Delete()">Удалить</button>
+        </md-card-actions>
+        </md-card>
+    </div>      
 </div>

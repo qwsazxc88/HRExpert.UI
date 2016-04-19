@@ -7,16 +7,16 @@ import {MdButton, MdAnchor} from '@angular2-material/button';
 import {MdToolbar} from '@angular2-material/toolbar';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Role} from "../../Model/Role";
+import {Organization} from "../../Model/Organization";
 import {ComponentBase} from "../ComponentBase"
 @Component({
-    selector: 'roles-list',
+    selector: 'organization-list',
     template: require('./List.html'),
 	providers: [ApiConnector],
 	directives: [ROUTER_DIRECTIVES,MdButton,MdToolbar]
 })
 
-export class RolesListComponent extends ComponentBase implements OnInit
+export class OrganizationListComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _router: Router) 
 	{
@@ -24,25 +24,25 @@ export class RolesListComponent extends ComponentBase implements OnInit
 	}
 
     errorMessage: string;
-    Model: Role[];
+    Model: Organization[];
 
     ngOnInit() {
         this.Get();
 	}
 	
     Get() {
-        this.Api.Roles.List()
+        this.Api.Organizations.List()
 					.subscribe(
-						roles => {this.Model = roles;},
+						result => {this.Model = result;},
 						error => this.errorMessage = <any>error
 					);
     }
-	Edit(role: Role) {
-	  let link = ['RoleEdit', { id: role.Id }];
+	Edit(entity: Organization) {
+	  let link = ['OrganizationEdit', { id: entity.Id }];
 	  this._router.navigate(link);
 	}
 	Create() {
-	  let link = ['RoleEdit', { id: 0}];
+	  let link = ['OrganizationEdit', { id: 0}];
 	  this._router.navigate(link);
 	}
 }

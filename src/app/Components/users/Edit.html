@@ -1,18 +1,14 @@
-<div class="row animated"  [ngClass]="{fadeInDown: active,fadeOutUp: !active}">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="panel panel-primary">
-			<div class="panel-heading">Пользователь {{Model.Name}}</div>  
-			<div class="panel-body">   
-				<div *ngIf="Model">
-				<div class="form-group">
-				  <label>Id:</label>
-				  <span>{{Model.Id}}</span>
-				</div>	
-				<div class="form-group">
-				  <label>Имя:</label>
-				  <input type="text" class="form-control" [(ngModel)]="Model.Name" placeholder="Имя">
-				</div>
-				<div class="form-group">
+<div class="mdl-grid">	
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <md-card>
+        <md-card-subtitle>Пользователь</md-card-subtitle>
+        <md-card-title>{{Model.Name}}</md-card-title>   
+        <md-card-content>
+                <label>Id:</label>
+                <span>{{Model.Id}}</span>
+                <md-input [(ngModel)]="Model.Name" placeholder="Имя"></md-input>
+                
+                <div class="form-group">
 					  <label for="sel1">Роли:</label>
 				<div class="well well-sm">
 					<div class="form-group">
@@ -24,11 +20,11 @@
 							<option *ngFor="#role of Roles| arrayFilter: UserRoles" value="{{role.Id}}">{{role.Name}}</option>
 						  </select>
 						  <span class="input-group-btn">
-							<button (click)="AddRole()" class="btn btn-success glyphicon glyphicon-plus" type="button"> </button>
+							<button (click)="AddRole()" color="primary" md-raised-button type="button">Добавить</button>
 						  </span>
 						</div>						
 					</div>
-					<table class="table table-bordered table-striped">
+					<table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
 					<thead>
 					<tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
 					</thead>
@@ -37,17 +33,18 @@
 						<td>{{role.Id}}</td>
 						<td>{{role.Name}}</td>
 						<td>
-							<a (click)="RemoveRole(role)" class="btn btn-info btn-xs">удалить</a>
+							<a (click)="RemoveRole(role)" md-button>удалить</a>
 						</td>
 					</tr>
 					</tbody>
 					</table>
 				</div>
 				</div>
-				</div>
-				<button class="btn btn-primary" (click)="Save()">Сохранить</button>
-				<button class="btn btn-default" (click)="Delete()">Удалить</button>
-			</div>
-		</div>
-	</div>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
+                <button md-raised-button (click)="Delete()">Удалить</button>
+        </md-card-actions>
+        </md-card>
+    </div>  
 </div>

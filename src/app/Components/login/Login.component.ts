@@ -2,6 +2,12 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Http, Headers, RequestOptions, Response} from "angular2/http";
+import {MdButton, MdAnchor} from '@angular2-material/button';
+import {MdToolbar} from '@angular2-material/toolbar';
+import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
+import {MdCheckbox} from '@angular2-material/checkbox';
+import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
+import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Login} from "../../Model/Login";
@@ -10,6 +16,7 @@ import {TokenHelper} from "../../Tools/TokenHelper"
 @Component({
 	template: require('./Login.html'),    
     selector: 'login',
+    directives: [MD_INPUT_DIRECTIVES,MdButton],
 	providers: [ApiConnector]
 })
 export class LoginComponent implements OnInit{

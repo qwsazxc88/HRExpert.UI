@@ -3,6 +3,8 @@ import {Component} from 'angular2/core';
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {OnInit} from "angular2/core";
 import {NgClass} from 'angular2/common';
+import {MdButton, MdAnchor} from '@angular2-material/button';
+import {MdToolbar} from '@angular2-material/toolbar';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Section} from "../../Model/Section";
@@ -11,7 +13,7 @@ import {ComponentBase} from "../ComponentBase"
     selector: 'sections-list',
     template: require('./List.html'),
 	providers: [ApiConnector],
-	directives: [ROUTER_DIRECTIVES]
+	directives: [ROUTER_DIRECTIVES,MdButton,MdToolbar]
 })
 
 export class SectionsListComponent extends ComponentBase implements OnInit

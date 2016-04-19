@@ -2,6 +2,8 @@
 import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {OnInit} from "angular2/core";
+import {MdButton, MdAnchor} from '@angular2-material/button';
+import {MdToolbar} from '@angular2-material/toolbar';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {User} from "../../Model/User";
@@ -10,6 +12,7 @@ import {ComponentBase} from "../ComponentBase"
 @Component({
     selector: 'users-list',
     template: require('./List.html'),
+    directives: [MdButton,MdToolbar] ,
 	providers: [ApiConnector]
 })
 

@@ -1,21 +1,17 @@
-<div class="row animated" [ngClass]="{fadeInDown: active,fadeOutUp: !active}">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="panel panel-primary">
-			<div class="panel-heading">Модуль  {{Model.Name}}</div>  
-			<div class="panel-body">  
-				<div *ngIf="Model">
-				<div class="form-group">
-				  <label>Id:</label>
-				  <span>{{Model.Id}}</span>
-				</div>	
-				<div class="form-group">
-				  <label>Название:</label>
-				  <input type="text" class="form-control" [(ngModel)]="Model.Name" placeholder="Название">
-				</div>
-				</div>
-				<button class="btn btn-primary" (click)="Save()">Сохранить</button>
-				<button class="btn btn-default" (click)="Delete()">Удалить</button>
-			</div>
-		</div>
-	</div>
+<div class="mdl-grid">	
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <md-card>
+        <md-card-subtitle>Модуль</md-card-subtitle>
+        <md-card-title>{{Model.Name}}</md-card-title>   
+        <md-card-content>
+                <label>Id:</label>
+                <span>{{Model.Id}}</span>
+                <md-input [(ngModel)]="Model.Name" placeholder="Название"></md-input>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
+                <button md-raised-button (click)="Delete()">Удалить</button>
+        </md-card-actions>
+        </md-card>
+    </div>  
 </div>

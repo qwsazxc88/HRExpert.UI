@@ -9,41 +9,43 @@ import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angul
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Section} from "../../Model/Section";
-import {ComponentBase} from "../ComponentBase"
-
+import {Organization} from "../../Model/Organization";
+import {ComponentBase} from "../ComponentBase";
+import {DepartmentsListComponent} from "../departments/DepartmentsList.component"
 @Component({
-    selector: 'section-edit',
+    selector: 'organization-edit',
     template: require('./Edit.html'),
-    directives:[MD_INPUT_DIRECTIVES,MdButton,MD_CARD_DIRECTIVES],
+    directives: [DepartmentsListComponent,MD_CARD_DIRECTIVES,MD_INPUT_DIRECTIVES,MdButton],
 	providers: [ApiConnector]
 })
 
-export class SectionEditComponent extends ComponentBase implements OnInit
+export class OrganizationEditComponent extends ComponentBase implements OnInit
 { 
 	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
 	{
 		super();
-		this.Model=new Section(0,'');
+		this.Model=new Organization(0,'');  
+        let id =+this._routeParams.get('id');
+		if(id>0)
+		{
+            this.Model.Id=id;
+			this.Get(id);
+		}      
 	}
 
     errorMessage: string;
-    Model: Section;
-
+    Model: Organization;
+    
     ngOnInit() {
-		let id =+this._routeParams.get('id');
-		if(id>0)
-		{
-			this.Get(id);
-		}
+		
     }
 	
 	Save()
 	{
 		var data = this.Model;
-		if(data.Id>0)
+        if(data.Id>0)
 		{
-			this.Api.Sections.Update(data)
+			this.Api.Organizations.Update(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -51,7 +53,7 @@ export class SectionEditComponent extends ComponentBase implements OnInit
 		}
 		else
 		{
-			this.Api.Sections.Create(data)
+			this.Api.Organizations.Create(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -63,14 +65,14 @@ export class SectionEditComponent extends ComponentBase implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Sections.Delete(data)
+			this.Api.Organizations.Delete(data)
 				.subscribe(                                  
 					error => this.errorMessage = <any>error
 				);
 		}
 	}
     Get(id) {
-        this.Api.Sections.Read(id)
+        this.Api.Organizations.Read(id)
 			.subscribe(
 				result => {this.Model = result; },
 				error => this.errorMessage = <any>error

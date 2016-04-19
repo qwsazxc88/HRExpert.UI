@@ -1,0 +1,15 @@
+<ul class="treeview">
+    <li *ngFor="#element of Elements">
+        <span (click)="toggle(element)">
+            <span *ngIf="element.Childs && element.Childs.length>0" style="cursor:pointer;" >
+                <span *ngIf="!element.toggled" style="color: rgba(33, 150, 243,0.9);" ><i class="material-icons">folder</i></span>
+                <span *ngIf="element.toggled" style="color: rgba(33, 150, 243,0.9);" ><i class="material-icons">folder_open</i></span>
+            </span>
+            <span *ngIf="!element.Childs || !element.Childs.length>0">
+                <i class="material-icons">label</i>
+            </span>            
+        </span>
+        <span (click)="select(element)" (dblclick)="toggle(element)" [ngClass]="{'elementName selected': element==SelectedElement,'elementName': element!=SelectedElement }" > {{ element.Name }}</span>
+        <tree-view *ngIf="element.toggled" [(SelectedElement)]="SelectedElement"  [Elements]="element.Childs"></tree-view>        
+    </li>
+</ul>

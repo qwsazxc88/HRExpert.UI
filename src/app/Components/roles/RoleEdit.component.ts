@@ -2,6 +2,12 @@
 import {Component,Input} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 import {OnInit} from "angular2/core";
+import {MdButton, MdAnchor} from '@angular2-material/button';
+import {MdToolbar} from '@angular2-material/toolbar';
+import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
+import {MdCheckbox} from '@angular2-material/checkbox';
+import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
+import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
 import {ApiConnector} from "../../ApiConnector/ApiConnector";
 import {Role} from "../../Model/Role";
@@ -15,6 +21,7 @@ import {IdFilterPipe} from "../../Tools/IdFilterPipe"
     selector: 'roles-edit',
     template: require('./Edit.html'),    
     pipes:[ArrayFilterPipe,IdFilterPipe],
+    directives:[MD_INPUT_DIRECTIVES,MdButton,MD_CARD_DIRECTIVES],
 	providers: [ApiConnector]
 })
 

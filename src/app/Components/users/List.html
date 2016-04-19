@@ -1,26 +1,26 @@
-<div class="row animated"  [ngClass]="{fadeInDown: active,fadeOutUp: !active}">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="panel panel-primary">
-			<div class="panel-heading">Пользователи</div>  
-			<div class="panel-body">
-				<div class="well well-sm">
-					<button class="btn btn-primary" (click)="Create()">Добавить</button>
-				</div>
-				<table class="table table-bordered table-striped">
-				<thead>
-				<tr><th width="10%">Id</th><th>Имя</th><th width="10%"></th></tr>
-				</thead>
-				<tbody>
-				<tr *ngFor="#user of Model">					
-					<td>{{user.Id}}</td>
-					<td>{{user.Name}}</td>
-					<td>
-						<a (click)="Edit(user)" class="btn btn-info btn-xs">редактировать</a>
-					</td>
-				</tr>
-				</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+<div class="mdl-grid">	
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <div class="panel-heading">Пользователи</div>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <md-toolbar >
+            <button md-raised-button color="primary" (click)="Create()">Добавить</button>
+        </md-toolbar >
+    </div>
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <table  class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#element of Model" >						
+            <td>{{element.Id}}</td>
+            <td>{{element.Name}}</td>
+            <td>
+                <a (click)="Edit(element)"><i class="material-icons">mode edit</i></a>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+    </div>	
 </div>
