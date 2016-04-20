@@ -1,26 +1,21 @@
 //Vendor libs
-import {Component} from 'angular2/core';
+import {Component,OnInit} from 'angular2/core';
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
-import {OnInit} from "angular2/core";
-import {NgClass} from 'angular2/common';
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Organization} from "../../Model/Organization";
-import {ComponentBase} from "../ComponentBase"
+import {MD_COMPONENTS} from '../MD_COMPONENTS';
+import {API} from '../../Services';
+import {Organization} from '../../Model';
 @Component({
     selector: 'organization-list',
-    template: require('./List.html'),
-	providers: [ApiConnector],
-	directives: [ROUTER_DIRECTIVES,MdButton,MdToolbar]
+    template: require('../../Views/organizations/List.html'),
+	providers: [API],
+	directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
 })
 
-export class OrganizationListComponent extends ComponentBase implements OnInit
+export class OrganizationListComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _router: Router) 
+	constructor (private Api: API, private _router: Router) 
 	{
-		super();
 	}
 
     errorMessage: string;

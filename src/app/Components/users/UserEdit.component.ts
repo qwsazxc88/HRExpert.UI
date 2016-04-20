@@ -2,32 +2,24 @@
 import {Component,Input,OnInit} from 'angular2/core';
 import {NgSelectOption,NgModel} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
-import {MdCheckbox} from '@angular2-material/checkbox';
-import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {User} from "../../Model/User";
-import {Role} from "../../Model/Role";
-import {ComponentBase} from "../ComponentBase";
-import {ArrayTools} from "../../Tools/ArrayTools";
-import {ArrayFilterPipe} from "../../Tools/ArrayFilterPipe";
+import {API} from "../../Services";
+import {MD_COMPONENTS} from "../"
+import {User,Role} from "../../Model";
+import {ArrayTools} from "../../Tools/ArrayTools/ArrayTools";
+import {ArrayFilterPipe} from "../../Tools/ArrayTools/ArrayFilterPipe";
 @Component({
     selector: 'users-edit',
-    template: require('./Edit.html'),
-	directives:[MD_INPUT_DIRECTIVES,MdButton,MD_CARD_DIRECTIVES],
+    template: require('../../Views/users/Edit.html'),
+	directives:[MD_COMPONENTS],
     pipes:[ArrayFilterPipe],
-	providers: [ApiConnector]
+	providers: [API]
 })
 
-export class UserEditComponent extends ComponentBase implements OnInit
+export class UserEditComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
+	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
-		super();
 		this.ArrayTool = new ArrayTools();
 		this.Model=new User(0,'');
 		this.Roles=[];

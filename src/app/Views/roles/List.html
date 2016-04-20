@@ -1,0 +1,28 @@
+<div class="mdl-grid">    
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <md-toolbar >
+            <span>Роли</span>
+            <md-toolbar-row>
+                <button md-raised-button color="primary" (click)="Create()">Добавить</button>
+            </md-toolbar-row>
+        </md-toolbar >
+    </div>
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <table  class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#element of Model" >						
+            <td>{{element.Id}}</td>
+            <td>{{element.Name}}</td>
+            <td>
+                <a (click)="Edit(element)">
+                    <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+    </div>	
+</div>

@@ -1,0 +1,52 @@
+.treeview{
+    list-style: none; 
+}
+.treeview {
+    padding-left:0px;
+}
+.treeview li
+{
+    border-bottom:1px solid rgba(180, 180, 180, 0.3);
+}
+.treeview li:hover
+{
+    background: rgba(33, 150, 243,0.1);
+}
+.treeview li: :last-child
+{
+    border-bottom:0px;
+}
+.treeview .header .selected
+{
+    background: rgba(33, 150, 243,0.9);
+}
+.treeview .elementName
+{
+    font-size: 120%;
+    border: 1px solid transparent;
+    padding-left:2px;
+    padding-right: 2px;
+    border-radius: 2px;
+}
+.treeview .selected
+{
+    font-size: 120%;
+    color:white;
+    padding-left:2px;
+    padding-right: 2px;
+    background-color: rgba(33, 150, 243,0.9);
+    cursor: pointer;
+    text-decoration-style: underline;
+    border: 1px solid rgba(33, 150, 243,1);
+    border-radius: 2px;
+}
+.treeview .elementName:hover
+{
+    cursor: pointer;
+    text-decoration-style: underline;
+    border: 1px solid rgba(33, 150, 243,0.5);
+    border-radius: 2px;
+}
+.treeview .glyphicon{
+    text-shadow: -1px 1px 1px rgba(150, 150, 150, 1);
+}

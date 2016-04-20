@@ -1,29 +1,23 @@
 //Vendor libs
 import {Component,OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
-import {MdCheckbox} from '@angular2-material/checkbox';
-import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
+
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Organization} from "../../Model/Organization";
-import {ComponentBase} from "../ComponentBase";
-import {DepartmentsListComponent} from "../departments/DepartmentsList.component"
+import {API} from '../../Services';
+import {Organization} from '../../Model';
+import {MD_COMPONENTS} from '../MD_COMPONENTS';
+import {DepartmentsListComponent} from '../departments/DepartmentsList.component';
 @Component({
     selector: 'organization-edit',
-    template: require('./Edit.html'),
-    directives: [DepartmentsListComponent,MD_CARD_DIRECTIVES,MD_INPUT_DIRECTIVES,MdButton],
-	providers: [ApiConnector]
+    template: require('../../Views/organizations/Edit.html'),
+    directives: [DepartmentsListComponent, MD_COMPONENTS],
+	providers: [API]
 })
 
-export class OrganizationEditComponent extends ComponentBase implements OnInit
+export class OrganizationEditComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
+	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
-		super();
 		this.Model=new Organization(0,'');  
         let id =+this._routeParams.get('id');
 		if(id>0)

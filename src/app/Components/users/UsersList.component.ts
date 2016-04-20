@@ -2,25 +2,22 @@
 import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {OnInit} from "angular2/core";
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {User} from "../../Model/User";
-import {ComponentBase} from "../ComponentBase"
+import {MD_COMPONENTS} from '../';
+import {API} from "../../Services";
+import {User} from "../../Model";
 
 @Component({
     selector: 'users-list',
-    template: require('./List.html'),
-    directives: [MdButton,MdToolbar] ,
-	providers: [ApiConnector]
+    template: require('../../Views/users/List.html'),
+    directives: [MD_COMPONENTS] ,
+	providers: [API]
 })
 
-export class UsersListComponent extends ComponentBase implements OnInit
+export class UsersListComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector,private _router: Router) 
+	constructor (private Api: API,private _router: Router) 
 	{
-		super();
 	}
 
     errorMessage: string;
@@ -29,7 +26,6 @@ export class UsersListComponent extends ComponentBase implements OnInit
     ngOnInit() {
         this.Get();
     }
-    //обращаемся к созданному нами сервису
     Get() {
         this.Api.Users.List()
 					.subscribe(

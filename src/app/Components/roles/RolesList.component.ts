@@ -3,24 +3,21 @@ import {Component} from 'angular2/core';
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {OnInit} from "angular2/core";
 import {NgClass} from 'angular2/common';
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Role} from "../../Model/Role";
-import {ComponentBase} from "../ComponentBase"
+import {MD_COMPONENTS} from '../';
+import {API} from '../../Services';
+import {Role} from '../../Model';
 @Component({
     selector: 'roles-list',
-    template: require('./List.html'),
-	providers: [ApiConnector],
-	directives: [ROUTER_DIRECTIVES,MdButton,MdToolbar]
+    template: require('../../Views/roles/List.html'),
+	providers: [API],
+	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS]
 })
 
-export class RolesListComponent extends ComponentBase implements OnInit
+export class RolesListComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _router: Router) 
+	constructor (private Api: API, private _router: Router) 
 	{
-		super();
 	}
 
     errorMessage: string;

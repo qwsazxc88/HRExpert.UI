@@ -8,22 +8,21 @@ import {MdCheckbox} from '@angular2-material/checkbox';
 import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Section} from "../../Model/Section";
-import {ComponentBase} from "../ComponentBase"
+import {MD_COMPONENTS} from '../';
+import {API} from '../../Services';
+import {Section} from '../../Model';
 
 @Component({
     selector: 'section-edit',
-    template: require('./Edit.html'),
-    directives:[MD_INPUT_DIRECTIVES,MdButton,MD_CARD_DIRECTIVES],
-	providers: [ApiConnector]
+    template: require('../../Views/sections/Edit.html'),
+    directives:[MD_COMPONENTS],
+	providers: [API]
 })
 
-export class SectionEditComponent extends ComponentBase implements OnInit
+export class SectionEditComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
+	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
-		super();
 		this.Model=new Section(0,'');
 	}
 

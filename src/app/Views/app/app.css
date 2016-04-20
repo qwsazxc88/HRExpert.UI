@@ -1,0 +1,19 @@
+
+.fill-remaining-space {  
+  flex: 1 1 auto;
+}
+.currentuser
+{
+    padding: 10px;
+    background-color:#2C414D;
+    font-size: 120%;    
+    text-align: center;
+}
+md-sidenav {
+  color:white;
+  background-color: #2C414D !important;
+  width: 200px;
+}
+md-sidenav-layout {
+  height:100%;
+}

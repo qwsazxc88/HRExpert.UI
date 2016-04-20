@@ -1,24 +1,24 @@
 //Vendor libs
-import {Component,Input,OnInit} from 'angular2/core';
-import {NgSelectOption,NgModel} from 'angular2/common';
+import {Component, Input, OnInit} from 'angular2/core';
+import {NgSelectOption, NgModel} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
-import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
 //libs
-import {RouterActive} from '../../router-active'
+import {RouterActive} from '../APP_UI_COMPONENTS';
 import {LoginComponent} from '../login/Login.component';
-import {Profile} from '../../Model/Profile';
+import {Profile} from '../../Model';
 @Component({
     selector: 'app-menu',
-    template: require('./Menu.html'),
-    directives:[LoginComponent,MD_LIST_DIRECTIVES,RouterActive]
+    styles: [require('../../Views/menu/menu.css')],
+    template: require('../../Views/menu/Menu.html'),
+    directives:[LoginComponent, RouterActive]
 })
 
 export class MenuComponent
 { 
     @Input() profile: Profile;
 	constructor () 
-	{        
-	}    
+	{
+	}
     findPermisisonByName(name)
     {
         if(this.profile && this.profile.Permissions)        

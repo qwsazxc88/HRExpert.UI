@@ -1,30 +1,22 @@
 //Vendor libs
 import {Component,OnInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
-import {MdCheckbox} from '@angular2-material/checkbox';
-import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
+import {RouteParams} from 'angular2/router';;
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Section} from "../../Model/Section";
-import {Permission} from "../../Model/Permission";
-import {ComponentBase} from "../ComponentBase"
+import {API} from '../../Services';
+import {Permission,Section} from '../../Model';
+import {MD_COMPONENTS} from '../';
 
 @Component({
     selector: 'permission-edit',
-    template: require('./Edit.html'),
-    directives:[MD_INPUT_DIRECTIVES,MdButton,MD_CARD_DIRECTIVES],
-	providers: [ApiConnector]
+    template: require('../../Views/permissions/Edit.html'),
+    directives:[MD_COMPONENTS],
+	providers: [API]
 })
 
-export class PermissionEditComponent extends ComponentBase implements OnInit
+export class PermissionEditComponent implements OnInit
 { 
-	constructor (private Api: ApiConnector, private _routeParams: RouteParams) 
+	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
-		super();
 		this.Model=new Permission(0,'');
         Api.Sections.List()
             .subscribe(

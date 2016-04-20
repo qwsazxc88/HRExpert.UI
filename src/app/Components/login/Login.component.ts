@@ -1,35 +1,30 @@
 //Vendor libs
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {Http, Headers, RequestOptions, Response} from "angular2/http";
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
-import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
-import {MdCheckbox} from '@angular2-material/checkbox';
-import {MdRadioButton,MdRadioChange,MdRadioDispatcher,MdRadioGroup} from '@angular2-material/radio';
-import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 //Libs
-import {ApiConnector} from "../../ApiConnector/ApiConnector";
-import {Login} from "../../Model/Login";
-import {Profile} from "../../Model/Profile";
-import {TokenHelper} from "../../Tools/TokenHelper"
+import {MD_COMPONENTS} from '../';
+import {API} from '../../Services';
+import {Login, Profile} from '../../Model';
+import {TokenHelper} from '../../Tools/Token/TokenHelper';
+
 @Component({
-	template: require('./Login.html'),    
+    template: require('../../Views/login/Login.html'),
     selector: 'login',
-    directives: [MD_INPUT_DIRECTIVES,MdButton],
-	providers: [ApiConnector]
+    directives: [MD_COMPONENTS],
+    providers: [API]
 })
 export class LoginComponent implements OnInit{
-  constructor(private router: Router, private Api: ApiConnector) {
-  this.Model = new Login();
-  this.tokenHelper = new TokenHelper();  
+  constructor(private router: Router, private Api: API) {
+    this.Model = new Login();
+    this.tokenHelper = new TokenHelper();
   }
-  @Input() jwt:string;
+  
+  tokenHelper : TokenHelper;
+  @Input() jwt : string;
+  @Input() decodedJwt : any;
+  @Input() profile : Profile;
   @Output() jwtChange = new EventEmitter ();
-  tokenHelper:TokenHelper;
-  @Input() decodedJwt:any;
-  @Output() decodedJwtChange = new EventEmitter();
-  @Input() profile:Profile;
+  @Output() decodedJwtChange = new EventEmitter();  
   @Output() profileChange = new EventEmitter();
   errorMessage : string;
   Model : Login;
@@ -39,7 +34,7 @@ export class LoginComponent implements OnInit{
       {
           this.decodedJwt = this.tokenHelper.decodeToken(this.jwt);
           this.decodedJwtChange.emit(this.decodedJwt);
-          this.getProfile();          
+          this.getProfile();
       }
     }
   submit() {
@@ -47,7 +42,7 @@ export class LoginComponent implements OnInit{
                     jwt => {
                         localStorage.setItem('jwt', jwt);
                         this.jwt = jwt;
-                        this.jwtChange.emit(this.jwt);                        
+                        this.jwtChange.emit(this.jwt);
                         this.decodedJwt = this.tokenHelper.decodeToken(jwt);
                         this.decodedJwtChange.emit(this.decodedJwt);
                         this.getProfile();
@@ -58,7 +53,7 @@ export class LoginComponent implements OnInit{
   getProfile()
   {
       this.Api.Users.Profile().subscribe(
-          data=>{this.profile=data; this.profileChange.emit(this.profile)},
+          data => {this.profile=data; this.profileChange.emit(this.profile)},
           error => this.errorMessage = <any>error
       )
   }
@@ -70,11 +65,11 @@ export class LoginComponent implements OnInit{
   }
   checkExpiration()
   {
-      if(this.jwt)
+      if (this.jwt)
         {
             let exp = this.tokenHelper.isTokenExpired(this.jwt);
-            if(exp) this.logout();   
+            if (exp) this.logout();
         }
-       setTimeout(()=>{this.checkExpiration();},5000); 
+       setTimeout( () => {this.checkExpiration();}, 5000); 
   }
 }
