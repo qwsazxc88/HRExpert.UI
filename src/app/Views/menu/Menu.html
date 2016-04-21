@@ -1,4 +1,4 @@
-<ul>	    
+<ul *ngIf="CheckPermission(1)" >	    
     <li router-active>
         <a [routerLink]=" ['Users'] ">Пользователи</a>
     </li>
@@ -11,8 +11,9 @@
     <li router-active>
         <a [routerLink]=" ['Sections'] ">Модули</a>
     </li>
-    
-    <li  router-active *ngIf="findPermissionById(1)" >
+</ul>
+<ul>
+    <li  router-active >
         <a [routerLink]=" ['Organizations'] ">Организации</a>             
      </li>
 </ul>
