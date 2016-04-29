@@ -8,4 +8,7 @@ export * from './Organization';
 export * from './Department';
 export * from './Profile';
 export * from './Referency';
+export * from './Person';
+export * from './StaffEstablishedPost';
+export * from './Position';
 

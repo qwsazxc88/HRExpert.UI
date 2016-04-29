@@ -5,23 +5,23 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx'; 
 //Libs
 import {ApiSettings} from "../ApiSettings"
-import {Organization} from "../../Model";
+import {Position} from "../../Model";
 import {HttpOptionsFactory} from "./HttpOptionsFactory"
 @Injectable()
-export class OrganizationService {
+export class PositionsService {
 
     constructor (private http: Http) {}
 
-    private _list = ApiSettings.baseUrl+ApiSettings._api+ApiSettings._organization;
-	private _create = this._list;
-	private _read = this._list;
-	private _update = this._list;
-	private _delete = this._list;	
+    private _list = ApiSettings.baseUrl+'/api/positions';
+	private _create = ApiSettings.baseUrl+'/api/positions';
+	private _read = ApiSettings.baseUrl+'/api/positions';
+	private _update = ApiSettings.baseUrl+'/api/positions';
+	private _delete = ApiSettings.baseUrl+'/api/positions';	
 	//List
     List() {       
 	    var options = HttpOptionsFactory.Create();
         return this.http.get(this._list,options)
-                        .map(res => <Organization[]> res.json())
+                        .map(res => <Position[]> res.json())
                         .catch(this.handleError);
     } 
 	//CRUD
@@ -30,13 +30,13 @@ export class OrganizationService {
 		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
 		return this.http.post(this._create,body,options)                        
-                        .map(res => <Organization> res.json())
+                        .map(res => <Position> res.json())
                         .catch(this.handleError);
 	}
 	Read(id) {
 		var options = HttpOptionsFactory.Create();
         return this.http.get(this._read+'('+id+')',options)
-                        .map(res => <Organization> res.json())
+                        .map(res => <Position> res.json())
                         .catch(this.handleError);
     }	
 	Update(entity)
@@ -44,7 +44,7 @@ export class OrganizationService {
 		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
 		return this.http.put(this._update,body,options)                        
-                        .map(res => <Organization> res.json())
+                        .map(res => <Position> res.json())
                         .catch(this.handleError);
 	}
 	Delete(entity)
@@ -52,7 +52,7 @@ export class OrganizationService {
 		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
 		return this.http.delete(this._delete+"("+entity.Id+')',options) 
-						.map(res => <Organization> res.json())		
+						.map(res => <Position> res.json())		
                         .catch(this.handleError);
 	}
 	//End of CRUD

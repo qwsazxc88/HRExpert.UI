@@ -18,7 +18,12 @@ import {
     PermissionEditComponent,
     OrganizationListComponent,
     OrganizationEditComponent,
-    DepartmentsListComponent} from '../';
+    DepartmentsListComponent,
+    DepartmentEditComponent,
+    PersonsListComponent,
+    StaffEstablishedPostEditComponent,
+    StaffEstablishedPostListComponent
+  } from '../';
 import {MD_COMPONENTS} from '../MD_COMPONENTS';
 import {APP_PROVIDERS, AppState} from '../../Services';
 import {Profile} from '../../Model';
@@ -42,8 +47,9 @@ import {Profile} from '../../Model';
   { path: '/permissions',  name: 'Permissions',  component: PermissionsListComponent },
   { path: '/permissions/:id',  name: 'PermissionEdit',  component: PermissionEditComponent },
   { path: '/organizations',  name: 'Organizations',  component: OrganizationListComponent },
-  { path: '/organizations/:id',  name: 'OrganizationEdit',  component: OrganizationEditComponent },
-  { path: '/departments',  name: 'Departments',  component: DepartmentsListComponent },
+  { path: '/organizations/:organizationid',  name: 'OrganizationEdit',  component: OrganizationEditComponent },
+  { path: '/organizations/:organizationid/departments/:departmentid',  name: 'DepartmentEdit',  component: DepartmentEditComponent }  ,
+  { path: '/organizations/:organizationid/departments/:departmentid/staffestablishedpost/:positionid',  name: 'StaffEstablishedPostEdit',  component: StaffEstablishedPostEditComponent }
 ])
 export class App {
   jwt : string;

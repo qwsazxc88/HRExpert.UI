@@ -4,7 +4,7 @@ import {RouteParams} from 'angular2/router';
 
 //Libs
 import {API} from '../../Services';
-import {Organization} from '../../Model';
+import {Organization,Department} from '../../Model';
 import {MD_COMPONENTS} from '../MD_COMPONENTS';
 import {DepartmentsListComponent} from '../departments/DepartmentsList.component';
 @Component({
@@ -19,7 +19,7 @@ export class OrganizationEditComponent implements OnInit
 	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
 		this.Model=new Organization(0,'');  
-        let id =+this._routeParams.get('id');
+        let id =+this._routeParams.get('organizationid');
 		if(id>0)
 		{
             this.Model.Id=id;
@@ -29,7 +29,7 @@ export class OrganizationEditComponent implements OnInit
 
     errorMessage: string;
     Model: Organization;
-    
+    Departments: Department[];
     ngOnInit() {
 		
     }
@@ -69,6 +69,11 @@ export class OrganizationEditComponent implements OnInit
         this.Api.Organizations.Read(id)
 			.subscribe(
 				result => {this.Model = result; },
+				error => this.errorMessage = <any>error
+			);
+		this.Api.Departments.ListByOrganization(id)
+			.subscribe(
+				result => {this.Departments = result; },
 				error => this.errorMessage = <any>error
 			);
     }

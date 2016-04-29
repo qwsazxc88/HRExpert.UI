@@ -11,7 +11,11 @@ import {
     UsersService, 
     LoginService, 
     SectionsService, 
-    PermissionsService} from "./Data";
+    PermissionsService,
+    StaffEstablishedPostService,
+    PositionsService,
+    PersonsService
+} from "./Data";
 
 @Injectable()
 export class API
@@ -24,7 +28,10 @@ export class API
 		public Sections : SectionsService,
 		public Permissions : PermissionsService,
         public Departments : DepartmentsService,
-        public Organizations : OrganizationService
+        public Organizations : OrganizationService,
+        public StaffEstablishedPosts : StaffEstablishedPostService,
+        public Persons: PersonsService,
+        public Positions: PositionsService
 	)
 	{	
 	}

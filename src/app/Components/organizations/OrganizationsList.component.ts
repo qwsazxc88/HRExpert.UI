@@ -33,11 +33,11 @@ export class OrganizationListComponent implements OnInit
 					);
     }
 	Edit(entity: Organization) {
-	  let link = ['OrganizationEdit', { id: entity.Id }];
+	  let link = ['OrganizationEdit', { organizationid: entity.Id }];
 	  this._router.navigate(link);
 	}
 	Create() {
-	  let link = ['OrganizationEdit', { id: 0}];
+	  let link = ['OrganizationEdit', { organizationid: 0}];
 	  this._router.navigate(link);
 	}
 }

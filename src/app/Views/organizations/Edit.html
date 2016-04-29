@@ -20,7 +20,7 @@
         <md-card>
             <md-card-title>Подразделения</md-card-title>   
             <md-card-content>
-                <departments-list [Organization]="Model.Id"></departments-list>
+                <departments-list *ngFor="#dep of Departments"  [Model]="dep"></departments-list>
             </md-card-content>
         </md-card>
 	</div>    

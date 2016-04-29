@@ -11,59 +11,30 @@ import {HttpOptionsFactory} from "./HttpOptionsFactory"
 export class DepartmentsService {
 
     constructor (private http: Http) {}
-
-    private _list = ApiSettings.baseUrl+'/api/Department';
-	private _create = ApiSettings.baseUrl+'/api/Department';
-	private _read = ApiSettings.baseUrl+'/api/Department';
-	private _update = ApiSettings.baseUrl+'/api/Department';
-	private _delete = ApiSettings.baseUrl+'/api/Department';	
-    private _byorg = ApiSettings.baseUrl+'/api/Organization/Departments';
+    _organizationPath= ApiSettings.baseUrl+ApiSettings._api+ApiSettings._organization;
 	//List
-    List() {       
-	    var options = HttpOptionsFactory.Create();
-        return this.http.get(this._list,options)
-                        .map(res => <Department[]> res.json())
-                        .catch(this.handleError);
-    } 
-    ListByOrganization(id)
+    
+    ListByOrganization(organizationid)
     {
         var options = HttpOptionsFactory.Create();
-        return this.http.get(this._byorg+'/'+id,options)
+        return this.http.get(this._organizationPath+'('+organizationid+')'+ApiSettings._departments,options)
                         .map(res => <Department[]> res.json())
                         .catch(this.handleError);
     }
-	//CRUD
-	Create(entity)
+	Childs(organizationid,departmentid)
 	{
-		let body = JSON.stringify(entity);
 		var options = HttpOptionsFactory.Create();
-		return this.http.post(this._create,body,options)                        
+        return this.http.get(this._organizationPath+'('+organizationid+')'+ApiSettings._departments+'('+departmentid+')'+ApiSettings._childs,options)
+                        .map(res => <Department[]> res.json())
+                        .catch(this.handleError);	
+	}
+	Read(organizationid,departmentid)
+	{
+		var options = HttpOptionsFactory.Create();
+        return this.http.get(this._organizationPath+'('+organizationid+')'+ApiSettings._departments+'('+departmentid+')',options)
                         .map(res => <Department> res.json())
                         .catch(this.handleError);
 	}
-	Read(id) {
-		var options = HttpOptionsFactory.Create();
-        return this.http.get(this._read+'/'+id,options)
-                        .map(res => <Department> res.json())
-                        .catch(this.handleError);
-    }	
-	Update(entity)
-	{
-		let body = JSON.stringify(entity);
-		var options = HttpOptionsFactory.Create();
-		return this.http.put(this._update,body,options)                        
-                        .map(res => <Department> res.json())
-                        .catch(this.handleError);
-	}
-	Delete(entity)
-	{
-		let body = JSON.stringify(entity);
-		var options = HttpOptionsFactory.Create();
-		return this.http.delete(this._delete+"/"+entity.Id,options) 
-						.map(res => <Department> res.json())		
-                        .catch(this.handleError);
-	}
-	//End of CRUD
     private handleError (error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');

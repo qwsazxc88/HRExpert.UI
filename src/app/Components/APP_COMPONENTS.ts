@@ -12,6 +12,11 @@ export * from './organizations/OrganizationsList.component';
 export * from './departments/DepartmentsList.component';
 export * from './login/Login.component';
 export * from './home/home.component';
+export * from './departments/DepartmentEdit.component';
+export * from './positions/PositionsView.component';
+export * from './staffestablishedposts/StaffEstablishedPostsList.component';
+export * from './staffestablishedposts/StaffEstablishedPostEdit.component';
+export * from './persons/PersonsList.component';
 
 import {MenuComponent} from './menu/Menu.component';
 import {UsersListComponent} from './users/UsersList.component';
@@ -25,6 +30,11 @@ import {PermissionsListComponent} from './permissions/PermissionsList.component'
 import {OrganizationEditComponent} from './organizations/OrganizationEdit.component';
 import {OrganizationListComponent} from './organizations/OrganizationsList.component';
 import {DepartmentsListComponent} from './departments/DepartmentsList.component';
+import {DepartmentEditComponent} from './departments/DepartmentEdit.component';
+import {PositionsViewComponent} from './positions/PositionsView.component';
+import {StaffEstablishedPostListComponent} from './staffestablishedposts/StaffEstablishedPostsList.component';
+import {StaffEstablishedPostEditComponent} from './staffestablishedposts/StaffEstablishedPostEdit.component';
+import {PersonsListComponent} from './persons/PersonsList.component';
 import {LoginComponent} from './login/Login.component';
 import {Home} from './home/home.component';
 
@@ -41,6 +51,11 @@ export const APP_COMPONENTS=[
     OrganizationEditComponent,
     OrganizationListComponent,
     DepartmentsListComponent,
+    DepartmentEditComponent,
     LoginComponent,
+    PositionsViewComponent,
+    StaffEstablishedPostEditComponent,
+    StaffEstablishedPostListComponent,
+    PersonsListComponent,
     Home
 ];

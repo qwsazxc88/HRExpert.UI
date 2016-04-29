@@ -1,0 +1,15 @@
+   
+    <div *ngIf="Model" class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <table  class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr><th>Название</th><th>Кол-во</th><th width="10%"></th></tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#element of Model" >
+            <td><position-view [Position]="element.PositionId"></position-view></td>           
+            <td>{{element.PostCount}}</td>
+            <td><a (click)="Edit(element)">просмотр</a></td> 
+        </tr>
+        </tbody>
+        </table>
+    </div>

@@ -1,6 +1,6 @@
 //Vendor libs
 import {Component} from 'angular2/core';
-import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {OnInit, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 //Libs
@@ -13,33 +13,38 @@ import {Department} from '../../Model';
     selector: 'departments-list',
     template: require('../../Views/departments/List.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS]
+    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS,DepartmentsListComponent]
 })
 
 export class DepartmentsListComponent implements OnInit {
-    constructor (private Api: API, private _router: Router) {
+    constructor (private Api: API, private _router: Router, private _routeParams: RouteParams) {
+        this.toggled=false;    
     }
-    @Input() Organization: number;
+    Organization: number;    
     errorMessage: string;
-    Model: Department[];
-    SelectedDepartment: Department;
-    ngOnInit() {
-        this.Get();
+    toggled: boolean;
+    @Input() Model: Department;
+    Childs: Department[];
+    ngOnInit() {        
+        this.Organization =+ this._routeParams.get('organizationid');
     }
-    Get() {
-        if (this.Organization && this.Organization > 0)
-        this.Api.Departments.ListByOrganization(this.Organization)
+    Get() { 
+    }
+    Edit() {
+	  let link = ['DepartmentEdit', { departmentid: this.Model.Id, organizationid: this.Organization }];
+	  this._router.navigate(link);
+	}
+    GetChilds()
+    {
+        this.Api.Departments.Childs(this.Organization,this.Model.Id)
             .subscribe(
-                data => {this.Model = data;},
+                data => {this.Childs = data;},
                 error => this.errorMessage = <any>error
-            );
+             );
     }
-    Edit(entity: Department) {
-        let link = ['DepartmentEdit', { id: entity.Id }];
-        this._router.navigate(link);
-    }
-    Create() {
-        let link = ['DepartmentEdit', { id: 0}];
-        this._router.navigate(link);
+    Toggle()
+    {
+        this.toggled=!this.toggled;
+        if(this.toggled && !this.Childs) this.GetChilds();
     }
 }

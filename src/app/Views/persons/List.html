@@ -1,0 +1,16 @@
+
+        <table  class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="#element of Model" >						
+            <td>{{element.Id}}</td>
+            <td>{{element.Name}}</td>
+            <td>
+                <position-view [Position]="element.PositionId"></position-view>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+    
