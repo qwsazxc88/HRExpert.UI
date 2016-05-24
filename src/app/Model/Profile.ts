@@ -1,6 +1,5 @@
-
-import {Permission} from "./Permission"
+import {Role} from "./Role";
 export class Profile{
 	UserName:string;
-    Permissions: Permission[];
+    Roles: Role[];
 }

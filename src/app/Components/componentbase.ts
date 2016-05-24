@@ -3,11 +3,14 @@ import {Profile} from '../Model';
 export class ComponentBase
 {
     @Input() profile : Profile;
+    CurrentRole : number;
     CheckPermission(id)
     {
-        if(this.profile && this.profile.Permissions) 
+        if(this.profile && this.profile.Roles) 
         {
-            let result =  this.profile.Permissions.filter(x=>x.Id==id);
+            let currentrole = this.profile.Roles.filter(x=>x.Id==this.CurrentRole)[0];
+            let permissions = currentrole.Permissions;
+            let result =  permissions.filter(x=>x.Id==id);
             return result.length>0;
         }
         else return null;
