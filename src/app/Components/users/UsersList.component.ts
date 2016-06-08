@@ -27,7 +27,7 @@ export class UsersListComponent implements OnInit
         this.Get();
     }
     Get() {
-        this.Api.Users.List()
+        this.Api.Users().List()
 					.subscribe(
 						users => {this.Model = users; },
 						error => this.errorMessage = <any>error

@@ -38,7 +38,7 @@ export class UserEditComponent implements OnInit
 		{
 			this.Get(id);
 		}
-		this.Api.Roles.List()
+		this.Api.Roles().List()
 					.subscribe(
 						roles => {this.Roles = roles; },
 						error => this.errorMessage = <any>error
@@ -50,7 +50,7 @@ export class UserEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Users.Update(data)
+			this.Api.Users().Update(data)
 						.subscribe(
 							user => {this.Model = user; },
 							error => this.errorMessage = <any>error
@@ -58,7 +58,7 @@ export class UserEditComponent implements OnInit
 		}
 		else
 		{
-			this.Api.Users.Create(data)
+			this.Api.Users().Create(data)
 						.subscribe(
 							user => {this.Model = user; },
 							error => this.errorMessage = <any>error
@@ -68,7 +68,7 @@ export class UserEditComponent implements OnInit
 	Delete()
 	{
 		var data = this.Model;
-		this.Api.Users.Delete(data)
+		this.Api.Users(data.Id).Delete()
 						.subscribe(
 							error => this.errorMessage = <any>error
 						);
@@ -89,7 +89,7 @@ export class UserEditComponent implements OnInit
 	}
 	
     Get(id) {
-        this.Api.Users.Read(id)
+        this.Api.Users(id).Read()
 					.subscribe(
 						user => {this.Model = user; },
 						error => this.errorMessage = <any>error

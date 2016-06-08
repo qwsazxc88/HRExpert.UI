@@ -1,6 +1,7 @@
 //Vendor libs
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
+import {HTTP_PROVIDERS } from 'angular2/http';
 //Libs
 import {MD_COMPONENTS} from '../';
 import {API} from '../../Services';
@@ -11,7 +12,7 @@ import {TokenHelper} from '../../Tools/Token/TokenHelper';
     template: require('../../Views/login/Login.html'),
     selector: 'login',
     directives: [MD_COMPONENTS],
-    providers: [API]
+    providers: [API,HTTP_PROVIDERS ]
 })
 export class LoginComponent implements OnInit{
   constructor(private router: Router, private Api: API) {
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit{
       }
     }
   submit() {
-    this.Api.Login.login(this.Model).subscribe(
+    this.Api.login(this.Model).subscribe(
                     jwt => {
                         localStorage.setItem('jwt', jwt);
                         this.jwt = jwt;
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit{
   }
   getProfile()
   {
-      this.Api.Users.Profile().subscribe(
+      this.Api.profile().subscribe(
           data => {this.profile=data; this.profileChange.emit(this.profile)},
           error => this.errorMessage = <any>error
       )

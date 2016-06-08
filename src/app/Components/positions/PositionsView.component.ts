@@ -26,7 +26,7 @@ export class PositionsViewComponent implements OnInit {
         this.Get();
     }
     Get() { 
-        this.Api.Positions.Read(this.Position)
+        this.Api.Positions(this.Position).Read()
         .subscribe(
             data => { this.Model = data},
             error => this.errorMessage = <any>error

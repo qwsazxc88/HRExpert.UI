@@ -1,5 +1,5 @@
 //Vendor libs
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input, Output, OnInit,EventEmitter} from 'angular2/core';
 import {NgSelectOption, NgModel} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 //libs
@@ -7,6 +7,7 @@ import {ComponentBase} from '../componentbase';
 import {RouterActive} from '../APP_UI_COMPONENTS';
 import {LoginComponent} from '../login/Login.component';
 import {Profile} from '../../Model';
+import {API} from '../../Services'
 @Component({
     selector: 'app-menu',
     styles: [require('../../Views/menu/menu.css')],
@@ -17,9 +18,18 @@ import {Profile} from '../../Model';
 export class MenuComponent extends ComponentBase
 {     
     @Input() profile: Profile;
+    @Input() currentRole: number;
+    @Output() RoleChanged = new EventEmitter();
 	constructor () 
 	{
         super();
 	}  
+    ChangeRole(roleid)
+    {
+        console.log("change role "+ roleid);
+        localStorage.setItem("forrole",roleid);
+        this.currentRole = roleid;        
+        this.RoleChanged.emit(this.currentRole);
+    }
       
 }

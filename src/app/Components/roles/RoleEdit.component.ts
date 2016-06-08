@@ -42,12 +42,12 @@ export class RoleEditComponent implements OnInit
 		{
 			this.Get(id);
 		}
-        this.Api.Permissions.List()
+        this.Api.Permissions().List()
                 .subscribe(
                     data => {this.Permissions = data; },
                     error => this.errorMessage = <any>error
                 );
-        this.Api.Sections.List()
+        this.Api.Sections().List()
                 .subscribe(
                     data => {this.Sections = data; },
                     error => this.errorMessage = <any>error
@@ -59,7 +59,7 @@ export class RoleEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Roles.Update(data)
+			this.Api.Roles().Update(data)
                                 .subscribe(
                                     role => {this.Model = role; },
                                     error => this.errorMessage = <any>error
@@ -67,7 +67,7 @@ export class RoleEditComponent implements OnInit
 		}
 		else
 		{
-			this.Api.Roles.Create(data)
+			this.Api.Roles().Create(data)
                                 .subscribe(
                                     role => {this.Model = role; },
                                     error => this.errorMessage = <any>error
@@ -79,15 +79,14 @@ export class RoleEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Roles.Delete(data)
+			this.Api.Roles(data.Id).Delete()
                                 .subscribe(                                  
                                     error => this.errorMessage = <any>error
                                 );
 		}
 	}
-    //обращаемся к созданному нами сервису
     Get(id) {
-        this.Api.Roles.Read(id)
+        this.Api.Roles(id).Read()
                                 .subscribe(
                                     role => {this.Model = role; },
                                     error => this.errorMessage = <any>error

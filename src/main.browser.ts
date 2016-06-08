@@ -9,12 +9,12 @@ import { enableProdMode } from 'angular2/core';
 */
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
-
+import {HTTP_PROVIDERS} from 'angular2/Http'
 /*
 * App Component
 * our top level component that holds all of our components
 */
-import {App, APP_PROVIDERS,APP_UI_COMPONENTS,APP_COMPONENTS,MD_COMPONENTS} from './app';
+import {App, API, APP_UI_COMPONENTS,APP_COMPONENTS,MD_COMPONENTS} from './app';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
@@ -27,7 +27,7 @@ export function main(initialHmrState?: any): Promise<any> {
     ...PROVIDERS,
     ...DIRECTIVES,
     ...PIPES,
-    ...APP_PROVIDERS,
+    ...HTTP_PROVIDERS,
     ...MD_COMPONENTS,
     ...APP_COMPONENTS,
     ...APP_UI_COMPONENTS

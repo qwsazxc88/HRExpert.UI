@@ -31,7 +31,11 @@ export class PersonsListComponent implements OnInit {
         this.Get();
     }
     Get() {
-        this.Api.Persons.List(this.Organization,this.Department,this.Position)
+        this.Api.Organizations(this.Organization)
+            .Departments(this.Department)
+            .StaffEstablishedPosts(this.Position)
+            .Persons()
+            .List()
         .subscribe(
           data=> this.Model=data,
           error=> this.errorMessage=<any>error  

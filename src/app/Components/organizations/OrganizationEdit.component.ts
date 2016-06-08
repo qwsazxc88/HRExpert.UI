@@ -39,7 +39,7 @@ export class OrganizationEditComponent implements OnInit
 		var data = this.Model;
         if(data.Id>0)
 		{
-			this.Api.Organizations.Update(data)
+			this.Api.Organizations().Update(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -47,7 +47,7 @@ export class OrganizationEditComponent implements OnInit
 		}
 		else
 		{
-			this.Api.Organizations.Create(data)
+			this.Api.Organizations().Create(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -59,19 +59,19 @@ export class OrganizationEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Organizations.Delete(data)
+			this.Api.Organizations(data.Id).Delete()
 				.subscribe(                                  
 					error => this.errorMessage = <any>error
 				);
 		}
 	}
     Get(id) {
-        this.Api.Organizations.Read(id)
+        this.Api.Organizations(id).Read()
 			.subscribe(
 				result => {this.Model = result; },
 				error => this.errorMessage = <any>error
 			);
-		this.Api.Departments.ListByOrganization(id)
+		this.Api.Organizations(id).Departments().List()
 			.subscribe(
 				result => {this.Departments = result; },
 				error => this.errorMessage = <any>error

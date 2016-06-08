@@ -18,7 +18,7 @@ export class PermissionEditComponent implements OnInit
 	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
 		this.Model=new Permission(0,'');
-        Api.Sections.List()
+        Api.Sections().List()
             .subscribe(
 				result => {this.Sections = result; },
 				error => this.errorMessage = <any>error
@@ -45,7 +45,7 @@ export class PermissionEditComponent implements OnInit
         console.log(data);
 		if(data.Id>0)
 		{
-			this.Api.Permissions.Update(data)
+			this.Api.Permissions().Update(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -53,7 +53,7 @@ export class PermissionEditComponent implements OnInit
 		}
 		else
 		{
-			this.Api.Permissions.Create(data)
+			this.Api.Permissions().Create(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -65,14 +65,14 @@ export class PermissionEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Permissions.Delete(data)
+			this.Api.Permissions(data.Id).Delete()
 				.subscribe(                                  
 					error => this.errorMessage = <any>error
 				);
 		}
 	}
     Get(id) {
-        this.Api.Permissions.Read(id)
+        this.Api.Permissions(id).Read()
 			.subscribe(
 				result => {this.Model = result; this.SelectedSection=this.Model.Section.Id; },
 				error => this.errorMessage = <any>error

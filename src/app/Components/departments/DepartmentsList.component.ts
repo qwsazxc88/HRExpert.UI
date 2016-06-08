@@ -23,28 +23,27 @@ export class DepartmentsListComponent implements OnInit {
     Organization: number;    
     errorMessage: string;
     toggled: boolean;
-    @Input() Model: Department;
-    Childs: Department[];
+    @Input() Model: Department[];
+    @Input() ParentId: number;
+    DepartmentList: Department[];
     ngOnInit() {        
         this.Organization =+ this._routeParams.get('organizationid');
+        
+        if(this.Model) 
+        {
+            console.log("Model loaded");
+            this.DepartmentList = this.Model.filter(x=>x.ParentId == this.ParentId)
+        }
     }
     Get() { 
     }
-    Edit() {
-	  let link = ['DepartmentEdit', { departmentid: this.Model.Id, organizationid: this.Organization }];
+    Edit(entity) {
+	  let link = ['DepartmentEdit', { departmentid: entity.Id, organizationid: this.Organization }];
 	  this._router.navigate(link);
 	}
-    GetChilds()
+    
+    Toggle(element)
     {
-        this.Api.Departments.Childs(this.Organization,this.Model.Id)
-            .subscribe(
-                data => {this.Childs = data;},
-                error => this.errorMessage = <any>error
-             );
-    }
-    Toggle()
-    {
-        this.toggled=!this.toggled;
-        if(this.toggled && !this.Childs) this.GetChilds();
+        element.toggled=!element.toggled;
     }
 }

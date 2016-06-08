@@ -1,5 +1,5 @@
 <ul *ngIf="profile" >
-    <li *ngFor="#role of profile.Roles" >
+    <li *ngFor="#role of profile.Roles" (click)="ChangeRole(role.Id)" >
         {{role.Name}}
         <ul>
             <li *ngFor="#section of role.Sections" >

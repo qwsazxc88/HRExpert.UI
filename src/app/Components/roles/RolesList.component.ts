@@ -28,7 +28,7 @@ export class RolesListComponent implements OnInit
 	}
 	
     Get() {
-        this.Api.Roles.List()
+        this.Api.Roles().List()
 					.subscribe(
 						roles => {this.Model = roles;},
 						error => this.errorMessage = <any>error

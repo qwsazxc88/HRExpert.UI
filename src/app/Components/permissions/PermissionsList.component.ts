@@ -30,7 +30,7 @@ export class PermissionsListComponent implements OnInit
 	}
 	
     Get() {
-        this.Api.Permissions.List()
+        this.Api.Permissions().List()
 					.subscribe(
 						result => {this.Model = result;},
 						error => this.errorMessage = <any>error

@@ -42,7 +42,7 @@ export class SectionEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Sections.Update(data)
+			this.Api.Sections().Update(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -50,7 +50,7 @@ export class SectionEditComponent implements OnInit
 		}
 		else
 		{
-			this.Api.Sections.Create(data)
+			this.Api.Sections().Create(data)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -62,14 +62,14 @@ export class SectionEditComponent implements OnInit
 		var data = this.Model;
 		if(data.Id>0)
 		{
-			this.Api.Sections.Delete(data)
+			this.Api.Sections(data.Id).Delete()
 				.subscribe(                                  
 					error => this.errorMessage = <any>error
 				);
 		}
 	}
     Get(id) {
-        this.Api.Sections.Read(id)
+        this.Api.Sections(id).Read()
 			.subscribe(
 				result => {this.Model = result; },
 				error => this.errorMessage = <any>error

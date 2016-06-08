@@ -28,7 +28,7 @@ export class SectionsListComponent implements OnInit
 	}
 	
     Get() {
-        this.Api.Sections.List()
+        this.Api.Sections().List()
 					.subscribe(
 						result => {this.Model = result;},
 						error => this.errorMessage = <any>error

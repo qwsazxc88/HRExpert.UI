@@ -2,6 +2,7 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 import {NgClass} from 'angular2/common';
+import {HTTP_PROVIDERS} from 'angular2/Http';
 
 //Libs
 import {
@@ -25,13 +26,13 @@ import {
     StaffEstablishedPostListComponent
   } from '../';
 import {MD_COMPONENTS} from '../MD_COMPONENTS';
-import {APP_PROVIDERS, AppState} from '../../Services';
+import {API} from '../../Services';
 import {Profile} from '../../Model';
 
 @Component({
   selector: '[app]',
   pipes: [ ],
-  providers: [APP_PROVIDERS],
+  providers: [HTTP_PROVIDERS,API],
   directives: [MD_COMPONENTS, APP_COMPONENTS, APP_UI_COMPONENTS],
   styles: [require('../../Views/app/app.css')],
   template: require('../../Views/app/app.html')
@@ -55,8 +56,8 @@ export class App {
   jwt : string;
   decodedJwt : any;
   profile : Profile;
-
-  constructor(public appState: AppState) { 
+  currentRole : number;
+  constructor() { 
       let token = localStorage.getItem('jwt');
       if(token)
       {
@@ -64,8 +65,7 @@ export class App {
       }
     }
 
-  ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+  ngOnInit() {    
   }
 
 }

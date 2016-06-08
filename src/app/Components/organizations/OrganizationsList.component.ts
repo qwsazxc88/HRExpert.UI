@@ -26,7 +26,7 @@ export class OrganizationListComponent implements OnInit
 	}
 	
     Get() {
-        this.Api.Organizations.List()
+        this.Api.Organizations().List()
 					.subscribe(
 						result => {this.Model = result;},
 						error => this.errorMessage = <any>error

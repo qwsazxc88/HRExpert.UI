@@ -19,8 +19,8 @@
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
         <md-card>
             <md-card-title>Подразделения</md-card-title>   
-            <md-card-content>
-                <departments-list *ngFor="#dep of Departments"  [Model]="dep"></departments-list>
+            <md-card-content *ngIf="Departments" >
+                <departments-list [Model]="Departments" [ParentId]="0"></departments-list>
             </md-card-content>
         </md-card>
 	</div>    

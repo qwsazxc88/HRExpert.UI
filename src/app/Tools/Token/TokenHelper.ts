@@ -16,7 +16,6 @@ export class TokenHelper
 
   public decodeToken(token:string) {
     var parts = token.split('.');
-
     if (parts.length !== 3) {
       throw new Error('JWT must have 3 parts');
     }

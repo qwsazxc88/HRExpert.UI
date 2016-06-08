@@ -29,7 +29,7 @@ export class StaffEstablishedPostListComponent implements OnInit {
         this.Get();
     }
     Get() {
-        this.Api.StaffEstablishedPosts.ListByOrganizationAndDepartment(this.Organization,this.Department)
+        this.Api.Organizations(this.Organization).Departments(this.Department).StaffEstablishedPosts().List()
         .subscribe(
           data=> this.Model=data,
           error=> this.errorMessage=<any>error  

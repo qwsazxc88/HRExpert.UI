@@ -32,7 +32,7 @@ export class StaffEstablishedPostEditComponent implements OnInit {
         this.Get();
     }
     Get() {
-        this.Api.StaffEstablishedPosts.Read(this.Organization,this.Department,this.Position)
+        this.Api.Organizations(this.Organization).Departments(this.Department).StaffEstablishedPosts(this.Position).Read()
         .subscribe(
           data=> this.Model=data,
           error=> this.errorMessage=<any>error  

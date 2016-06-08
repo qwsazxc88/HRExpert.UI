@@ -32,9 +32,9 @@ export class DepartmentEditComponent implements OnInit {
 		}
     }
     Get(departmentid,organizationid) { 
-        this.Api.Departments.Read(organizationid,departmentid)
+        this.Api.Organizations(organizationid).Departments(departmentid).Read()
         .subscribe(
-            data => { this.Model = data},
+            data => {  this.Model = data  },
             error => this.errorMessage = <any>error   
         );
     }    
