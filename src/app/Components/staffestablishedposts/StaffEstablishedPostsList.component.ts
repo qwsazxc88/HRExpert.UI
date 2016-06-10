@@ -36,7 +36,7 @@ export class StaffEstablishedPostListComponent implements OnInit {
         );
     }   
     Edit(entity: StaffEstablishedPost) {
-	  let link = ['StaffEstablishedPostEdit', { positionid: entity.PositionId, organizationid: this.Organization, departmentid:this.Department }];
+	  let link = ['StaffEstablishedPostEdit', { positionid: entity.Position.Id, organizationid: this.Organization, departmentid:this.Department }];
 	  this._router.navigate(link);
 	} 
 }

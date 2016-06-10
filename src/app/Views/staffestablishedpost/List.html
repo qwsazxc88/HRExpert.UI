@@ -6,7 +6,7 @@
         </thead>
         <tbody>
         <tr *ngFor="#element of Model" >
-            <td><position-view [Position]="element.PositionId"></position-view></td>           
+            <td><position-view [Position]="element.Position.Id"></position-view></td>           
             <td>{{element.PostCount}}</td>
             <td><a (click)="Edit(element)">просмотр</a></td> 
         </tr>

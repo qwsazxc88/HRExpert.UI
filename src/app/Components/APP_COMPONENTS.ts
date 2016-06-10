@@ -17,6 +17,8 @@ export * from './positions/PositionsView.component';
 export * from './staffestablishedposts/StaffEstablishedPostsList.component';
 export * from './staffestablishedposts/StaffEstablishedPostEdit.component';
 export * from './persons/PersonsList.component';
+export * from './sicklist/SicklistList.component';
+export * from './sicklist/SicklistEdit.component';
 
 import {MenuComponent} from './menu/Menu.component';
 import {UsersListComponent} from './users/UsersList.component';
@@ -37,7 +39,8 @@ import {StaffEstablishedPostEditComponent} from './staffestablishedposts/StaffEs
 import {PersonsListComponent} from './persons/PersonsList.component';
 import {LoginComponent} from './login/Login.component';
 import {Home} from './home/home.component';
-
+import {SicklistListComponent} from './sicklist/SicklistList.component';
+import {SicklistEditComponent} from './sicklist/SicklistEdit.component'
 export const APP_COMPONENTS=[    
     MenuComponent,
     UsersListComponent,
@@ -56,6 +59,8 @@ export const APP_COMPONENTS=[
     PositionsViewComponent,
     StaffEstablishedPostEditComponent,
     StaffEstablishedPostListComponent,
+    SicklistEditComponent,
+    SicklistListComponent,
     PersonsListComponent,
     Home
 ];

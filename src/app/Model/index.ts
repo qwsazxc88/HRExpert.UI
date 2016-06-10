@@ -11,4 +11,11 @@ export * from './Referency';
 export * from './Person';
 export * from './StaffEstablishedPost';
 export * from './Position';
+export * from './Sicklist';
+export * from './SicklistPaymentPercent';
+export * from './SicklistPaymentRestrictType';
+export * from './TimesheetStatus';
+export * from './SicklistType';
+export * from './SicklistBabyMindingType';
+export * from './Document';
 

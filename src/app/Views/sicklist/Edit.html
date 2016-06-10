@@ -1,0 +1,60 @@
+<div class="mdl-grid">	
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <md-card>
+        <md-card-subtitle>Больничный</md-card-subtitle>
+        <md-card-title>{{Model.SicklistNumber}}</md-card-title>  
+         
+        <md-card-content>
+            <hr>
+            <div>
+                <label>Номер заявки:</label>
+                <span>{{Model.Id}}</span>
+            </div>
+            <hr>
+            <div>
+                <span class="input-group-addon" id="basic-addon3">Сотрудник:</span>                          
+				<select class="form-control" style="width:100%" aria-describedby="basic-addon3" [(ngModel)]="Model.Person" >
+					<option *ngIf="Persons"   *ngFor="#person of Persons" [ngValue]="person"><span *ngIf="person" >{{person.Name}}</span></option>
+				 </select>
+            </div>
+            <div>                
+                <md-input style="width:100%" [(ngModel)]="Model.SicklistNumber" placeholder="Номер больничного листа"></md-input>
+            </div>
+            <div>                
+                <input md-input style="width:100%" type="date" [(ngModel)]="Model.BeginDate" placeholder="Дата начала"></md-input>
+            </div>
+            <div>                
+                <md-input style="width:100%" [(ngModel)]="Model.EndDate" placeholder="Дата окончания"></md-input>
+            </div>
+            <div>
+                <span class="input-group-addon" id="basic-addon3">Тип больничного:</span>                          
+				<select class="form-control" style="width:100%" aria-describedby="basic-addon3" [(ngModel)]="Model.SicklistType" >
+					<option *ngIf="SicklistTypes"   *ngFor="#type of SicklistTypes" [ngValue]="type"><span *ngIf="type" >{{type.Name}}</span></option>
+				 </select>
+            </div>
+            <div>
+                <span class="input-group-addon" id="basic-addon3">В случае ухода за ребенком:</span>                          
+				<select class="form-control" style="width:100%" aria-describedby="basic-addon3" [(ngModel)]="Model.SicklistBabyMindingType" >
+					<option *ngIf="SicklistBabyMindingTypes"   *ngFor="#babytype of SicklistBabyMindingTypes" [ngValue]="babytype"><span *ngIf="babytype" >{{babytype.Name}}</span></option>
+				 </select>
+            </div>
+            <div>
+                <span class="input-group-addon" id="basic-addon3">Ограничение заработка (пособия):</span>                          
+				<select class="form-control" style="width:100%" aria-describedby="basic-addon3" [(ngModel)]="Model.SicklistPaymentRestrictType" >
+					<option *ngIf="SicklistPaymentRestrictTypes"   *ngFor="#type of SicklistPaymentRestrictTypes" [ngValue]="type"><span *ngIf="type" >{{type.Name}}</span></option>
+				 </select>
+            </div>
+            <div>
+                <span class="input-group-addon" id="basic-addon3">Заполнение табеля:</span>                          
+				<select class="form-control" style="width:100%" aria-describedby="basic-addon3" [(ngModel)]="Model.TimesheetStatus" >
+					<option *ngIf="TimesheetStatuses"   *ngFor="#type of TimesheetStatuses" [ngValue]="type"><span *ngIf="type" >{{type.Name}}</span></option>
+				 </select>
+            </div>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
+                <button md-raised-button (click)="Delete()">Удалить</button>
+        </md-card-actions>
+        </md-card>
+    </div>  
+</div>

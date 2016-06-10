@@ -5,7 +5,9 @@ import {Observable} from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http , Headers, RequestOptions, Response} from "angular2/http";
 //Libs
 import {
+    Document,
     User, Role, Section, Permission, Person, Department, StaffEstablishedPost, Organization, Position, Profile
+    , Sicklist, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, SicklistType, TimesheetStatus
 } from "../Model";
 export class Resource{
     url: string;
@@ -157,6 +159,42 @@ export class PositionsService extends ApiResource<Position>{
         super("/positions",parent)
     }
 }
+export class SicklistService extends ApiResource<Sicklist>{
+    constructor(parent: Resource)
+    {
+        super("/sicklists",parent)
+    }
+}
+export class SicklistTypeService extends ApiResource<SicklistType>{
+    constructor(parent: Resource)
+    {
+        super("/sicklisttypes",parent)
+    }
+}
+export class SicklistPaymentPercentService extends ApiResource<SicklistPaymentPercent>{
+    constructor(parent: Resource)
+    {
+        super("/sicklistpaymentpercents",parent)
+    }
+}
+export class SicklistPaymentRestrictTypesService extends ApiResource<SicklistPaymentRestrictType>{
+    constructor(parent: Resource)
+    {
+        super("/sicklistpaymentrestricttypes",parent)
+    }
+}
+export class SicklistBabyMindingTypesService extends ApiResource<SicklistBabyMindingType>{
+    constructor(parent: Resource)
+    {
+        super("/sicklistbabymindingtypes",parent)
+    }
+}
+export class TimesheetStatusService extends ApiResource<TimesheetStatus>{
+    constructor(parent: Resource)
+    {
+        super("/timesheetstatuses",parent)
+    }
+}
 export class ApiFactory
 {
     static PersonsFactory(parent: Resource) 
@@ -240,6 +278,60 @@ export class ApiFactory
             return service;
         }
     }
+    static SicklistsFactory(parent: Resource) 
+    {
+        return function(Id:number = null)
+        { 
+            var service = new SicklistService(parent);
+            if(Id) service.id=Id; 
+            return service;
+        }
+    }
+    static SicklistTypesFactory(parent: Resource) 
+    {
+        return function(Id:number = null)
+        { 
+            var service = new SicklistTypeService(parent);
+            if(Id) service.id=Id; 
+            return service;
+        }
+    }
+    static SicklistPaymentPercentFactory(parent: Resource) 
+    {
+        return function(Id:number = null)
+        { 
+            var service = new SicklistPaymentPercentService(parent);
+            if(Id) service.id=Id; 
+            return service;
+        }
+    }
+    static SicklistPaymentRestrictTypeFactory(parent: Resource) 
+    {
+        return function(Id:number = null)
+        { 
+            var service = new SicklistPaymentRestrictTypesService(parent);
+            if(Id) service.id=Id; 
+            return service;
+        }
+    }
+    static SicklistBabyMindingTypeFactory(parent: Resource) 
+    {
+        return function(Id:number = null)
+        { 
+            var service = new SicklistBabyMindingTypesService(parent);
+            if(Id) service.id=Id; 
+            return service;
+        }
+    }
+    static TimesheetStatusFactory(parent: Resource) 
+    {
+        return function(Id:number = null)
+        { 
+            var service = new TimesheetStatusService(parent);
+            if(Id) service.id=Id; 
+            return service;
+        }
+    }
 }
 @Component({providers:[HTTP_PROVIDERS]})
 @Injectable()
@@ -247,7 +339,7 @@ export class API extends Resource
 {
 	constructor	(_http: Http)
 	{	
-        super("http://ruscount.com:9034/api/v1");
+        super("http://localhost:5000/api/v1");
         this.http = _http;
 	}
     public Users = ApiFactory.UsersFactory(this);
@@ -259,6 +351,12 @@ export class API extends Resource
     public StaffEstablishedPosts = ApiFactory.StaffEstablishedPostsFactory(this);
     public Persons = ApiFactory.PersonsFactory(this);
     public Positions = ApiFactory.PositionsFactory(this);
+    public Sicklists = ApiFactory.SicklistsFactory(this);
+    public SicklistTypes= ApiFactory.SicklistTypesFactory(this);
+    public SicklistBabyMindingTypes = ApiFactory.SicklistBabyMindingTypeFactory(this);
+    public SicklistPaymentPercents = ApiFactory.SicklistPaymentPercentFactory(this);
+    public SicklistPaymentRestrictTypes = ApiFactory.SicklistPaymentRestrictTypeFactory(this);
+    public TimesheetStatuses = ApiFactory.TimesheetStatusFactory(this);
    transformRequest(obj) {
         var str = [];
         for(var p in obj)
@@ -274,7 +372,7 @@ export class API extends Resource
 			grant_type:'password'});
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
-		return this.http.post("http://ruscount.com:9034/connect/token",body,options)                        
+		return this.http.post("http://localhost:5000/connect/token",body,options)                        
                         .map(res => <string> (res.json().access_token))
                         .catch(error=>Observable.throw(error.json().error || 'Server error'));
 	}	

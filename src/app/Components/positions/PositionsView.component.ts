@@ -23,6 +23,7 @@ export class PositionsViewComponent implements OnInit {
     errorMessage: string;
     Model: Position;
     ngOnInit() {
+        console.log(this.Position);
         this.Get();
     }
     Get() { 
