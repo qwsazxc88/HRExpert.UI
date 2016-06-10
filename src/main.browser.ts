@@ -1,15 +1,15 @@
 /*
  * Providers provided by Angular
  */
-import {bootstrap} from 'angular2/platform/browser';
-import { enableProdMode } from 'angular2/core'; 
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core'; 
 /*
 * Platform and Environment
 * our providers/directives/pipes
 */
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
-import {HTTP_PROVIDERS} from 'angular2/Http'
+import {HTTP_PROVIDERS} from '@angular/Http'
 /*
 * App Component
 * our top level component that holds all of our components

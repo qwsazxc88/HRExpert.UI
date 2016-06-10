@@ -1,7 +1,7 @@
 //Vendor libs
-import {Component, Input, Output, OnInit,EventEmitter} from 'angular2/core';
-import {NgSelectOption, NgModel} from 'angular2/common';
-import {RouteParams} from 'angular2/router';
+import {Component, Input, Output, OnInit,EventEmitter} from '@angular/core';
+import {NgSelectOption, NgModel} from '@angular/common';
+import {RouteParams} from '@angular/router-deprecated';
 //libs
 import {ComponentBase} from '../componentbase';
 import {RouterActive} from '../APP_UI_COMPONENTS';

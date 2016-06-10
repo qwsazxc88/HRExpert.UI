@@ -1,8 +1,8 @@
 //Vendor libs
-import {Component, Injectable} from 'angular2/core';
+import {Component, Injectable} from '@angular/core';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
-import {HTTP_PROVIDERS, Http , Headers, RequestOptions, Response} from "angular2/http";
+import {HTTP_PROVIDERS, Http , Headers, RequestOptions, Response} from "@angular/http";
 //Libs
 import {
     Document,

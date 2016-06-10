@@ -1,8 +1,8 @@
 //Vendor libs
-import {Component} from 'angular2/core';
-import {RouteConfig, Router} from 'angular2/router';
-import {NgClass} from 'angular2/common';
-import {HTTP_PROVIDERS} from 'angular2/Http';
+import {Component} from '@angular/core';
+import {RouteConfig, Router} from '@angular/router-deprecated';
+import {NgClass} from '@angular/common';
+import {HTTP_PROVIDERS} from '@angular/Http';
 
 //Libs
 import {

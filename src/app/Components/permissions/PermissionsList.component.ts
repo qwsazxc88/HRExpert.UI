@@ -1,10 +1,9 @@
 //Vendor libs
-import {Component} from 'angular2/core';
-import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
-import {OnInit} from 'angular2/core';
-import {NgClass} from 'angular2/common';
-import {MdButton, MdAnchor} from '@angular2-material/button';
-import {MdToolbar} from '@angular2-material/toolbar';
+import {Component} from '@angular/core';
+import {Router,ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {OnInit} from '@angular/core';
+import {NgClass} from '@angular/common';
+
 //Libs
 import {API} from '../../Services';
 import {Permission} from '../../Model';

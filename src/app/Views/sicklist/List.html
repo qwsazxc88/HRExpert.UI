@@ -3,7 +3,8 @@
         <md-toolbar >
             <span>Больничные</span>
             <md-toolbar-row>
-                <button md-raised-button color="primary" (click)="Create()">Добавить</button>
+                <button md-raised-button class="md-raised" (click)="Create()">Добавить</button>
+                <button md-raised-button class="md-raised">Button</button>
             </md-toolbar-row>
         </md-toolbar >
     </div>
@@ -26,3 +27,10 @@
         </table>
     </div>	
 </div>
+<div>
+<md-dialog #alert>
+  Clicking the button will close this dialog
+  <md-dialog-actions ok="Got It"></md-dialog-actions>
+</md-dialog>
+</div>
+<button md-button (click)="alert.show()">Open Dialog</button>

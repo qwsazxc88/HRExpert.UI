@@ -1,7 +1,7 @@
 //Vendor libs
-import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {HTTP_PROVIDERS } from 'angular2/http';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
+import {HTTP_PROVIDERS } from '@angular/http';
 //Libs
 import {MD_COMPONENTS} from '../';
 import {API} from '../../Services';

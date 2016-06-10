@@ -1,17 +1,6 @@
 <div *ngIf="!jwt" >
-<dialog style="display:block;z-index:1000;" class="mdl-dialog">
-<h4 class="mdl-dialog__title">Вход</h4>
-<div class="mdl-dialog__content">              
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" class="mdl-textfield__input"  [(ngModel)]="Model.UserName" placeholder="Логин">
-        </div> 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="password" class="mdl-textfield__input" [(ngModel)]="Model.Password" placeholder="Пароль">
-        </div>       
+    <input type="text" [(ngModel)]="Model.UserName">
+    <input type="password" [(ngModel)]="Model.Password">
+    <button md-button (click)="submit()">Войти</button>
 </div>
-<div class="mdl-dialog__actions">      
-        <button type="submit"  md-raised-button color="primary" (click)="submit()" autofocus>Войти</button>
-</div>
-</dialog>
-</div>
-<a *ngIf="jwt" class="md-fab md-mini" md-raised-button (click)="logout()">Выйти</a>
+<a *ngIf="jwt"  (click)="logout()">Выйти</a>

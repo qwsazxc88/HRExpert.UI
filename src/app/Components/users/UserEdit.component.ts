@@ -1,7 +1,7 @@
 //Vendor libs
-import {Component,Input,OnInit} from 'angular2/core';
-import {NgSelectOption,NgModel} from 'angular2/common';
-import {RouteParams} from 'angular2/router';
+import {Component,Input,OnInit} from '@angular/core';
+import {NgSelectOption,NgModel} from '@angular/common';
+import {RouteParams} from '@angular/router-deprecated';
 //Libs
 import {API} from "../../Services";
 import {MD_COMPONENTS} from "../"

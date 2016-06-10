@@ -1,7 +1,7 @@
 //Vendor libs
-import {Component} from 'angular2/core';
-import { Router } from 'angular2/router';
-import {OnInit} from "angular2/core";
+import {Component} from '@angular/core';
+import { Router } from '@angular/router-deprecated';
+import {OnInit} from "@angular/core";
 //Libs
 import {MD_COMPONENTS} from '../';
 import {API} from "../../Services";

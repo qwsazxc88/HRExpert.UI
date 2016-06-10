@@ -1,8 +1,8 @@
 //Vendor libs
-import {Component} from 'angular2/core';
-import {Router,ROUTER_DIRECTIVES, RouteParams } from 'angular2/router';
-import {OnInit} from "angular2/core";
-import {NgClass} from 'angular2/common';
+import {Component} from '@angular/core';
+import {Router,ROUTER_DIRECTIVES, RouteParams } from '@angular/router-deprecated';
+import {OnInit} from "@angular/core";
+import {NgClass, DatePipe} from '@angular/common';
 //Libs
 import {MD_COMPONENTS} from '../';
 import {API} from '../../Services';
@@ -11,6 +11,7 @@ import {Document, Person, Sicklist, SicklistType, SicklistBabyMindingType, Sickl
     selector: 'sicklist-edit',
     template: require('../../Views/sicklist/Edit.html'),
 	providers: [API],
+	pipes: [DatePipe],
 	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS]
 })
 
