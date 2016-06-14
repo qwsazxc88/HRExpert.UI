@@ -1,11 +1,13 @@
-html, body{
-    background: #ADD0DB;
+html, body{    
+	background: #f1f2f4;
     height: 100%;
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
-
+.modal-backdrop {
+  z-index: -1;
+}
 a{
     cursor:pointer;
 }
@@ -24,22 +26,12 @@ app-menu ul{
     padding:0px;
     list-style: none;
 }
-app-menu a{
-    color:white;
-    text-decoration: initial;
-}
+
 app-menu ul li
 {
     padding:5px;
 }
-app-menu ul li:hover
-{
-    background-color: rgba(33, 150, 243,0.5) !important;
-}
-.menu-router-active
-{
-   background-color: rgba(33, 150, 243,0.9) !important;
-}
+
  .cssload-thecube {
 	width: 73px;
 	height: 73px;

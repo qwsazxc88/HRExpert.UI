@@ -1,9 +1,9 @@
 //Vendor libs
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef } from '@angular/core';
 import {RouteConfig, Router} from '@angular/router-deprecated';
 import {NgClass} from '@angular/common';
 import {HTTP_PROVIDERS} from '@angular/Http';
-
+import {BS_VIEW_PROVIDERS} from 'ng2-bootstrap';
 //Libs
 import {
     APP_COMPONENTS,
@@ -34,7 +34,7 @@ import {Profile} from '../../Model';
 @Component({
   selector: '[app]',
   pipes: [ ],
-  providers: [HTTP_PROVIDERS,API],
+  providers: [HTTP_PROVIDERS,API,BS_VIEW_PROVIDERS],
   directives: [MD_COMPONENTS, APP_COMPONENTS, APP_UI_COMPONENTS],
   styles: [require('../../Views/app/app.css')],
   template: require('../../Views/app/app.html')
@@ -62,7 +62,8 @@ export class App {
   decodedJwt : any;
   profile : Profile;
   currentRole : number;
-  constructor() { 
+  constructor(private viewContainerRef:ViewContainerRef) { 
+    //this.viewContainerRef = viewContainerRef;
       let token = localStorage.getItem('jwt');
       if(token)
       {

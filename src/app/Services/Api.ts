@@ -159,7 +159,7 @@ export class PositionsService extends ApiResource<Position>{
         super("/positions",parent)
     }
 }
-export class SicklistService extends ApiResource<Sicklist>{
+export class SicklistService extends ApiResource<Document<Sicklist>>{
     constructor(parent: Resource)
     {
         super("/sicklists",parent)

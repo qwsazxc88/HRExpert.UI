@@ -20,6 +20,7 @@ export class MenuComponent extends ComponentBase
     @Input() profile: Profile;
     @Input() currentRole: number;
     @Output() RoleChanged = new EventEmitter();
+    public oneAtATime:boolean = true;
 	constructor () 
 	{
         super();

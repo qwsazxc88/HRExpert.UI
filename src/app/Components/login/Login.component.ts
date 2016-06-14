@@ -1,13 +1,14 @@
 //Vendor libs
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from '@angular/router-deprecated';
 import {HTTP_PROVIDERS } from '@angular/http';
+
 //Libs
 import {MD_COMPONENTS} from '../';
 import {API} from '../../Services';
 import {Login, Profile} from '../../Model';
 import {TokenHelper} from '../../Tools/Token/TokenHelper';
-
+import {} from '../../'
 @Component({
     template: require('../../Views/login/Login.html'),
     selector: 'login',
@@ -19,7 +20,6 @@ export class LoginComponent implements OnInit{
     this.Model = new Login();
     this.tokenHelper = new TokenHelper();
   }
-  
   tokenHelper : TokenHelper;
   @Input() jwt : string;
   @Input() decodedJwt : any;

@@ -23,13 +23,14 @@ import {ROUTER_PROVIDERS/*, LocationStrategy, HashLocationStrategy*/} from '@ang
 * Application Providers/Directives/Pipes
 * providers/directives/pipes that only live in our browser environment
 */
-import {MATERIAL_PROVIDERS} from 'ng2-material';
+//import {MATERIAL_PROVIDERS} from 'ng2-material';
+import {BS_VIEW_PROVIDERS} from 'ng2-bootstrap';
 import {OVERLAY_PROVIDERS} from "@angular2-material/core/overlay/overlay";
 export const APPLICATION_PROVIDERS = [
   ...FORM_PROVIDERS,
   ...HTTP_PROVIDERS,
   ...OVERLAY_PROVIDERS,
-   ...MATERIAL_PROVIDERS,
+   ...BS_VIEW_PROVIDERS,
   ...ROUTER_PROVIDERS,
   provide(LocationStrategy, { useClass: HashLocationStrategy }),
 ];

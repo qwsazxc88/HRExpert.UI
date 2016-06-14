@@ -1,28 +1,25 @@
-<div class="mdl-grid">	
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-        <md-card>
-        <md-card-subtitle>Организация</md-card-subtitle>
-        <md-card-title>{{Model.Name}}</md-card-title>   
-        <md-card-content>
+<div *ngIf="Model" class="mdl-grid">	
+    <div   class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        Организация
+       {{Model.Name}}  
+        
             <div>
                 <label>Id:</label>
                 <span>{{Model.Id}}</span>
             </div>
-                <md-input [(ngModel)]="Model.Name" placeholder="Название"></md-input>
-        </md-card-content>
-        <md-card-actions>
-                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
-                <button md-raised-button (click)="Delete()">Удалить</button>
-        </md-card-actions>
-        </md-card>
+                <input [(ngModel)]="Model.Name" placeholder="Название"/>
+        
+                <button (click)="Save()">Сохранить</button>
+                <button (click)="Delete()">Удалить</button>
+        
     </div>
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-        <md-card>
-            <md-card-title>Подразделения</md-card-title>   
-            <md-card-content *ngIf="Departments" >
+       
+           Подразделения  
+             <div *ngIf="Departments" >
                 <departments-list [Model]="Departments" [ParentId]="0"></departments-list>
-            </md-card-content>
-        </md-card>
+            </div>
+        
 	</div>    
 </div>
 

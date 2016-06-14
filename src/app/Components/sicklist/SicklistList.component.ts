@@ -34,8 +34,8 @@ export class SicklistListComponent implements OnInit
 						error => this.errorMessage = <any>error
 					);
     }
-	Edit(entity: Sicklist) {
-	  let link = ['SicklistEdit', { id: entity.Id }];
+	Edit(entity: Document<Sicklist>) {
+	  let link = ['SicklistEdit', { id: entity.Data.Id }];
 	  this._router.navigate(link);
 	}
 	Create() {

@@ -1,25 +1,15 @@
-  
-<md-sidenav-layout>
-    <md-sidenav #start>
-      <div class="currentuser">
-          <div *ngIf="!profile">
-              
-          </div>
-          <div *ngIf="profile">
-              <div class="userpic"><img width="90px" src="/assets/img/user.png"></div>
-              <div>{{profile.UserName}}</div>
-          </div>
-      </div>
-      <app-menu [profile]="profile"></app-menu>
-    </md-sidenav>     
-    <md-toolbar >
-        <div (click)="start.open()">
-            <i class="fa fa-bars" style="font-size:120%;cursor:pointer;padding:3px 5px;text-shadow: 2px 1px 0px rgba(150, 150, 150, 1);" aria-hidden="true"></i>
-        </div>
-        <span></span>
-        <span class="fill-remaining-space "></span>
-        <span *ngIf="profile" >{{profile.UserName}} &nbsp;</span>
-        <login [(jwt)]="jwt" [(decodedJwt)]="decodedJwt" [(profile)]="profile"></login>
-    </md-toolbar>
-    <loggedin-router-outlet></loggedin-router-outlet>
-</md-sidenav-layout>
+<login [(jwt)]="jwt" [(decodedJwt)]="decodedJwt" [(profile)]="profile"></login>    
+<div style="height:60px;"></div>   
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">       
+        <app-menu [profile]="profile"></app-menu>
+    </div>
+    <div class="col-md-10">            
+        <loggedin-router-outlet></loggedin-router-outlet>        
+    </div>
+  </div>
+</div>
+
+
+

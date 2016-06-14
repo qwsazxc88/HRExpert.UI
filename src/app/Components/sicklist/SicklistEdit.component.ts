@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Router,ROUTER_DIRECTIVES, RouteParams } from '@angular/router-deprecated';
 import {OnInit} from "@angular/core";
 import {NgClass, DatePipe} from '@angular/common';
+import * as moment from 'moment';
 //Libs
 import {MD_COMPONENTS} from '../';
 import {API} from '../../Services';
@@ -19,12 +20,12 @@ export class SicklistEditComponent implements OnInit
 { 
 	constructor (private Api: API, private _routeParams: RouteParams) 
 	{
-        this.Model = new Sicklist();
-		this.Model.Id = 0;
+        this.Model = new Document<Sicklist>();
+		this.Model.Data = new Sicklist();	
+		this.Model.Data.Id = 0;
 	}
-
     errorMessage: string;    
-    Model: Sicklist;
+    Model: Document<Sicklist>;	
     SicklistTypes: SicklistType[];
     SicklistBabyMindingTypes : SicklistBabyMindingType[];
     SicklistPaymentPercents: SicklistPaymentPercent[];
@@ -37,7 +38,7 @@ export class SicklistEditComponent implements OnInit
 		if(id>0)
 		{
 			this.Get(id);
-        }
+        }		
 	}
 	loadDictionaries()
     {
@@ -48,6 +49,13 @@ export class SicklistEditComponent implements OnInit
         this.Api.SicklistPaymentRestrictTypes().List().subscribe(result=>{this.SicklistPaymentRestrictTypes = result;}, error => this.errorMessage = <any> error);
         this.Api.TimesheetStatuses().List().subscribe(result=>{this.TimesheetStatuses = result;}, error => this.errorMessage = <any> error);
     }
+	isModelReady(){
+		return this.Model && 
+		this.SicklistBabyMindingTypes &&
+		this.SicklistPaymentPercents &&
+		this.SicklistPaymentRestrictTypes &&
+		this.TimesheetStatuses;
+	}
     Get(id:number) {        
         this.Api.Sicklists(id).Read()
 					.subscribe(
@@ -59,7 +67,7 @@ export class SicklistEditComponent implements OnInit
 	{
 		var data = this.Model;
 		console.log(data);
-		if(data.Id>0)
+		if(data.Data.Id>0)
 		{
 			this.Api.Sicklists().Update(data)
 				.subscribe(

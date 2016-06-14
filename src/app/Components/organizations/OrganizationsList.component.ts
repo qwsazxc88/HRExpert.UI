@@ -1,6 +1,6 @@
 //Vendor libs
 import {Component,OnInit} from '@angular/core';
-import {Router,ROUTER_DIRECTIVES} from '@angular/router';
+import {Router,ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 //Libs
 import {MD_COMPONENTS} from '../MD_COMPONENTS';
 import {API} from '../../Services';
