@@ -18,4 +18,4 @@ export * from './TimesheetStatus';
 export * from './SicklistType';
 export * from './SicklistBabyMindingType';
 export * from './Document';
-
+export * from './FileDto';

@@ -25,7 +25,7 @@ import {
     StaffEstablishedPostEditComponent,
     StaffEstablishedPostListComponent,
     SicklistEditComponent,
-    SicklistListComponent
+    SicklistListComponent    
   } from '../';
 import {MD_COMPONENTS} from '../MD_COMPONENTS';
 import {API} from '../../Services';
@@ -54,8 +54,7 @@ import {Profile} from '../../Model';
   { path: '/organizations/:organizationid/departments/:departmentid',  name: 'DepartmentEdit',  component: DepartmentEditComponent }  ,
   { path: '/organizations/:organizationid/departments/:departmentid/staffestablishedpost/:positionid',  name: 'StaffEstablishedPostEdit',  component: StaffEstablishedPostEditComponent },
   { path: '/sicklists',  name: 'Sicklists',  component: SicklistListComponent },
-  { path: '/sicklists/:id',  name: 'SicklistEdit',  component: SicklistEditComponent }
-  
+  { path: '/sicklists/:id',  name: 'SicklistEdit',  component: SicklistEditComponent }  
 ])
 export class App {
   jwt : string;

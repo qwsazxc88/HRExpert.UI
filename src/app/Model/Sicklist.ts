@@ -15,4 +15,5 @@ export class Sicklist
     BeginDate: Date;
     EndDate : Date;
     SicklistNumber : string;
+    SicklistDocument : File;
 }

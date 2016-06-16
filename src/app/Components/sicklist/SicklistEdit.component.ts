@@ -6,14 +6,15 @@ import {NgClass, DatePipe} from '@angular/common';
 import * as moment from 'moment';
 //Libs
 import {MD_COMPONENTS} from '../';
+import {FileSelectDirective} from '../UI/fileselector.component';
 import {API} from '../../Services';
-import {Document, Person, Sicklist, SicklistType, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, TimesheetStatus} from '../../Model';
+import {FileDto, Document, Person, Sicklist, SicklistType, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, TimesheetStatus} from '../../Model';
 @Component({
     selector: 'sicklist-edit',
     template: require('../../Views/sicklist/Edit.html'),
 	providers: [API],
 	pipes: [DatePipe],
-	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS]
+	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS,FileSelectDirective]
 })
 
 export class SicklistEditComponent implements OnInit
@@ -56,6 +57,10 @@ export class SicklistEditComponent implements OnInit
 		this.SicklistPaymentRestrictTypes &&
 		this.TimesheetStatuses;
 	}
+	DownloadFile(type)
+	{
+		this.Api.Sicklists(this.Model.Data.Id).GetFileKey(type).subscribe(result=>{this.Api.download(result)},error=>this.errorMessage = <any>error);
+	}
     Get(id:number) {        
         this.Api.Sicklists(id).Read()
 					.subscribe(
@@ -65,11 +70,10 @@ export class SicklistEditComponent implements OnInit
     }
 	Save()
 	{
-		var data = this.Model;
-		console.log(data);
+		var data = this.Model;		
 		if(data.Data.Id>0)
 		{
-			this.Api.Sicklists().Update(data)
+			this.Api.Sicklists().Update(data, data.Data.SicklistDocument?true:false)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
@@ -77,7 +81,7 @@ export class SicklistEditComponent implements OnInit
 		}
 		else
 		{
-			this.Api.Sicklists().Create(data)
+			this.Api.Sicklists().Create(data, data.Data.SicklistDocument?true:false)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error

@@ -3,12 +3,54 @@ import {Component, Injectable} from '@angular/core';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http , Headers, RequestOptions, Response} from "@angular/http";
+
 //Libs
 import {
-    Document,
+    Document, FileDto,
     User, Role, Section, Permission, Person, Department, StaffEstablishedPost, Organization, Position, Profile
     , Sicklist, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, SicklistType, TimesheetStatus
 } from "../Model";
+class FormDataConverter {
+
+    private form: FormData = new FormData();
+    constructor(private obj: any) {
+        
+    }
+    Start(name: string) { this.GetForm(this.obj, name); return this.form; }
+    private GetForm(obj, name: string) {
+        var type = typeof obj;  
+        switch (type) {
+            case "number": this.form.append(name,  obj); break;
+            case "string": this.form.append(name,  obj); break;
+            case "object":
+                if (obj instanceof Array)
+                {
+                    for (var i in obj) {
+                        this.GetForm(obj[i], name + '[' + i +']');
+                    }
+                }
+                else if (obj instanceof File)
+                {
+                    this.form.append(name, obj);
+                }
+                else if (obj instanceof Blob)
+                {
+                    this.form.append(name, obj);
+                }
+                else if (obj instanceof Date)
+                {
+                    this.form.append(name, obj.toISOString());
+                }
+                else
+                for (var prop in obj) {
+                    this.GetForm(obj[prop], name + (name.length>0?'.':'')+ prop);
+                }
+                break;
+            default:  break;
+        }
+    }    
+
+}
 export class Resource{
     url: string;
     id: number;
@@ -47,24 +89,57 @@ export class Resource{
 export class ApiResource<T> extends Resource
 {
     url: string;
-    
+    progress;
+    progressObserver;
     constructor(url:string, parent: Resource)
     {
         super(url);
         this.parent = parent;
         this.http = parent.http;
-    }    
+    } 
     
+    private makeFileRequest<T> (model: T, method: string): Observable<Response>   {
+        return Observable.create(observer => {
+        var url = this.createUrl()+this.createAdditionUrlOptions();
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        var Converter= new FormDataConverter(model);
+        var formData = Converter.Start('');        
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                observer.next(JSON.parse(xhr.response));
+                observer.complete();
+            } else {
+                observer.error(xhr.response);
+            }
+            }
+        };
+        xhr.upload.onprogress = (event) => {
+            this.progress = Math.round(event.loaded / event.total * 100);
+            this.progressObserver.next(this.progress);
+        };
+        xhr.open(method, url, true);
+        let jwt = localStorage.getItem('jwt');	
+        if(jwt)
+                xhr.setRequestHeader("Authorization","Bearer " +jwt);        
+        xhr.send(formData);
+        });
+    }
     List() {
         var options = this.CreateOptions();
         var url = this.createUrl()+this.createAdditionUrlOptions();
-        console.log(url);
         return this.http.get(url, options)
                         .map(res =>  <T[]> res.json())
                         .catch(this.handleError);
     }
 	//CRUD
-    Create(entity: T) {
+    Create(entity: T, IsFileSend: boolean = false) {
+        //if file request
+        if(IsFileSend)
+            return this.makeFileRequest(entity,'POST')
+                .map( res=> <T> res.json())
+                .catch(this.handleError);
+        //if no files provided
         let body = JSON.stringify(entity);
         var options = this.CreateOptions();
         var url = this.createUrl()+this.createAdditionUrlOptions();
@@ -80,8 +155,14 @@ export class ApiResource<T> extends Resource
                         .map(res =>  <T> res.json())
                         .catch(this.handleError);
     }
-    Update(entity: T)
+    Update(entity: T, IsFileSend: boolean = false)
     {
+        //if file request
+        if(IsFileSend)
+            return this.makeFileRequest(entity,'PUT')
+                .map( res=> <T> res.json())
+                .catch(this.handleError);
+        //if no files provided
         let body = JSON.stringify(entity);
         var options = this.CreateOptions();
         var url = this.createUrl();
@@ -98,6 +179,7 @@ export class ApiResource<T> extends Resource
                         .catch(this.handleError);
     }
 }
+
 export class UsersService extends ApiResource<User>{
     constructor(parent: Resource)
     {
@@ -163,7 +245,15 @@ export class SicklistService extends ApiResource<Document<Sicklist>>{
     constructor(parent: Resource)
     {
         super("/sicklists",parent)
-    }
+    }   
+    GetFileKey(filetype) {
+        console.log(url);
+        var options = this.CreateOptions();
+        var url = this.createUrl()+"/files/"+filetype+this.createAdditionUrlOptions();
+        return this.http.get(url, options)
+                        .map(res =>  <string> res.json())
+                        .catch(this.handleError);
+    } 
 }
 export class SicklistTypeService extends ApiResource<SicklistType>{
     constructor(parent: Resource)
@@ -362,6 +452,10 @@ export class API extends Resource
         for(var p in obj)
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
+    }
+    download(key)
+    {
+        window.open("http://localhost:5000/download/"+key,"_blank");
     }
    login(model)
 	{
