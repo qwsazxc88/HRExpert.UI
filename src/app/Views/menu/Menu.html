@@ -1,9 +1,9 @@
 <ul *ngIf="profile" >
-    <li *ngFor="#role of profile.Roles" (click)="ChangeRole(role.Id)" >
+    <li *ngFor="let role of profile.Roles" (click)="ChangeRole(role.Id)" >
         {{role.Name}}
         <ul>
-            <li *ngFor="#section of role.Sections" >
-                <a [routerLink]=" [section.RouteName] ">{{section.Name}}</a>    
+            <li *ngFor="let section of role.Sections" >
+                <a [routerLink]=" [section.RouteName] ">{{section.Name}}</a>
             </li>
         </ul>
     </li>

@@ -9,7 +9,7 @@ import { enableProdMode } from '@angular/core';
 */
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
-import {HTTP_PROVIDERS} from '@angular/Http'
+import {HTTP_PROVIDERS} from '@angular/http';
 /*
 * App Component
 * our top level component that holds all of our components

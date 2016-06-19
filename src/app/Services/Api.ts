@@ -367,13 +367,11 @@ export class ApiFactory {
 }
 @Component({ providers: [HTTP_PROVIDERS] })
 @Injectable()
-export class API extends Resource
-{
-	constructor	(_http: Http)
-	{	
-        super("http://localhost:5000/api/v1");
+export class API extends Resource {
+    constructor(_http: Http) {
+        super('http://ruscount.com:9034/api/v1');
         this.http = _http;
-	}
+    }
     public Users = ApiFactory.UsersFactory(this);
     public Roles = ApiFactory.RolesFactory(this);
     public Sections = ApiFactory.SectionsFactory(this);
@@ -395,24 +393,23 @@ export class API extends Resource
             str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
         return str.join('&');
     }
-    download(key)
-    {
-        window.open("http://localhost:5000/download/"+key,"_blank");
+    download(key) {
+        window.open('http://ruscount.com:9034/download/' + key, '_blank');
     }
     login(model) {
         console.log(this.http);
-		let body = this.transformRequest({
-			username: model.UserName,
-			password: model.Password,
-			grant_type:'password'});
+        let body = this.transformRequest({
+            username: model.UserName,
+            password: model.Password,
+            grant_type: 'password'
+        });
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
-		return this.http.post("http://localhost:5000/connect/token",body,options)                        
-                        .map(res => <string> (res.json().access_token))
-                        .catch(error=>Observable.throw(error.json().error || 'Server error'));
-	}	
-    profile()
-    {
+        return this.http.post('http://ruscount.com:9034/connect/token', body, options)
+            .map(res => <string>(res.json().access_token))
+            .catch(error => Observable.throw(error.json().error || 'Server error'));
+    }
+    profile() {
         var options = this.CreateOptions();
         var url = this.url + '/profile';
         return this.http.get(url, options)
