@@ -8,10 +8,10 @@
   <!-- Table -->
   <table  class="table table-hover">
     <thead>
-    <tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
+        <tr><th style="width: auto;">Id</th><th>Название</th><th style="width: auto;"></th></tr>
     </thead>
     <tbody>
-    <tr *ngFor="#element of Model" >						
+    <tr *ngFor="let element of Model" >
         <td>{{element.Data.Id}}</td>
         <td>{{element.Data.SicklistType.Name}}</td>
         <td>
@@ -21,5 +21,5 @@
         </td>
     </tr>
     </tbody>
-    </table>
+  </table>
 </div>

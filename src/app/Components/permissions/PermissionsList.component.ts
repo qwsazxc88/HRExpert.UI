@@ -12,12 +12,12 @@ import {MD_COMPONENTS} from '../';
     selector: 'sections-list',
     template: require('../../Views/permissions/List.html'),
 	providers: [API],
-	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS]
+	directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
 })
 
 export class PermissionsListComponent implements OnInit
-{ 
-	constructor (private Api: API, private _router: Router) 
+{
+	constructor (private Api: API, private _router: Router)
 	{
 	}
 
@@ -27,7 +27,7 @@ export class PermissionsListComponent implements OnInit
     ngOnInit() {
         this.Get();
 	}
-	
+
     Get() {
         this.Api.Permissions().List()
 					.subscribe(

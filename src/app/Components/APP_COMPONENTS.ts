@@ -40,8 +40,8 @@ import {PersonsListComponent} from './persons/PersonsList.component';
 import {LoginComponent} from './login/Login.component';
 import {Home} from './home/home.component';
 import {SicklistListComponent} from './sicklist/SicklistList.component';
-import {SicklistEditComponent} from './sicklist/SicklistEdit.component'
-export const APP_COMPONENTS=[    
+import {SicklistEditComponent} from './sicklist/SicklistEdit.component';
+export const APP_COMPONENTS = [
     MenuComponent,
     UsersListComponent,
     UserEditComponent,
