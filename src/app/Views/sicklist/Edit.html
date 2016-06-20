@@ -9,7 +9,7 @@
   <div style="padding:5px;" *ngIf="Model" >
     <div class="form-group">
         <label>Сотрудник:</label>
-        <!--<span *ngIf="Model.Person" >{{Model.Person.Name}}</span> -->
+        <span *ngIf="Model.Person" >{{Model.Person.Name}}</span> 
         <select  class="form-control" [(ngModel)]="Model.Person">
             <option *ngFor="let element of Persons"  [ngValue]="element">{{element.Name}}</option>
         </select>
@@ -54,8 +54,8 @@
         <span type="text" *ngIf="Model.Data && Model.Data.SicklistPaymentRestrictType">
             {{Model.Data.SicklistPaymentRestrictType.Name}}
         </span>
-        <select  class="form-control" [(ngModel)]="Model.Data.PaymentRestrictType">
-            <option *ngFor="let element of PaymentRestrictTypes"  [ngValue]="element">{{element.Name}}</option>
+        <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentRestrictType">
+            <option *ngFor="let element of SicklistPaymentRestrictTypes"  [ngValue]="element">{{element.Name}}</option>
         </select>
     </div>    
     <div class="form-group">
@@ -64,7 +64,7 @@
             {{Model.Data.SicklistPaymentPercent.Value}}
         </span>
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentPercent">
-            <option *ngFor="let element of SicklistPaymentPercents"  [ngValue]="element">{{element.Name}}</option>
+            <option *ngFor="let element of SicklistPaymentPercents"  [ngValue]="element">{{element.Value}}</option>
         </select>
     </div>
     <div class="form-group">
@@ -78,12 +78,13 @@
     </div>
     <div class="form-group">
         <label>Скан документа:</label>
-        <span *ngIf="Model.Files" *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" >{{file.FileName}}</span>
+        <span *ngIf="Model.Files" *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" ><a *ngIf="file" >{{file.FileName}}</a></span>
+        
         <input fileselector type="file" [(SelectedFile)]="Model.Data.SicklistDocument"/>
     </div>
   </div>
   <div class="panel-body">
         <button class="btn btn-primary" (click)="Save()">Сохранить</button>
-        <button class="btn" (click)="Delete()">Удалить</button>
+        <button class="btn btn-danger" (click)="Delete()">Удалить</button>
   </div>
 </div>

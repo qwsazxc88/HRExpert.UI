@@ -65,7 +65,7 @@ export class Resource {
     }
     createAdditionUrlOptions() {
         var role = localStorage.getItem('forrole');
-        console.log(role);
+        
         return role ? '?for_roleid=' + role : '';
     }
     createUrl() {
@@ -138,7 +138,7 @@ export class ApiResource<T> extends Resource {
             .catch(this.handleError);
     }
     Read() {
-        console.log(url); // BUG
+        //console.log(url); // BUG
         var options = this.CreateOptions();
         var url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.get(url, options)
@@ -225,7 +225,7 @@ export class SicklistService extends ApiResource<Document<Sicklist>> {
         super('/sicklists', parent);
     }
     GetFileKey(filetype) {
-        console.log(url);
+        //console.log(url);
         var options = this.CreateOptions();
         var url = this.createUrl() + '/files/' + filetype + this.createAdditionUrlOptions();
         return this.http.get(url, options)
@@ -397,7 +397,7 @@ export class API extends Resource {
         window.open('http://ruscount.com:9034/download/' + key, '_blank');
     }
     login(model) {
-        console.log(this.http);
+        //console.log(this.http);
         let body = this.transformRequest({
             username: model.UserName,
             password: model.Password,

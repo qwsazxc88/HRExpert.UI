@@ -6,14 +6,26 @@
   </div>
 
   <!-- Table -->
-  <table  class="table table-hover">
+  <table  class="table table-hover table-bordered table-striped">
     <thead>
-        <tr><th style="width: auto;">Id</th><th>Название</th><th style="width: auto;"></th></tr>
+        <tr>
+            <th style="width: auto;">Номер заявки</th>
+            <th>Сотрудник</th>
+            <th>Подразделение</th>
+            <th>Вид заявки</th>
+            <th>Дата начала</th>
+            <th>Дата Окончания</th>
+            <th style="width: auto;"></th>
+        </tr>
     </thead>
     <tbody>
     <tr *ngFor="let element of Model" >
         <td>{{element.Data.Id}}</td>
+        <td>{{element.Person.Name}}</td>
+        <td>{{element.Person.StaffEstablishedPost.Department.Name}}</td>
         <td>{{element.Data.SicklistType.Name}}</td>
+        <td>{{element.Data.BeginDate}}</td>
+        <td>{{element.Data.EndDate}}</td>
         <td>
             <a (click)="Edit(element)">
                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>

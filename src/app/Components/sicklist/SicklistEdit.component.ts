@@ -64,7 +64,7 @@ export class SicklistEditComponent implements OnInit
     Get(id:number) {        
         this.Api.Sicklists(id).Read()
 					.subscribe(
-						result => {this.Model = result;},
+						result => {this.Model = result;console.log(result.Data.BeginDate)},
 						error => this.errorMessage = <any>error
 					);
     }
