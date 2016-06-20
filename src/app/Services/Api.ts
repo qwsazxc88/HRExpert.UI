@@ -88,32 +88,31 @@ export class ApiResource<T> extends Resource {
         this.http = parent.http;
     }
 
-    private makeFileRequest<T>(model: T, method: string): Observable<Response> {
-        return Observable.create(observer => {
+    private makeFileRequest<T>(model: T, method: string):Observable<any> {
+        return Observable.fromPromise(new Promise((resolve,reject) => {
             var url = this.createUrl() + this.createAdditionUrlOptions();
             let xhr: XMLHttpRequest = new XMLHttpRequest();
             var Converter = new FormDataConverter(model);
-            var formData = Converter.Start('');
+            var formData = Converter.Start('');            
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        observer.next(JSON.parse(xhr.response));
-                        observer.complete();
+                        resolve(JSON.parse(xhr.response));
                     } else {
-                        observer.error(xhr.response);
+                        reject(xhr.response);
                     }
                 }
             };
-            xhr.upload.onprogress = (event) => {
+            /*xhr.upload.onprogress = (event) => {
                 this.progress = Math.round(event.loaded / event.total * 100);
                 this.progressObserver.next(this.progress);
-            };
+            };*/
             xhr.open(method, url, true);
             let jwt = localStorage.getItem('jwt');
             if (jwt)
                 xhr.setRequestHeader('Authorization', 'Bearer ' + jwt);
             xhr.send(formData);
-        });
+        }));
     }
     List() {
         var options = this.CreateOptions();
@@ -127,7 +126,7 @@ export class ApiResource<T> extends Resource {
         //if file request
         if (IsFileSend)
             return this.makeFileRequest(entity, 'POST')
-                .map(res => <T>res.json())
+                .map(res => <T> res.json())
                 .catch(this.handleError);
         //if no files provided
         let body = JSON.stringify(entity);
@@ -149,7 +148,7 @@ export class ApiResource<T> extends Resource {
         //if file request
         if (IsFileSend)
             return this.makeFileRequest(entity, 'PUT')
-                .map(res => <T>res.json())
+                .map(res => <T> res)
                 .catch(this.handleError);
         //if no files provided
         let body = JSON.stringify(entity);
@@ -369,7 +368,7 @@ export class ApiFactory {
 @Injectable()
 export class API extends Resource {
     constructor(_http: Http) {
-        super('http://ruscount.com:9034/api/v1');
+        super('http://localhost:5000/api/v1');
         this.http = _http;
     }
     public Users = ApiFactory.UsersFactory(this);
@@ -394,7 +393,7 @@ export class API extends Resource {
         return str.join('&');
     }
     download(key) {
-        window.open('http://ruscount.com:9034/download/' + key, '_blank');
+        window.open('http://localhost:5000/download/' + key, '_blank');
     }
     login(model) {
         //console.log(this.http);
@@ -405,7 +404,7 @@ export class API extends Resource {
         });
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://ruscount.com:9034/connect/token', body, options)
+        return this.http.post('http://localhost:5000/connect/token', body, options)
             .map(res => <string>(res.json().access_token))
             .catch(error => Observable.throw(error.json().error || 'Server error'));
     }

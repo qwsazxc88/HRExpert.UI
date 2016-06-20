@@ -8,7 +8,6 @@ export class FileSelectDirective {
   @Output() SelectedFileChange = new EventEmitter();
   @Output() SelectedFilesChange = new EventEmitter();
   public constructor(element:ElementRef) {
-      console.log(element);
     this.element = element;
   }
 
@@ -23,6 +22,5 @@ export class FileSelectDirective {
     this.SelectedFile= files[0];
     this.SelectedFilesChange.emit(this.SelectedFiles);
     this.SelectedFileChange.emit(this.SelectedFile);
-    console.log(files);
   }
 }

@@ -17,7 +17,9 @@ import {Sicklist, Document} from '../../Model';
 export class SicklistListComponent implements OnInit {
     errorMessage: string;
     Model: Sicklist[];
-
+    stringAsDate(dateStr) {
+        return new Date(dateStr);
+    }
     constructor(private Api: API, private _router: Router) {
     }
 

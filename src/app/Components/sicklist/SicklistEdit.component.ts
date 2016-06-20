@@ -64,7 +64,7 @@ export class SicklistEditComponent implements OnInit
     Get(id:number) {        
         this.Api.Sicklists(id).Read()
 					.subscribe(
-						result => {this.Model = result;console.log(result.Data.BeginDate)},
+						result => {this.Model = result;},
 						error => this.errorMessage = <any>error
 					);
     }
@@ -73,15 +73,15 @@ export class SicklistEditComponent implements OnInit
 		var data = this.Model;		
 		if(data.Data.Id>0)
 		{
-			this.Api.Sicklists().Update(data, data.Data.SicklistDocument?true:false)
+			this.Api.Sicklists().Update(data, true)
 				.subscribe(
-					result => {this.Model = result; },
+					result => { this.Model = result;},
 					error => this.errorMessage = <any>error
 				);
 		}
 		else
 		{
-			this.Api.Sicklists().Create(data, data.Data.SicklistDocument?true:false)
+			this.Api.Sicklists().Create(data, true)
 				.subscribe(
 					result => {this.Model = result; },
 					error => this.errorMessage = <any>error
