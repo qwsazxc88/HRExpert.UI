@@ -2,25 +2,25 @@
  * Providers provided by Angular
  */
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core'; 
+import { enableProdMode } from '@angular/core';
 /*
 * Platform and Environment
 * our providers/directives/pipes
 */
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
-import {HTTP_PROVIDERS} from '@angular/Http'
+import {HTTP_PROVIDERS} from '@angular/http';
 /*
 * App Component
 * our top level component that holds all of our components
 */
-import {App, API, APP_UI_COMPONENTS,APP_COMPONENTS,MD_COMPONENTS} from './app';
+import {App, API, APP_UI_COMPONENTS, APP_COMPONENTS, MD_COMPONENTS} from './app';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
-export function main(initialHmrState?: any): Promise<any> {    
+export function main(initialHmrState?: any): Promise<any> {
   enableProdMode();
   return bootstrap(App, [
     ...ENV_PROVIDERS,

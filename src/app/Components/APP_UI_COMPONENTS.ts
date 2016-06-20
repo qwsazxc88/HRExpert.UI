@@ -5,8 +5,8 @@ import {LoggedInRouterOutlet} from './UI/CustomRouter/LoggedInOutlet';
 import {RouterActive} from './UI/CustomRouter/router-active.directive';
 import {TreeView} from './UI/TreeView/TreeView.component';
 import {FileSelectDirective} from './UI/fileselector.component';
-export const APP_UI_COMPONENTS=[
+export const APP_UI_COMPONENTS = [
     LoggedInRouterOutlet,
     RouterActive,
     TreeView,
-    FileSelectDirective]
+    FileSelectDirective];
