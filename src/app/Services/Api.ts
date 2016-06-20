@@ -88,8 +88,8 @@ export class ApiResource<T> extends Resource {
         this.http = parent.http;
     }
 
-    private makeFileRequest<T>(model: T, method: string):Observable<any> {
-        return Observable.fromPromise(new Promise((resolve,reject) => {
+    private makeFileRequest<T>(model: T, method: string): Observable<Response> {
+        return Observable.fromPromise(new Promise<Response>((resolve,reject) => {
             var url = this.createUrl() + this.createAdditionUrlOptions();
             let xhr: XMLHttpRequest = new XMLHttpRequest();
             var Converter = new FormDataConverter(model);
