@@ -148,7 +148,7 @@ export class ApiResource<T> extends Resource {
         //if file request
         if (IsFileSend)
             return this.makeFileRequest(entity, 'PUT')
-                .map(res => <T> res)
+                .map(res => <T> res.json())
                 .catch(this.handleError);
         //if no files provided
         let body = JSON.stringify(entity);
