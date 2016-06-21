@@ -1,6 +1,16 @@
-html, body{    
-	background: #f1f2f4;
-    height: 100%;
+html{
+	background-image: url('../img/bg.png');  
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+body{
+	background: transparent;
+}
+html, body{  
+	
+    min-height: 100%;
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -21,7 +31,99 @@ table tr td{
 table tr th{
     text-align: left !important;
 }
+a {
+  position: relative;
+  overflow: hidden;
+}
 
+a:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  margin-left: -60px;
+  margin-top: -60px;
+  background: #12a5ff;
+  border-radius: 100%;
+  opacity: .1;
+
+  transform: scale(0);
+}
+a:not(:active):after {
+  animation: ripple 1s ease-out;
+}
+
+/* fixes initial animation run, without user input, on page load.
+ */
+a:after {
+  visibility: hidden;
+}
+
+a:focus:after {
+  visibility: visible;
+}
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  margin-left: -60px;
+  margin-top: -60px;
+  background: #eeeeee;
+  border-radius: 100%;
+  opacity: .6;
+
+  transform: scale(0);
+}
+button:not(:active):after {
+  animation: ripple 1s ease-out;
+}
+
+/* fixes initial animation run, without user input, on page load.
+ */
+button:after {
+  visibility: hidden;
+}
+
+button:focus:after {
+  visibility: visible;
+}
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.panel
+{
+	-webkit-box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
+	-moz-box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
+	box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
+}
+.dropshadow
+{
+	-webkit-box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
+	-moz-box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
+	box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
+}
 app-menu ul{
     padding:0px;
     list-style: none;
