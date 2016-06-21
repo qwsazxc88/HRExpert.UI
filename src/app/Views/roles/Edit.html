@@ -1,49 +1,73 @@
-<div class="mdl-grid">	
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-        <md-card>
-        <md-card-subtitle>Роль</md-card-subtitle>
-        <md-card-title>{{Model.Name}}</md-card-title>   
-        <md-card-content>
-            <div>
-                <label>Id:</label>
-                <span>{{Model.Id}}</span>
-            </div>
-                <md-input [(ngModel)]="Model.Name" placeholder="Название"></md-input>
-                <div class="form-group">
-                      <span *ngFor="#section of Sections" [ngClass]="{active:section.Id==SelectedSection}" ><a md-button (click)="SelectedSection=section.Id" >{{section.Name}}</a></span>                        
-				<div class="well well-sm">
-					<div class="form-group">                        
-						<md-toolbar>
-						  <span class="input-group-addon" id="basic-addon3">Добавить права:</span>                          
-						  <select class="form-control" aria-describedby="basic-addon3" [(ngModel)]="SelectedPermission" >
-							<option *ngFor="#permission of Permissions| arrayFilter: Model.Permissions | idFilter : SelectedSection :'Section'" value="{{permission.Id}}">{{permission.Name}}</option>
-						  </select>
-						  
-							<button (click)="AddPermission()" md-raised-button color="primary" type="button">Добавить</button>
-						</md-toolbar>												
-					</div>
-					<table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
-					<thead>
-					<tr><th width="10%">Id</th><th>Название</th><th>Модуль</th><th width="10%"></th></tr>
-					</thead>
-					<tbody>
-					<tr *ngFor="#permission of Model.Permissions" >						
-						<td>{{permission.Id}}</td>
-						<td>{{permission.Name}}</td>
-                        <td>{{permission.Section.Name}}</td>
-						<td>
-							<a (click)="RemovePermission(permission)" class="btn btn-info btn-xs">удалить</a>
-						</td>
-					</tr>
-					</tbody>
-					</table>
+<h1 *ngIf="errorMessage"> {{errorMessage}} </h1>
+<div class="panel panel-default">
+	<!--<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">-->
+	<!--<md-card>-->
+	<!--<md-card-subtitle>Роль</md-card-subtitle>-->
+	<div class="panel-heading">
+		<div class="panel-title"><label>Роль:</label> {{Model.Name}}</div>
+	</div>
+	<!--<md-card-title>{{Model.Name}}</md-card-title>-->
+	<!--<md-card-content>-->
+	<div class="panel-body">
+		<!--<form>-->
+		<div *ngIf="Model.Id">
+			<label>Id:</label>
+			<span>{{Model.Id}}</span>
+		</div>
+		<!--<md-input [(ngModel)]="Model.Name" placeholder="Название"></md-input>-->
+		<input type="text" [(ngModel)]="Model.Name" placeholder="Название" class="form-control">
+		<div class="well well-sm">
+			<!--class="form-inline"-->
+			<div *ngIf="Sections">
+				<a *ngFor="let section of Sections" [ngClass]="{ active: SelectedSections.includes(section.Id) }" (click)="PermissionClicked(section)" class="btn btn-info btn-xs" role="button">
+				{{section.Name}}
+				</a>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<!--<md-toolbar>-->
+					<span id="basic-addon3" class="input-group-addon">Добавить права:</span>
+					<!-- class="input-group-addon" -->
+					<select class="form-control" aria-describedby="basic-addon3" [(ngModel)]="SelectedPermissionId">
+				<!--<option *ngFor="let permission of Permissions| arrayFilter:Model.Permissions | idFilter:SelectedSections :'Section'"
+									value="{{permission.Id}}">{{permission.Name}}</option>-->
+						<option *ngFor="let permission of Permissions" value="{{permission.Id}}">{{permission.Name}}</option>
+					</select>
+					<!--</md-toolbar>-->
 				</div>
-				</div>
-        </md-card-content>
-        <md-card-actions>
-                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
-                <button md-raised-button (click)="Delete()">Удалить</button>
-        </md-card-actions>
-        </md-card>
-    </div>      
+				<button class="btn btn-primary" (click)="AddPermission()" type="button">Добавить</button>
+			</div>
+		</div>
+		<table>
+			<!-- class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp" -->
+			<thead>
+				<tr>
+					<th width="10%">Id</th>
+					<th>Название</th>
+					<th>Модуль</th>
+					<th width="10%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let permission of Model.Permissions">
+					<td>{{permission.Id}}</td>
+					<td>{{permission.Name}}</td>
+					<td>
+						<!--{{permission.Section.Name}}-->
+					</td>
+					<td>
+						<a (click)="RemovePermission(permission)" class="btn btn-info btn-xs">удалить</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!--</md-card-content>-->
+		<md-card-actions>
+			<button class="btn btn-success" (click)="Save()">Сохранить</button>
+			<button class="btn btn-danger" (click)="Delete()">Удалить</button>
+		</md-card-actions>
+		<!--</md-card>
+	</div>-->
+		<!--</form>-->
+	</div>
 </div>
