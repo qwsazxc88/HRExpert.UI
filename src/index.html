@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
 
-  <title><%= webpackConfig.metadata.title %></title>
+  <title>
+    <%= webpackConfig.metadata.title %>
+  </title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="<%= webpackConfig.metadata.title %>">
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="/assets/css/main.css"/>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <script src="/assets/base64.min.js"></script>
   <!-- use http://www.favicon-generator.org/ to replace files in public/icon-->
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/icon/apple-icon-57x57.png">
@@ -22,7 +25,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/assets/icon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/icon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
@@ -38,21 +41,19 @@
 
 <body app>
   <div class="cssload-thecube">
-	<div class="cssload-cube cssload-c1"></div>
-	<div class="cssload-cube cssload-c2"></div>
-	<div class="cssload-cube cssload-c4"></div>
-	<div class="cssload-cube cssload-c3"></div>
+    <div class="cssload-cube cssload-c1"></div>
+    <div class="cssload-cube cssload-c2"></div>
+    <div class="cssload-cube cssload-c4"></div>
+    <div class="cssload-cube cssload-c3"></div>
   </div>
-</div>
-  
 
-
-    <!-- /#wrapper -->
+  <!-- /#wrapper -->
 
   <% if (webpackConfig.metadata.ENV === 'development') { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
   <% } %>
 
 </body>
+
 </html>

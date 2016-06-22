@@ -6,7 +6,7 @@ import {RouteParams} from '@angular/router-deprecated';
 import {API} from "../../Services";
 import {MD_COMPONENTS} from "../"
 import {User,Role} from "../../Model";
-import {ArrayTools} from "../../Tools/ArrayTools/ArrayTools";
+import * as ArrayTools from "../../Tools/ArrayTools/ArrayTools";
 import {ArrayFilterPipe} from "../../Tools/ArrayTools/ArrayFilterPipe";
 @Component({
     selector: 'users-edit',
@@ -17,17 +17,17 @@ import {ArrayFilterPipe} from "../../Tools/ArrayTools/ArrayFilterPipe";
 })
 
 export class UserEditComponent implements OnInit
-{ 
-	constructor (private Api: API, private _routeParams: RouteParams) 
+{
+	constructor (private Api: API, private _routeParams: RouteParams)
 	{
-		this.ArrayTool = new ArrayTools();
+		// this.ArrayTool = new ArrayTools();
 		this.Model=new User(0,'');
 		this.Roles=[];
 	}
-	
+
 
     errorMessage: string;
-	ArrayTool: ArrayTools;
+	// ArrayTool: ArrayTools;
     Model: User;
 	Roles: Role[];
 	SelectedRole: number;
@@ -76,18 +76,18 @@ export class UserEditComponent implements OnInit
 	AddRole()
 	{
 		if(!this.SelectedRole) return;
-		var role = this.Roles.find(x=>x.Id==this.SelectedRole);
+		var role = this.Roles.find(x=>x.Id == this.SelectedRole);
 		if(role)
 		{
 			this.Model.Roles.push(role);
-		}        
+		}
         this.Model=this.Model;
 	}
 	RemoveRole(role)
 	{
-		this.ArrayTool.RemoveFromArray(this.Model.Roles,role);
+		ArrayTools.RemoveFromArray(this.Model.Roles, role);
 	}
-	
+
     Get(id) {
         this.Api.Users(id).Read()
 					.subscribe(
