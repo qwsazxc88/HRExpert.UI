@@ -1,31 +1,28 @@
-
-<div class="mdl-grid">	
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-        
-            <span>Организации</span>
-           
-                <button  color="primary" (click)="Create()">Добавить</button>
-            
+<div class="panel panel-default">
+    <div class="panel-heading" style="height: 60px;">
+        <span>Организации</span>
+        <button class="btn btn-primary" style="float:right;" (click)="Create()">Добавить</button>
     </div>
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-        <table  class="table">
-        <thead>
-        <tr><th width="10%">Id</th><th>Название</th><th width="10%"></th></tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="#element of Model" >						
-            <td>{{element.Id}}</td>
-            <td>{{element.Name}}</td>
-            <td>
-                <a (click)="Edit(element)">
-                    <i class="fa fa-pencil-square-o  fa-2x" aria-hidden="true"></i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
+    <div class="panel-body">
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 0;">Номер</th>
+                    <th>Название</th>
+                    <th style="width: 0;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let element of Model">
+                    <td>{{element.Id}}</td>
+                    <td>{{element.Name}}</td>
+                    <td>
+                        <a (click)="Edit(element)">
+                            <i class="fa fa-pencil-square-o  fa-2x" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-    </div>	
+    </div>
 </div>
-
-			
-		  
