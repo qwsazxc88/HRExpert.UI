@@ -16,7 +16,7 @@ import {Sicklist, Document} from '../../Model';
 })
 export class SicklistListComponent implements OnInit {
     errorMessage: string;
-    Model: Sicklist[];
+    Model: Document<Sicklist>[];
     stringAsDate(dateStr) {
         return new Date(dateStr);
     }
@@ -30,8 +30,8 @@ export class SicklistListComponent implements OnInit {
     Get() {
         this.Api.Sicklists().List()
             .subscribe(
-            result => { this.Model = result; },
-            error => this.errorMessage = <any>error
+            result => this.Model = result,
+            error  => this.errorMessage = error
             );
     }
 

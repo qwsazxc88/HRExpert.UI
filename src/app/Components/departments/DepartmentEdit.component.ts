@@ -1,6 +1,6 @@
 //Vendor libs
 import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES,RouteParams} from '@angular/router-deprecated';
+import {Router, ROUTER_DIRECTIVES, RouteParams} from '@angular/router-deprecated';
 import {OnInit, Input} from '@angular/core';
 import {NgClass} from '@angular/common';
 //Libs
@@ -14,29 +14,28 @@ import {StaffEstablishedPostListComponent} from '../staffestablishedposts/StaffE
     selector: 'departments-edit',
     template: require('../../Views/departments/Edit.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS, DepartmentsListComponent,StaffEstablishedPostListComponent]
+    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS, DepartmentsListComponent, StaffEstablishedPostListComponent]
 })
 
 export class DepartmentEditComponent implements OnInit {
-    constructor (private Api: API, private _router: Router, private _routeParams: RouteParams) {
+    constructor(private Api: API, private _router: Router, private _routeParams: RouteParams) {
     }
-    @Input() Model: Department;    
-    errorMessage: string;    
+    @Input() Model: Department;
+    errorMessage: string;
     Childs: Department[];
     ngOnInit() {
-        let departmentid =+ this._routeParams.get('departmentid');
-        let organizationid =+ this._routeParams.get('organizationid');
-		if (departmentid > 0 && organizationid > 0)
-		{
-			this.Get(departmentid,organizationid);
-		}
+        let departmentid = + this._routeParams.get('departmentid');
+        let organizationid = + this._routeParams.get('organizationid');
+        if (departmentid > 0 && organizationid > 0) {
+            this.Get(departmentid, organizationid);
+        }
     }
-    Get(departmentid,organizationid) { 
+    Get(departmentid, organizationid) {
         this.Api.Organizations(organizationid).Departments(departmentid).Read()
-        .subscribe(
-            data => {  this.Model = data  },
-            error => this.errorMessage = <any>error   
-        );
-    }    
-    
+            .subscribe(
+            data => { this.Model = data },
+            error => this.errorMessage = <any>error
+            );
+    }
+
 }
