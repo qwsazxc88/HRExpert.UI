@@ -1,8 +1,8 @@
-<div *ngIf="!isModelReady()" style="color: lightgray; text-align: center;">
-    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-    <span class="sr-only">Loading...</span>
+<div *ngIf="!isModelReady" style="color: lightgray; text-align: center;">    
+    <progressbar max="100" class="progress-striped active" [value]="progress"><span style="color:white; white-space:nowrap;"></span>
+    </progressbar>
 </div>
-<div *ngIf="isModelReady()" class="panel panel-default dropshadow">
+<div *ngIf="isModelReady" class="panel panel-default dropshadow">
   <!-- Default panel contents -->
   <div class="panel-heading">Больничный</div>
   <!-- Default contents -->
@@ -32,56 +32,74 @@
     </div>    
     
     <div class="form-group">
-        <label class="control-label">Тип больничного листа:</label>
-        <span type="text" *ngIf="Model.Data && Model.Data.SicklistType">
-            {{Model.Data.SicklistType.Name}}
-        </span>
+        <label class="control-label">Тип больничного листа:</label>        
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistType">
             <option *ngFor="let element of SicklistTypes"  [ngValue]="element">{{element.Name}}</option>
         </select>
     </div>
     <div class="form-group">
         <label class="control-label">В случае ухода за ребенком:</label>
-        <span type="text" *ngIf="Model.Data && Model.Data.SicklistBabyMindingType">
-            {{Model.Data.SicklistBabyMindingType.Name}}
-        </span>
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistBabyMindingType">
             <option *ngFor="let element of SicklistBabyMindingTypes"  [ngValue]="element">{{element.Name}}</option>
         </select>
     </div>
     <div class="form-group">
         <label class="control-label">Ограничение оплаты:</label>
-        <span type="text" *ngIf="Model.Data && Model.Data.SicklistPaymentRestrictType">
-            {{Model.Data.SicklistPaymentRestrictType.Name}}
-        </span>
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentRestrictType">
             <option *ngFor="let element of SicklistPaymentRestrictTypes"  [ngValue]="element">{{element.Name}}</option>
         </select>
     </div>    
     <div class="form-group">
         <label class="control-label">Процент оплаты:</label>
-        <span type="text" *ngIf="Model.Data && Model.Data.SicklistPaymentPercent">
-            {{Model.Data.SicklistPaymentPercent.Value}}
-        </span>
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentPercent">
             <option *ngFor="let element of SicklistPaymentPercents"  [ngValue]="element">{{element.Value}}</option>
         </select>
     </div>
     <div class="form-group">
         <label class="control-label">Заполнение табеля:</label>
-        <span type="text" *ngIf="Model.Data && Model.Data.TimesheetStatus">
-            {{Model.Data.TimesheetStatus.Name}}
-        </span>
         <select  class="form-control" [(ngModel)]="Model.Data.TimesheetStatus">
             <option *ngFor="let element of TimesheetStatuses"  [ngValue]="element">{{element.Name}}</option>
         </select>
     </div>
     <div class="form-group">
         <label class="control-label">Скан документа:</label>
-        <span *ngIf="Model.Files" *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" ><a *ngIf="file" >{{file.FileName}}</a></span>
-        
+        <span *ngIf="Model.Files" *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" ><a *ngIf="file" >{{file.FileName}}</a></span>        
         <input fileselector type="file" [(SelectedFile)]="Model.Data.SicklistDocument"/>
     </div>
+    <div class="well">
+        <label>Согласование:</label>
+        <table>
+        <tr>
+            <td>Сотрудник согласен</td>  
+            <td><select [(ngModel)]="PersonApprovement.isAccept">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>    
+            </td>
+            <td><span *ngIf="PersonApprovement?.Person?.Name" >{{PersonApprovement.Person.Name}}</span></td>        
+        </tr> 
+        <tr>
+            <td>Руководитель согласен  </td>
+            <td><select [(ngModel)]="ManagerApprovement.isAccept">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>
+            </td>
+            <td>   
+            <span *ngIf="ManagerApprovement?.Person?.Name" >{{ManagerApprovement.Person.Name}}</span></td>         
+        </tr> 
+        <tr>
+            <td>Кадровик согласен  </td>
+            <td><select [(ngModel)]="PersonnelManagerApprovement.isAccept">
+                <option value="true">Да</option>
+                <option value="false">Нет</option>
+            </select>
+            </td> 
+            <td><span *ngIf="PersonnelManagerApprovement?.Person?.Name" >{{PersonnelManagerApprovement.Person.Name}}</span></td>           
+        </tr>
+        
+        </table>
+  </div>
   </div>
   <div class="panel-footer">
         <button class="btn btn-primary" (click)="Save()">Сохранить</button>

@@ -6,6 +6,7 @@ export class ComponentBase
     CurrentRole : number;
     CheckPermission(id)
     {
+        if(this.CurrentRole==1) return true;
         if(this.profile && this.profile.Roles) 
         {
             let currentrole = this.profile.Roles.filter(x=>x.Id==this.CurrentRole)[0];
