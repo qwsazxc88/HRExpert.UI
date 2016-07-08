@@ -22,7 +22,7 @@ export class LoggedInRouterOutlet extends RouterOutlet {
     let url = instruction.urlPath;
     if (!this.publicRoutes[url] && !localStorage.getItem('jwt')) {
       this.parentRouter.navigateByUrl('/');
-	  return;
+      return;
     }
     return super.activate(instruction);
   }

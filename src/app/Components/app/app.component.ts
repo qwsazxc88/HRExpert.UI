@@ -1,9 +1,9 @@
 //Vendor libs
-import {Component, ViewContainerRef } from '@angular/core';
-import {RouteConfig, Router} from '@angular/router-deprecated';
-import {NgClass} from '@angular/common';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {BS_VIEW_PROVIDERS} from 'ng2-bootstrap';
+import { Component, ViewContainerRef } from '@angular/core';
+import { RouteConfig, Router } from '@angular/router-deprecated';
+// import { NgClass } from '@angular/common';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
 //Libs
 import {
     APP_COMPONENTS,
@@ -27,12 +27,12 @@ import {
     SicklistEditComponent,
     SicklistListComponent
 } from '../';
-import {MD_COMPONENTS} from '../MD_COMPONENTS';
-import {API} from '../../Services';
-import {Profile} from '../../Model';
+import { MD_COMPONENTS } from '../MD_COMPONENTS';
+import { API } from '../../Services';
+import { Profile } from '../../Model';
 
 @Component({
-    selector: '[app]',
+    selector: 'hre-app',
     pipes: [],
     providers: [HTTP_PROVIDERS, API, BS_VIEW_PROVIDERS],
     directives: [MD_COMPONENTS, APP_COMPONENTS, APP_UI_COMPONENTS],
@@ -69,7 +69,7 @@ export class App {
         }
     }
 
-    ngOnInit() {
-    }
+    // ngOnInit() {
+    // }
 
 }

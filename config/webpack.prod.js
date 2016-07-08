@@ -30,6 +30,7 @@ const METADATA = webpackMerge(commonConfig.metadata, {
 });
 
 module.exports = webpackMerge(commonConfig, {
+  metadata: webpackMerge(commonConfig.metadata, METADATA),
   // Switch loaders to debug mode.
   //
   // See: http://webpack.github.io/docs/configuration.html#debug

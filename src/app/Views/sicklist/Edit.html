@@ -6,18 +6,18 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Больничный</div>
   <!-- Default contents -->
-  <div class="panel-body" *ngIf="Model" >    
+  <div class="panel-body" *ngIf="Model" >
     <div class="form-group">
         <label class="control-label">Сотрудник:</label>
-        <span *ngIf="Model.Person" >{{Model.Person.Name}}</span> 
+        <span *ngIf="Model.Person" >{{Model.Person.Name}}</span>
         <select  class="form-control" [(ngModel)]="Model.Person">
             <option *ngFor="let element of Persons"  [ngValue]="element">{{element.Name}}</option>
         </select>
-    </div>  
+    </div>
     <div class="form-group">
         <label class="control-label">Подразделение:</label>
         <span *ngIf="Model.Person && Model.Person.StaffEstablishedPost" >{{Model.Person.StaffEstablishedPost.Department.Name}}</span>
-    </div> 
+    </div>
     <div class="form-group">
         <label class="control-label">Номер больничного листа:</label>
         <input type="text" class="form-control" *ngIf="Model.Data" [(ngModel)]="Model.Data.SicklistNumber" />
@@ -29,8 +29,8 @@
     <div style="display:inline-block; min-height:290px;">
         <label class="control-label">Дата окончания</label>
         <datepicker  [(ngModel)]="Model.Data.EndDate" ></datepicker>
-    </div>    
-    
+    </div>
+
     <div class="form-group">
         <label class="control-label">Тип больничного листа:</label>        
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistType">
@@ -48,7 +48,7 @@
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentRestrictType">
             <option *ngFor="let element of SicklistPaymentRestrictTypes"  [ngValue]="element">{{element.Name}}</option>
         </select>
-    </div>    
+    </div>
     <div class="form-group">
         <label class="control-label">Процент оплаты:</label>
         <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentPercent">
@@ -63,7 +63,11 @@
     </div>
     <div class="form-group">
         <label class="control-label">Скан документа:</label>
-        <span *ngIf="Model.Files" *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" ><a *ngIf="file" >{{file.FileName}}</a></span>        
+        <span *ngIf="Model.Files">
+            <div *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" >
+                <a *ngIf="file" >{{file.FileName}}</a>
+            </div>
+        </span>
         <input fileselector type="file" [(SelectedFile)]="Model.Data.SicklistDocument"/>
     </div>
     <div class="well">

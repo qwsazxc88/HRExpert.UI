@@ -1,15 +1,15 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'home',
-  pipes: [ ],
-  template: require('../../Views/home/home.html')
+    selector: 'hre-home',
+    pipes: [],
+    template: require('../../Views/home/home.html')
 })
 export class Home {
-  constructor() {
-  }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    // ngOnInit() {
+    // }
 
 }
