@@ -10,7 +10,7 @@ import {Permission} from '../../Model';
 import {MD_COMPONENTS} from '../';
 @Component({
     selector: 'sections-list',
-    template: require('../../Views/permissions/List.html'),
+    template: require('./List.html'),
 	providers: [API],
 	directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
 })

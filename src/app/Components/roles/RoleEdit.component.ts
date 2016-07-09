@@ -12,7 +12,7 @@ import {ArrayFilterPipe} from '../../Tools/ArrayTools/ArrayFilterPipe';
 import {IdFilterPipe} from '../../Tools/ArrayTools/IdFilterPipe';
 @Component({
     selector: 'roles-edit',
-    template: require('../../Views/roles/Edit.html'),
+    template: require('././Edit.html'),
     pipes: [ArrayFilterPipe, IdFilterPipe],
     directives: [MD_COMPONENTS],
     providers: [API]

@@ -12,7 +12,7 @@ import {PositionsViewComponent} from '../positions/PositionsView.component';
 import {PersonsListComponent} from '../persons/PersonsList.component'
 @Component({
     selector: 'staffestablishedpost-edit',
-    template: require('../../Views/staffestablishedpost/Edit.html'),
+    template: require('./Edit.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS,PositionsViewComponent,PersonsListComponent]
 })

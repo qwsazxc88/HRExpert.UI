@@ -10,7 +10,7 @@ import {Sicklist, Document} from '../../Model';
 
 @Component({
     selector: 'sicklist-list',
-    template: require('../../Views/sicklist/List.html'),
+    template: require('./List.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
 })

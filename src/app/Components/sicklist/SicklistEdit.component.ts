@@ -13,18 +13,18 @@ import {API} from '../../Services';
 import {DocumentApprovement, FileDto, Document, Person, Sicklist, SicklistType, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, TimesheetStatus} from '../../Model';
 @Component({
     selector: 'sicklist-edit',
-    template: require('../../Views/sicklist/Edit.html'),
+    template: require('./Edit.html'),
 	providers: [API],
 	pipes: [DatePipe],
 	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS,FileSelectDirective]
 })
 
 export class SicklistEditComponent implements OnInit
-{ 
-	constructor (private Api: API, private _routeParams: RouteParams) 
+{
+	constructor (private Api: API, private _routeParams: RouteParams)
 	{
         this.Model = new Document<Sicklist>();
-		this.Model.Data = new Sicklist();	
+		this.Model.Data = new Sicklist();
 		this.Model.Data.Id = 0;
 		this.PersonApprovement = new DocumentApprovement();
 		this.PersonApprovement.ApprovePosition=1;
@@ -33,7 +33,7 @@ export class SicklistEditComponent implements OnInit
 		this.ManagerApprovement = new DocumentApprovement();
 		this.ManagerApprovement.ApprovePosition=2;
 	}
-    errorMessage: string;    
+    errorMessage: string;
 	progress: number;
 	isModelReady: boolean;
     
@@ -41,24 +41,22 @@ export class SicklistEditComponent implements OnInit
 	PersonApprovement: DocumentApprovement = new DocumentApprovement();
 	PersonnelManagerApprovement: DocumentApprovement = new DocumentApprovement();
 	
-	Model: Document<Sicklist>;	
+    Model: Document<Sicklist>;
     SicklistTypes: SicklistType[];
     SicklistBabyMindingTypes : SicklistBabyMindingType[];
     SicklistPaymentPercents: SicklistPaymentPercent[];
     SicklistPaymentRestrictTypes: SicklistPaymentRestrictType[];
     TimesheetStatuses : TimesheetStatus[];
-	
     Persons: Person[];
-	
     ngOnInit() {
 		this.progress=0;
 		this.isModelReady=false;
         let id =+this._routeParams.get('id');
-        this.loadDictionaries();        
+        this.loadDictionaries();
 		if(id>0)
 		{
 			this.Get(id);
-        }		
+        }
 		else this.ReportProgress(40);
 	}
 	loadDictionaries()
@@ -130,7 +128,7 @@ export class SicklistEditComponent implements OnInit
 	{
 		this.Api.Sicklists(this.Model.Data.Id).GetFileKey(type).subscribe(result=>{this.Api.download(result)},error=>this.errorMessage = <any>error);
 	}
-    Get(id:number) {        
+    Get(id:number) {
         this.Api.Sicklists(id).Read()
 					.subscribe(
 						result => {this.Model = result;},
@@ -142,7 +140,7 @@ export class SicklistEditComponent implements OnInit
 	{
 		this.progress=60;
 		this.isModelReady=false;
-		var data = this.Model;		
+		var data = this.Model;
 		if(data.Data.Id>0)
 		{
 			this.Api.Sicklists().Update(data, true)

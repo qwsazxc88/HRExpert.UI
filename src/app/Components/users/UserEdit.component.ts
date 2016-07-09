@@ -10,7 +10,7 @@ import * as ArrayTools from "../../Tools/ArrayTools/ArrayTools";
 import {ArrayFilterPipe} from "../../Tools/ArrayTools/ArrayFilterPipe";
 @Component({
     selector: 'users-edit',
-    template: require('../../Views/users/Edit.html'),
+    template: require('./Edit.html'),
 	directives:[MD_COMPONENTS],
     pipes:[ArrayFilterPipe],
 	providers: [API]

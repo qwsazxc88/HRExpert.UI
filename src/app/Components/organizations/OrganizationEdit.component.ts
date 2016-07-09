@@ -9,7 +9,7 @@ import {MD_COMPONENTS} from '../MD_COMPONENTS';
 import {DepartmentsListComponent} from '../departments/DepartmentsList.component';
 @Component({
     selector: 'organization-edit',
-    template: require('../../Views/organizations/Edit.html'),
+    template: require('./Edit.html'),
     directives: [DepartmentsListComponent, MD_COMPONENTS],
     providers: [API]
 })

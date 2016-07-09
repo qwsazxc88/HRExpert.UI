@@ -7,7 +7,7 @@ import {API} from '../../Services';
 import {Organization} from '../../Model';
 @Component({
     selector: 'organization-list',
-    template: require('../../Views/organizations/List.html'),
+    template: require('./List.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
 })

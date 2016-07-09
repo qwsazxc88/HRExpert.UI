@@ -9,7 +9,7 @@ import {API} from '../../Services';
 import {Role} from '../../Model';
 @Component({
     selector: 'roles-list',
-    template: require('../../Views/roles/List.html'),
+    template: require('./List.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
 })

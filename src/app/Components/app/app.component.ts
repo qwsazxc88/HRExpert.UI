@@ -36,8 +36,8 @@ import { Profile } from '../../Model';
     pipes: [],
     providers: [HTTP_PROVIDERS, API, BS_VIEW_PROVIDERS],
     directives: [MD_COMPONENTS, APP_COMPONENTS, APP_UI_COMPONENTS],
-    styles: [require('../../Views/app/app.css')],
-    template: require('../../Views/app/app.html')
+    styles: [require('./app.css')],
+    template: require('./app.html')
 })
 @RouteConfig([
     { path: '/', name: 'Index', component: Home, useAsDefault: true },

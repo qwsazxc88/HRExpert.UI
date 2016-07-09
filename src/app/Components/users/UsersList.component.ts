@@ -9,7 +9,7 @@ import {User} from "../../Model";
 
 @Component({
     selector: 'users-list',
-    template: require('../../Views/users/List.html'),
+    template: require('./List.html'),
     directives: [MD_COMPONENTS] ,
 	providers: [API]
 })

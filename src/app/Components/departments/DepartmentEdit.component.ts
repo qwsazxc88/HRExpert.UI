@@ -12,7 +12,7 @@ import {DepartmentsListComponent} from './DepartmentsList.component';
 import {StaffEstablishedPostListComponent} from '../staffestablishedposts/StaffEstablishedPostsList.component';
 @Component({
     selector: 'departments-edit',
-    template: require('../../Views/departments/Edit.html'),
+    template: require('./Edit.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS, DepartmentsListComponent, StaffEstablishedPostListComponent]
 })

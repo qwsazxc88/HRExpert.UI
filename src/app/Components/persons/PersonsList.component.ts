@@ -11,7 +11,7 @@ import {Person} from '../../Model';
 import {PositionsViewComponent} from '../positions/PositionsView.component'
 @Component({
     selector: 'persons-list',
-    template: require('../../Views/persons/List.html'),
+    template: require('./List.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS,PositionsViewComponent]
 })

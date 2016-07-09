@@ -10,7 +10,7 @@ import {Login, Profile} from '../../Model';
 import {TokenHelper} from '../../Tools/Token/TokenHelper';
 import {} from '../../'
 @Component({
-    template: require('../../Views/login/Login.html'),
+    template: require('./Login.html'),
     selector: 'login',
     directives: [MD_COMPONENTS],
     providers: [API,HTTP_PROVIDERS ]

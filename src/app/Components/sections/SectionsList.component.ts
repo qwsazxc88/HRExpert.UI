@@ -9,7 +9,7 @@ import {API} from '../../Services';
 import {Section} from '../../Model';
 @Component({
     selector: 'sections-list',
-    template: require('../../Views/sections/List.html'),
+    template: require('./List.html'),
 	providers: [API],
 	directives: [ROUTER_DIRECTIVES,MD_COMPONENTS]
 })

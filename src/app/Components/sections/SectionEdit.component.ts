@@ -9,7 +9,7 @@ import {Section} from '../../Model';
 
 @Component({
     selector: 'section-edit',
-    template: require('../../Views/sections/Edit.html'),
+    template: require('./Edit.html'),
     directives:[MD_COMPONENTS],
 	providers: [API]
 })

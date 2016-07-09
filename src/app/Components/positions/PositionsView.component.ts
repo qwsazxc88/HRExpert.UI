@@ -11,7 +11,7 @@ import {Position} from '../../Model';
 
 @Component({
     selector: 'position-view',
-    template: require('../../Views/positions/View.html'),
+    template: require('./View.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS]
 })

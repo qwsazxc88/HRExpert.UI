@@ -11,7 +11,7 @@ import {Department} from '../../Model';
 
 @Component({
     selector: 'departments-list',
-    template: require('../../Views/departments/List.html'),
+    template: require('./List.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS,DepartmentsListComponent]
 })

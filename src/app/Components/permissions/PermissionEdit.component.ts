@@ -8,7 +8,7 @@ import {MD_COMPONENTS} from '../';
 
 @Component({
     selector: 'permission-edit',
-    template: require('../../Views/permissions/Edit.html'),
+    template: require('./Edit.html'),
     directives:[MD_COMPONENTS],
 	providers: [API]
 })

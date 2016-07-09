@@ -10,8 +10,8 @@ import {Profile} from '../../Model';
 import {API} from '../../Services';
 @Component({
     selector: 'app-menu',
-    styles: [require('../../Views/menu/menu.css')],
-    template: require('../../Views/menu/Menu.html'),
+    styles: [require('./menu.css')],
+    template: require('./Menu.html'),
     directives: [LoginComponent, RouterActive]
 })
 

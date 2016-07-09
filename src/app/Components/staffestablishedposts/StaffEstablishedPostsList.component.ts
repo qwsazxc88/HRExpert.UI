@@ -11,7 +11,7 @@ import {StaffEstablishedPost} from '../../Model';
 import {PositionsViewComponent} from '../positions/PositionsView.component'
 @Component({
     selector: 'staffestablishedpost-list',
-    template: require('../../Views/staffestablishedpost/List.html'),
+    template: require('./List.html'),
     providers: [API],
     directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS,PositionsViewComponent]
 })
