@@ -9,7 +9,7 @@ import { enableProdMode } from '@angular/core';
 */
 import { DIRECTIVES, PIPES, PROVIDERS } from './platform/browser';
 import { ENV_PROVIDERS } from './platform/environment';
-import { HTTP_PROVIDERS } from '@angular/http';
+// import { HTTP_PROVIDERS } from '@angular/http';
 /*
 * App Component
 * our top level component that holds all of our components
@@ -22,17 +22,18 @@ import { App, API, APP_UI_COMPONENTS, APP_COMPONENTS, MD_COMPONENTS } from './ap
  */
 export function main(initialHmrState?: any): Promise<any> {
   if ('development' !== ENV) enableProdMode();
+  let errorCounter = 0;
   return bootstrap(App, [
     ...ENV_PROVIDERS,
     ...PROVIDERS,
     ...DIRECTIVES,
     ...PIPES,
-    ...HTTP_PROVIDERS,
+    // ...HTTP_PROVIDERS,
     ...MD_COMPONENTS,
     ...APP_COMPONENTS,
     ...APP_UI_COMPONENTS
   ])
-    .catch(err => console.error(err));
+    .catch(err => console.error('Bootstrap promise error catcher: ', ++errorCounter/*err*/));
 
 }
 

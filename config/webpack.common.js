@@ -16,7 +16,8 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Система Кадровый Эксперт',
+  windowTitle: 'Система Кадровый Эксперт',
+  // title: 'СКЭ 2.0-alpha-1',
   baseUrl: '/'
 };
 
@@ -196,7 +197,7 @@ module.exports = {
     //
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      template: 'src/index.html',      
+      template: 'src/index.html',
        chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
     })
 

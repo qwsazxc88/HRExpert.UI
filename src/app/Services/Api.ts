@@ -15,8 +15,8 @@ class FormDataConverter {
 
     private form: FormData = new FormData();
     constructor(private obj: any) {
-
     }
+
     Start(name: string) { this.GetForm(this.obj, name); return this.form; }
     private GetForm(obj, name: string) {
         var type = typeof obj;
@@ -28,17 +28,13 @@ class FormDataConverter {
                     for (var i in obj) {
                         this.GetForm(obj[i], name + '[' + i + ']');
                     }
-                }
-                else if (obj instanceof File) {
+                } else if (obj instanceof File) {
                     this.form.append(name, obj);
-                }
-                else if (obj instanceof Blob) {
+                } else if (obj instanceof Blob) {
                     this.form.append(name, obj);
-                }
-                else if (obj instanceof Date) {
+                } else if (obj instanceof Date) {
                     this.form.append(name, obj.toISOString());
-                }
-                else
+                } else
                     for (var prop in obj) {
                         this.GetForm(obj[prop], name + (name.length > 0 ? '.' : '') + prop);
                     }
@@ -46,8 +42,8 @@ class FormDataConverter {
             default: break;
         }
     }
-
 }
+
 export class Resource {
     url: string;
     id: number;
@@ -66,7 +62,6 @@ export class Resource {
     }
     createAdditionUrlOptions() {
         var role = localStorage.getItem('forrole');
-        
         return role ? '?for_roleid=' + role : '';
     }
     createUrl() {
@@ -77,8 +72,8 @@ export class Resource {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
-
 }
+
 export class ApiResource<T> extends Resource {
     url: string;
     progress;
@@ -90,11 +85,11 @@ export class ApiResource<T> extends Resource {
     }
 
     private makeFileRequest<T>(model: T, method: string): Observable<Response> {
-        return Observable.fromPromise(new Promise<Response>((resolve,reject) => {
+        return Observable.fromPromise(new Promise<Response>((resolve, reject) => {
             var url = this.createUrl() + this.createAdditionUrlOptions();
             let xhr: XMLHttpRequest = new XMLHttpRequest();
             var Converter = new FormDataConverter(model);
-            var formData = Converter.Start('');            
+            var formData = Converter.Start('');
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
@@ -129,7 +124,7 @@ export class ApiResource<T> extends Resource {
         //if file request
         if (IsFileSend)
             return this.makeFileRequest(entity, 'POST')
-                .map(res => <T> res.json())
+                .map(res => <T>res.json())
                 .catch(this.handleError);
         //if no files provided
         let body = JSON.stringify(entity);
@@ -151,7 +146,7 @@ export class ApiResource<T> extends Resource {
         //if file request
         if (IsFileSend)
             return this.makeFileRequest(entity, 'PUT')
-                .map(res => <T> res.json())
+                .map(res => <T>res.json())
                 .catch(this.handleError);
         //if no files provided
         let body = JSON.stringify(entity);
@@ -176,6 +171,7 @@ export class UsersService extends ApiResource<User> {
     }
     public Roles = ApiFactory.RolesFactory(this);
 }
+
 export class RolesService extends ApiResource<Role> {
     constructor(parent: Resource) {
         super('/roles', parent);
@@ -183,45 +179,52 @@ export class RolesService extends ApiResource<Role> {
     public Sections = ApiFactory.SectionsFactory(this);
     public Permissions = ApiFactory.PermissionsFactory(this);
 }
+
 export class SectionsService extends ApiResource<Section> {
     constructor(parent: Resource) {
         super('/sections', parent);
     }
 }
+
 export class PermissionsService extends ApiResource<Permission> {
     constructor(parent: Resource) {
         super('/permissions', parent);
     }
 }
+
 export class DepartmentsService extends ApiResource<Department> {
     constructor(parent: Resource) {
         super('/departments', parent);
     }
     public StaffEstablishedPosts = ApiFactory.StaffEstablishedPostsFactory(this);
 }
+
 export class OrganizationsService extends ApiResource<Organization> {
     constructor(parent: Resource) {
         super('/organizations', parent);
     }
     public Departments = ApiFactory.DepartmentsFactory(this);
 }
+
 export class StaffEstablishedPostsService extends ApiResource<StaffEstablishedPost> {
     constructor(parent: Resource) {
         super('/staffestablishedposts', parent);
     }
     public Persons = ApiFactory.PersonsFactory(this);
-
 }
+
 export class PersonsService extends ApiResource<Person> {
     constructor(parent: Resource) {
         super('/persons', parent);
     }
 }
+
 export class PositionsService extends ApiResource<Position> {
     constructor(parent: Resource) {
         super('/positions', parent);
     }
 }
+
 export class SicklistService extends ApiResource<Document<Sicklist>> {
     constructor(parent: Resource) {
         super('/sicklists', parent);
@@ -235,41 +238,47 @@ export class SicklistService extends ApiResource<Document<Sicklist>> {
             .catch(this.handleError);
     }
 }
+
 export class SicklistTypeService extends ApiResource<SicklistType> {
     constructor(parent: Resource) {
         super('/sicklisttypes', parent);
     }
 }
+
 export class SicklistPaymentPercentService extends ApiResource<SicklistPaymentPercent> {
     constructor(parent: Resource) {
         super('/sicklistpaymentpercents', parent);
     }
 }
+
 export class SicklistPaymentRestrictTypesService extends ApiResource<SicklistPaymentRestrictType> {
     constructor(parent: Resource) {
         super('/sicklistpaymentrestricttypes', parent);
     }
 }
+
 export class SicklistBabyMindingTypesService extends ApiResource<SicklistBabyMindingType> {
     constructor(parent: Resource) {
         super('/sicklistbabymindingtypes', parent);
     }
 }
+
 export class TimesheetStatusService extends ApiResource<TimesheetStatus> {
     constructor(parent: Resource) {
         super('/timesheetstatuses', parent);
     }
 }
+
 export class ApiFactory {
     static PersonsFactory(parent: Resource) {
-        return function(Id: number = null) {
+        return function(Id?: number) {
             var service = new PersonsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static UsersFactory(parent: Resource) {
-        return function(Id: number = null) {
+        return function(Id?: number) {
             var service = new UsersService(parent);
             if (Id) service.id = Id;
             return service;
@@ -367,6 +376,7 @@ export class ApiFactory {
         };
     }
 }
+
 @Component({ providers: [HTTP_PROVIDERS] })
 @Injectable()
 export class API extends Resource {
@@ -389,16 +399,19 @@ export class API extends Resource {
     public SicklistPaymentPercents = ApiFactory.SicklistPaymentPercentFactory(this);
     public SicklistPaymentRestrictTypes = ApiFactory.SicklistPaymentRestrictTypeFactory(this);
     public TimesheetStatuses = ApiFactory.TimesheetStatusFactory(this);
+
     transformRequest(obj) {
         var str = [];
         for (var p in obj)
             str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
         return str.join('&');
     }
+
     download(key) {
         window.open('http://ruscount.com:9034/download/' + key, '_blank');
     }
-    login(model) {
+
+    login(model): Observable<string> {
         //console.log(this.http);
         let body = this.transformRequest({
             username: model.UserName,
@@ -411,7 +424,8 @@ export class API extends Resource {
             .map(res => <string>(res.json().access_token))
             .catch(error => Observable.throw(error.json().error || 'Server error'));
     }
-    profile() {
+
+    profile(): Observable<Profile> {
         var options = this.CreateOptions();
         var url = this.url + '/profile';
         return this.http.get(url, options)
