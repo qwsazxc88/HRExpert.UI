@@ -1,12 +1,12 @@
 //Vendor libs
-import {Component, OnInit} from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated';
+import { Component, OnInit } from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
 
 //Libs
-import {API} from '../../Services';
-import {Organization, Department} from '../../Model';
-import {MD_COMPONENTS} from '../MD_COMPONENTS';
-import {DepartmentsListComponent} from '../departments/DepartmentsList.component';
+import { API } from '../../Services';
+import { Organization, Department } from '../../Model';
+import { MD_COMPONENTS } from '../MD_COMPONENTS';
+import { DepartmentsListComponent } from '../departments/DepartmentsList.component';
 @Component({
     selector: 'organization-edit',
     template: require('./Edit.html'),
@@ -27,6 +27,7 @@ export class OrganizationEditComponent implements OnInit {
     errorMessage: string;
     Model: Organization;
     Departments: Department[];
+
     ngOnInit() {
 
     }
@@ -39,8 +40,7 @@ export class OrganizationEditComponent implements OnInit {
                 result => { this.Model = result; },
                 error => this.errorMessage = <any>error
                 );
-        }
-        else {
+        } else {
             this.Api.Organizations().Create(data)
                 .subscribe(
                 result => { this.Model = result; },

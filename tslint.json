@@ -6,8 +6,8 @@
 	"component-selector-name": [true, "kebab-case"],
     "directive-selector-type": [true, "attribute"],
     "component-selector-type": [true, "element"],
-    "directive-selector-prefix": [true, "hr"],
-    "component-selector-prefix": [true, "hr"],
+    "directive-selector-prefix": [true, "hre"],
+    "component-selector-prefix": [true, "hre"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -29,9 +29,7 @@
 	"max-line-length": [ true, 140 ],
 	"member-ordering": [
 	  true,
-	  "public-before-private",
-	  "static-before-instance",
-	  "variables-before-functions"
+	  "static-before-instance"
 	],
 	"no-arg": true,
 	"no-construct": true,
@@ -66,3 +64,9 @@
 	]
   }
 }
+/*"member-ordering": [
+	  true,
+	  "public-before-private",
+	  "static-before-instance",
+	  "variables-before-functions"
+	],*/

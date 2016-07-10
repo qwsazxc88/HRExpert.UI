@@ -1,24 +1,24 @@
 //Vendor libs
-import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES, RouteParams} from '@angular/router-deprecated';
-import {OnInit, Input} from '@angular/core';
-import {NgClass} from '@angular/common';
+import { Component } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES, RouteParams } from '@angular/router-deprecated';
+import { OnInit, Input } from '@angular/core';
+// import { NgClass } from '@angular/common';
 //Libs
-import {API} from '../../Services';
-import {MD_COMPONENTS} from '../MD_COMPONENTS';
-import {APP_UI_COMPONENTS} from '../APP_UI_COMPONENTS';
-import {StaffEstablishedPost} from '../../Model';
-import {PositionsViewComponent} from '../positions/PositionsView.component';
-import {PersonsListComponent} from '../persons/PersonsList.component'
+import { API } from '../../Services';
+import { MD_COMPONENTS } from '../MD_COMPONENTS';
+import { APP_UI_COMPONENTS } from '../APP_UI_COMPONENTS';
+import { StaffEstablishedPost } from '../../Model';
+import { PositionsViewComponent } from '../positions/PositionsView.component';
+import { PersonsListComponent } from '../persons/PersonsList.component';
+
 @Component({
     selector: 'staffestablishedpost-edit',
     template: require('./Edit.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS,PositionsViewComponent,PersonsListComponent]
+    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS, PositionsViewComponent, PersonsListComponent]
 })
-
 export class StaffEstablishedPostEditComponent implements OnInit {
-    constructor (private Api: API, private _router: Router, private _routeParams: RouteParams) {
+    constructor(private Api: API, private _router: Router, private _routeParams: RouteParams) {
     }
     Organization: number;
     Department: number;
@@ -33,9 +33,9 @@ export class StaffEstablishedPostEditComponent implements OnInit {
     }
     Get() {
         this.Api.Organizations(this.Organization).Departments(this.Department).StaffEstablishedPosts(this.Position).Read()
-        .subscribe(
-          data=> this.Model=data,
-          error=> this.errorMessage=<any>error  
-        );
-    }    
+            .subscribe(
+            data => this.Model = data,
+            error => this.errorMessage = <any>error
+            );
+    }
 }

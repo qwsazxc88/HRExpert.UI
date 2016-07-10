@@ -1,24 +1,22 @@
 //Vendor libs
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
-import {OnInit} from "@angular/core";
+import { OnInit } from '@angular/core';
 //Libs
-import {MD_COMPONENTS} from '../';
-import {API} from "../../Services";
-import {User} from "../../Model";
+import { MD_COMPONENTS } from '../';
+import { API } from '../../Services';
+import { User } from '../../Model';
 
 @Component({
     selector: 'users-list',
     template: require('./List.html'),
-    directives: [MD_COMPONENTS] ,
-	providers: [API]
+    directives: [MD_COMPONENTS],
+    providers: [API]
 })
 
-export class UsersListComponent implements OnInit
-{ 
-	constructor (private Api: API,private _router: Router) 
-	{
-	}
+export class UsersListComponent implements OnInit {
+    constructor(private Api: API, private _router: Router) {
+    }
 
     errorMessage: string;
     Model: User[];
@@ -28,17 +26,17 @@ export class UsersListComponent implements OnInit
     }
     Get() {
         this.Api.Users().List()
-					.subscribe(
-						users => {this.Model = users; },
-						error => this.errorMessage = <any>error
-					);
+            .subscribe(
+            users => { this.Model = users; },
+            error => this.errorMessage = <any>error
+            );
     }
-	Edit(user: User) {
-	  let link = ['UserEdit', { id: user.Id }];
-	  this._router.navigate(link);
-	}
-	Create() {
-	  let link = ['UserEdit', { id: 0}];
-	  this._router.navigate(link);
-	}	
+    Edit(user: User) {
+        let link = ['UserEdit', { id: user.Id }];
+        this._router.navigate(link);
+    }
+    Create() {
+        let link = ['UserEdit', { id: 0 }];
+        this._router.navigate(link);
+    }
 }

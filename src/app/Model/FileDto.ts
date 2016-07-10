@@ -1,4 +1,4 @@
-export class FileDto{
+export class FileDto {
     FileName: string;
     FileType: number;
 }

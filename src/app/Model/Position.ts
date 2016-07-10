@@ -1,4 +1,4 @@
-export class Position{
-    public Id:number;
+export class Position {
+    public Id: number;
     public Name: string;
 }

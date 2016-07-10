@@ -1,5 +1,4 @@
-import {Router} from '@angular/router-deprecated'
-export class CustomRouter extends Router 
-{
-    
+import { Router } from '@angular/router-deprecated';
+export class CustomRouter extends Router {
+
 }

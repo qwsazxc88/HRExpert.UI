@@ -20,27 +20,28 @@ export * from './persons/PersonsList.component';
 export * from './sicklist/SicklistList.component';
 export * from './sicklist/SicklistEdit.component';
 
-import {MenuComponent} from './menu/Menu.component';
-import {UsersListComponent} from './users/UsersList.component';
-import {UserEditComponent} from './users/UserEdit.component';
-import {RolesListComponent} from './roles/RolesList.component';
-import {RoleEditComponent} from './roles/RoleEdit.component';
-import {SectionEditComponent} from './sections/SectionEdit.component';
-import {SectionsListComponent} from './sections/SectionsList.component';
-import {PermissionEditComponent} from './permissions/PermissionEdit.component';
-import {PermissionsListComponent} from './permissions/PermissionsList.component';
-import {OrganizationEditComponent} from './organizations/OrganizationEdit.component';
-import {OrganizationListComponent} from './organizations/OrganizationsList.component';
-import {DepartmentsListComponent} from './departments/DepartmentsList.component';
-import {DepartmentEditComponent} from './departments/DepartmentEdit.component';
-import {PositionsViewComponent} from './positions/PositionsView.component';
-import {StaffEstablishedPostListComponent} from './staffestablishedposts/StaffEstablishedPostsList.component';
-import {StaffEstablishedPostEditComponent} from './staffestablishedposts/StaffEstablishedPostEdit.component';
-import {PersonsListComponent} from './persons/PersonsList.component';
-import {LoginComponent} from './login/Login.component';
-import {Home} from './home/home.component';
-import {SicklistListComponent} from './sicklist/SicklistList.component';
-import {SicklistEditComponent} from './sicklist/SicklistEdit.component';
+import { MenuComponent } from './menu/Menu.component';
+import { UsersListComponent } from './users/UsersList.component';
+import { UserEditComponent } from './users/UserEdit.component';
+import { RolesListComponent } from './roles/RolesList.component';
+import { RoleEditComponent } from './roles/RoleEdit.component';
+import { SectionEditComponent } from './sections/SectionEdit.component';
+import { SectionsListComponent } from './sections/SectionsList.component';
+import { PermissionEditComponent } from './permissions/PermissionEdit.component';
+import { PermissionsListComponent } from './permissions/PermissionsList.component';
+import { OrganizationEditComponent } from './organizations/OrganizationEdit.component';
+import { OrganizationListComponent } from './organizations/OrganizationsList.component';
+import { DepartmentsListComponent } from './departments/DepartmentsList.component';
+import { DepartmentEditComponent } from './departments/DepartmentEdit.component';
+import { PositionsViewComponent } from './positions/PositionsView.component';
+import { StaffEstablishedPostListComponent } from './staffestablishedposts/StaffEstablishedPostsList.component';
+import { StaffEstablishedPostEditComponent } from './staffestablishedposts/StaffEstablishedPostEdit.component';
+import { PersonsListComponent } from './persons/PersonsList.component';
+import { LoginComponent } from './login/Login.component';
+import { Home } from './home/home.component';
+import { SicklistListComponent } from './sicklist/SicklistList.component';
+import { SicklistEditComponent } from './sicklist/SicklistEdit.component';
+
 export const APP_COMPONENTS = [
     MenuComponent,
     UsersListComponent,

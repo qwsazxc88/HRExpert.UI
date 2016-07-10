@@ -1,5 +1,4 @@
-export class SicklistBabyMindingType
-{
-    public Id :number;
-    public Name : string;
+export class SicklistBabyMindingType {
+    public Id: number;
+    public Name: string;
 }

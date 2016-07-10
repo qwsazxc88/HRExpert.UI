@@ -1,12 +1,12 @@
 //Vendor libs
-import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {OnInit} from '@angular/core';
-import {NgClass} from '@angular/common';
+import { Component } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { OnInit } from '@angular/core';
+// import { NgClass } from '@angular/common';
 //Libs
-import {MD_COMPONENTS} from '../';
-import {API} from '../../Services';
-import {Role} from '../../Model';
+import { MD_COMPONENTS } from '../';
+import { API } from '../../Services';
+import { Role } from '../../Model';
 @Component({
     selector: 'roles-list',
     template: require('./List.html'),

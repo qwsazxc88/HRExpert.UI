@@ -1,5 +1,4 @@
-export class SicklistPaymentPercent
-{
-    Id:number;
+export class SicklistPaymentPercent {
+    Id: number;
     Value: number;
 }

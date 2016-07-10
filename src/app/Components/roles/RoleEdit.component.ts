@@ -1,15 +1,16 @@
 //Vendor libs
-import {Component, Input} from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated';
-import {OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
+import { OnInit } from '@angular/core';
 //Libs
-import {MD_COMPONENTS} from '../';
-import {API} from '../../Services';
-import {Role, Section, Permission} from '../../Model';
+import { MD_COMPONENTS } from '../';
+import { API } from '../../Services';
+import { Role, Section, Permission } from '../../Model';
 
-import * as ArrayTools from '../../Tools/ArrayTools/ArrayTools';
-import {ArrayFilterPipe} from '../../Tools/ArrayTools/ArrayFilterPipe';
-import {IdFilterPipe} from '../../Tools/ArrayTools/IdFilterPipe';
+import { RemoveFromArray } from '../../Utils/ArrayUtils/ArrayUtils';
+import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
+import { IdFilterPipe } from '../../Utils/ArrayUtils/IdFilterPipe';
+
 @Component({
     selector: 'roles-edit',
     template: require('././Edit.html'),
@@ -24,7 +25,6 @@ export class RoleEditComponent implements OnInit {
         this.Permissions = [];
         this.Sections = [];
         this.SelectedSections = [];
-        //this.ArrayTool = new ArrayTools();
     }
 
     errorMessage: string;
@@ -33,7 +33,6 @@ export class RoleEditComponent implements OnInit {
     Permissions: Permission[];
     SelectedSections: number[];
     SelectedPermissionId: number;
-    //ArrayTool: ArrayTools;
 
     ngOnInit() {
         let id = +this._routeParams.get('id');
@@ -93,12 +92,12 @@ export class RoleEditComponent implements OnInit {
         this.Model = this.Model;
     }
     RemovePermission(permission) {
-        ArrayTools.RemoveFromArray(this.Model.Permissions, permission);
+        RemoveFromArray(this.Model.Permissions, permission);
     }
 
     PermissionClicked(section) {
         this.SelectedSections.includes(section.Id) ?
-            ArrayTools.RemoveFromArray(this.SelectedSections, section.Id)
+            RemoveFromArray(this.SelectedSections, section.Id)
             : this.SelectedSections.push(section.Id);
         ;
     }

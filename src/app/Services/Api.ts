@@ -1,7 +1,7 @@
 //Vendor libs
-import {Component, Injectable} from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http, Headers, RequestOptions, Response, ResponseOptions} from '@angular/http';
 
 //Libs
@@ -371,7 +371,7 @@ export class ApiFactory {
 @Injectable()
 export class API extends Resource {
     constructor(_http: Http) {
-        super('http://localhost:5000/api/v1');
+        super('http://ruscount.com:9034/api/v1');
         this.http = _http;
     }
     public Users = ApiFactory.UsersFactory(this);
@@ -396,7 +396,7 @@ export class API extends Resource {
         return str.join('&');
     }
     download(key) {
-        window.open('http://localhost:5000/download/' + key, '_blank');
+        window.open('http://ruscount.com:9034/download/' + key, '_blank');
     }
     login(model) {
         //console.log(this.http);
@@ -407,7 +407,7 @@ export class API extends Resource {
         });
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:5000/connect/token', body, options)
+        return this.http.post('http://ruscount.com:9034/connect/token', body, options)
             .map(res => <string>(res.json().access_token))
             .catch(error => Observable.throw(error.json().error || 'Server error'));
     }

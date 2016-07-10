@@ -1,5 +1,4 @@
-export class SicklistType
-{
-    Id : number;
-    Name : string;
+export class SicklistType {
+    Id: number;
+    Name: string;
 }

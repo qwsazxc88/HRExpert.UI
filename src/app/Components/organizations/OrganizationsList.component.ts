@@ -1,10 +1,10 @@
 //Vendor libs
-import {Component, OnInit} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import { Component, OnInit } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 //Libs
-import {MD_COMPONENTS} from '../MD_COMPONENTS';
-import {API} from '../../Services';
-import {Organization} from '../../Model';
+import { MD_COMPONENTS } from '../MD_COMPONENTS';
+import { API } from '../../Services';
+import { Organization } from '../../Model';
 @Component({
     selector: 'organization-list',
     template: require('./List.html'),

@@ -1,8 +1,8 @@
-<div class="mdl-grid">	
+<div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
         <md-card>
         <md-card-subtitle>Права</md-card-subtitle>
-        <md-card-title>{{Model.Name}}</md-card-title>   
+        <md-card-title>{{Model.Name}}</md-card-title>
         <md-card-content>
             <div>
                 <label>Id:</label>
@@ -12,7 +12,7 @@
                 <div class="form-group">
 				  <label>Модуль:</label>
 				  <select [(ngModel)]="SelectedSection" class="form-control">
-                      <option *ngFor="#element of Sections" value="{{element.Id}}">
+                      <option *ngFor="let element of Sections" value="{{element.Id}}">
                           {{element.Name}}
                           </option>
                   </select>
@@ -23,5 +23,5 @@
                 <button md-raised-button (click)="Delete()">Удалить</button>
         </md-card-actions>
         </md-card>
-    </div>      
+    </div>
 </div>

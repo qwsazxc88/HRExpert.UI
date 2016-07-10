@@ -1,5 +1,4 @@
-export enum PermissionsEnum
-{
+export enum PermissionsEnum {
     //Администратор может делать всё
     Admin_DoAll = 1,
     //Базовые права просмотр

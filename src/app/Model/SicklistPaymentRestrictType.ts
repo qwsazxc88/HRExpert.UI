@@ -1,5 +1,5 @@
-export class SicklistPaymentRestrictType{
+export class SicklistPaymentRestrictType {
     public Id: number;
-    public Name : string;
-    public Code : string;    
+    public Name: string;
+    public Code: string;
 }
