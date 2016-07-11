@@ -85,7 +85,7 @@ export class ApiResource<T> extends Resource {
     }
 
     private makeFileRequest<T>(model: T, method: string): Observable<Response> {
-        return Observable.fromPromise(new Promise<Response>((resolve, reject) => {
+        return Observable.fromPromise<Response>(new Promise<Response>((resolve, reject) => {
             var url = this.createUrl() + this.createAdditionUrlOptions();
             let xhr: XMLHttpRequest = new XMLHttpRequest();
             var Converter = new FormDataConverter(model);
@@ -93,8 +93,8 @@ export class ApiResource<T> extends Resource {
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        var opt= new ResponseOptions({body:xhr.response, status:200});
-                        var resp= new Response(opt);                                                            
+                        var opt = new ResponseOptions({ body: xhr.response, status: 200 });
+                        var resp = new Response(opt);
                         resolve(resp);
                     } else {
                         reject(xhr.response);

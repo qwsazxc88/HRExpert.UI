@@ -1,9 +1,9 @@
-//Vendor libs
+// Vendor libs
 import { Component, Input, Output, EventEmitter, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { HTTP_PROVIDERS  } from '@angular/http';
 
-//Libs
+// Libs
 import { MD_COMPONENTS } from '../';
 import { API } from '../../Services';
 import { Login, Profile } from '../../Model';
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
     checkExpiration() {
         if (this.jwt) {
             let exp = this.tokenHelper.isTokenExpired(this.jwt);
-            if (exp) this.logout();
+            if (exp) { this.logout(); }
         }
         setTimeout(() => { this.checkExpiration(); }, 5000);
     }

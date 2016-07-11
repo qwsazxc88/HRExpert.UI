@@ -1,10 +1,10 @@
-//Vendor libs
+// Vendor libs
 import { Component, ViewContainerRef } from '@angular/core';
 import { RouteConfig, Router } from '@angular/router-deprecated';
 // import { NgClass } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
-//Libs
+// Libs
 import {
     APP_COMPONENTS,
     APP_UI_COMPONENTS,
