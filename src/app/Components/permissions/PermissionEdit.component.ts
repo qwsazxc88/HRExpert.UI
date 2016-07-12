@@ -4,7 +4,7 @@ import { RouteParams } from '@angular/router-deprecated';
 // Libs
 import { API } from '../../Services';
 import { Permission, Section } from '../../Model';
-// import { BS_DIRECTIVES } from '../';
+
 
 @Component({
     selector: 'permission-edit',

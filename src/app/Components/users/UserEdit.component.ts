@@ -1,10 +1,8 @@
-//Vendor libs
+// Vendor libs
 import { Component, Input, OnInit } from '@angular/core';
-// import { NgSelectOption, NgModel } from '@angular/common';
 import { RouteParams } from '@angular/router-deprecated';
-//Libs
+// Libs
 import { API } from '../../Services';
-// import { MD_COMPONENTS } from '../';
 import { User, Role } from '../../Model';
 import { RemoveFromArray } from '../../Utils/ArrayUtils/ArrayUtils';
 import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
@@ -12,7 +10,7 @@ import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
 @Component({
     selector: 'users-edit',
     template: require('./Edit.html'),
-    directives: [/*MD_COMPONENTS*/],
+    // directives: [],
     pipes: [ArrayFilterPipe],
     providers: [API]
 })
@@ -40,7 +38,6 @@ export class UserEditComponent implements OnInit {
             roles => { this.Roles = roles; },
             error => this.errorMessage = <any>error
             );
-
     }
 
     Save() {

@@ -5,7 +5,7 @@ import { RouteParams } from '@angular/router-deprecated';
 // Libs
 import { API } from '../../Services';
 import { Organization, Department } from '../../Model';
-// import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
+
 import { DepartmentsListComponent } from '../departments/DepartmentsList.component';
 @Component({
     selector: 'organization-edit',
@@ -29,7 +29,6 @@ export class OrganizationEditComponent implements OnInit {
     Departments: Department[];
 
     ngOnInit() {
-
     }
 
     Save() {

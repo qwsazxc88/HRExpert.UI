@@ -1,10 +1,8 @@
 // Vendor libs
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-// import { NgSelectOption, NgModel } from '@angular/common';
-// import { RouteParams } from '@angular/router-deprecated';
+
 // Libs
 import { ComponentBase } from '../componentbase';
-// import { RouterActive } from '../APP_UI_COMPONENTS';
 import { RouterActive } from '../UI/CustomRouter/router-active.directive';
 import { LoginComponent } from '../login/Login.component';
 import { Profile } from '../../Model';

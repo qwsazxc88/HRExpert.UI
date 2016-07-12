@@ -2,11 +2,9 @@
 import { Component } from '@angular/core';
 import { Router, RouteParams } from '@angular/router-deprecated';
 import { OnInit, Input } from '@angular/core';
-// import { NgClass } from '@angular/common';
+
 // Libs
 import { API } from '../../Services';
-// import { MD_COMPONENTS } from '../MD_COMPONENTS';
-// import { APP_UI_COMPONENTS } from '../APP_UI_COMPONENTS';
 import { StaffEstablishedPost } from '../../Model';
 import { PositionsViewComponent } from './positions/PositionsView.component';
 
@@ -14,7 +12,7 @@ import { PositionsViewComponent } from './positions/PositionsView.component';
     selector: 'staffestablishedpost-list',
     template: require('./List.html'),
     providers: [API],
-    directives: [/*,  /*MD_COMPONENTS*/ PositionsViewComponent]
+    directives: [PositionsViewComponent]
 })
 export class StaffEstablishedPostListComponent implements OnInit {
     constructor(private Api: API, private _router: Router, private _routeParams: RouteParams) {

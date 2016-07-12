@@ -2,11 +2,9 @@
 import { Component } from '@angular/core';
 import { Router, RouteParams } from '@angular/router-deprecated';
 import { OnInit, Input } from '@angular/core';
-// import { NgClass } from '@angular/common';
+
 // Libs
 import { API } from '../../Services';
-// import { MD_COMPONENTS } from '../MD_COMPONENTS';
-// import { APP_UI_COMPONENTS } from '../APP_UI_COMPONENTS';
 import { StaffEstablishedPost } from '../../Model';
 // import { PositionsViewComponent } from './positions/PositionsView.component';
 import { PersonsListComponent } from './persons/PersonsList.component';
@@ -15,7 +13,7 @@ import { PersonsListComponent } from './persons/PersonsList.component';
     selector: 'staffestablishedpost-edit',
     template: require('./Edit.html'),
     providers: [API],
-    directives: [/*,  /*MD_COMPONENTS, PositionsViewComponent,*/ PersonsListComponent]
+    directives: [/*PositionsViewComponent,*/ PersonsListComponent]
 })
 export class StaffEstablishedPostEditComponent implements OnInit {
     constructor(private Api: API, private _router: Router, private _routeParams: RouteParams) {

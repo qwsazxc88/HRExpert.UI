@@ -2,9 +2,9 @@
 import { Component } from '@angular/core';
 import { Router,  } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
-// import { NgClass } from '@angular/common';
+
 // Libs
-// import { BS_DIRECTIVES } from '../';
+
 import { API } from '../../Services';
 import { Sicklist, Document } from '../../Model';
 

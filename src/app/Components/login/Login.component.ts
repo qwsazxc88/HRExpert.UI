@@ -4,7 +4,7 @@ import { Router } from '@angular/router-deprecated';
 import { HTTP_PROVIDERS  } from '@angular/http';
 
 // Libs
-// import { BS_DIRECTIVES } from '../';
+
 import { API } from '../../Services';
 import { Login, Profile } from '../../Model';
 import { TokenHelper } from '../../Utils/Token/TokenHelper';

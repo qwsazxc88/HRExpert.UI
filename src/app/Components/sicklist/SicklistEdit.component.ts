@@ -2,12 +2,11 @@
 import { Component } from '@angular/core';
 import { Router, RouteParams  } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
-import { NgClass, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 // import * as moment from 'moment';
 // import 'rxjs/Rx';
 // import { Observable } from 'rxjs/Observable';
 // Libs
-// import { BS_DIRECTIVES } from '../';
 import { FileSelectDirective } from '../UI/fileselector.component';
 import { API } from '../../Services';
 import { DocumentApprovement, FileDto, Document, Person,

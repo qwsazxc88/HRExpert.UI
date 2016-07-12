@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 // Libs
-// import { BS_DIRECTIVES } from '../';
+
 import { API } from '../../Services';
 import { Role, Section, Permission } from '../../Model';
 

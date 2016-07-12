@@ -13,7 +13,7 @@ import { ENV_PROVIDERS, decorateComponentRef } from './platform/environment';
 * App Component
 * our top level component that holds all of our components
 */
-import { App, APP_PROVIDERS /*API, APP_UI_COMPONENTS, APP_COMPONENTS*/ } from './app';
+import { App, APP_PROVIDERS /*,API*/ } from './app';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject

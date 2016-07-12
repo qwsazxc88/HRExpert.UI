@@ -1,3 +1,4 @@
+export * from './app/app.component';
 export * from './menu/Menu.component';
 export * from './users/UsersList.component';
 export * from './users/UserEdit.component';
@@ -13,10 +14,8 @@ export * from './departments/DepartmentsList.component';
 export * from './login/Login.component';
 export * from './home/home.component';
 export * from './departments/DepartmentEdit.component';
-// export * from './positions/PositionsView.component';
 export * from './staffestablishedposts/StaffEstablishedPostsList.component';
 export * from './staffestablishedposts/StaffEstablishedPostEdit.component';
-// export * from './persons/PersonsList.component';
 export * from './sicklist/SicklistList.component';
 export * from './sicklist/SicklistEdit.component';
 

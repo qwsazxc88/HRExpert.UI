@@ -1,13 +1,11 @@
 // Vendor libs
 import { Component, ViewContainerRef } from '@angular/core';
 import { RouteConfig, Router } from '@angular/router-deprecated';
-// import { NgClass } from '@angular/common';
+
 // import { HTTP_PROVIDERS } from '@angular/http';
 // import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
 // Libs
 import {
-    // APP_COMPONENTS,
-    // APP_UI_COMPONENTS,
     Home,
     UsersListComponent,
     UserEditComponent,
@@ -30,7 +28,7 @@ import {
 import { LoginComponent } from '../login/Login.component';
 import { MenuComponent } from '../menu/Menu.component';
 import { LoggedInRouterOutlet } from '../UI/CustomRouter/LoggedInOutlet';
-// import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
+
 // import { API } from '../../Services';
 import { Profile } from '../../Model';
 import { AppState } from './app.service';
@@ -39,7 +37,7 @@ import { AppState } from './app.service';
     selector: 'hre-app',
     pipes: [],
     // providers: [API],
-    directives: [/*BS_DIRECTIVES, APP_COMPONENTS, */LoginComponent, MenuComponent, LoggedInRouterOutlet],
+    directives: [LoginComponent, MenuComponent, LoggedInRouterOutlet],
     styles: [require('./app.css')],
     template: require('./app.html')
 })

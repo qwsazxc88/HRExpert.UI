@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
 // Libs
-// import { BS_DIRECTIVES } from '../';
+
 import { API } from '../../Services';
 import { Section } from '../../Model';
 

@@ -2,12 +2,12 @@
 import { Component } from '@angular/core';
 import { Router,  } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
-// import { NgClass } from '@angular/common';
+
 
 // Libs
 import { API } from '../../Services';
 import { Permission } from '../../Model';
-// import { BS_DIRECTIVES } from '../';
+
 @Component({
     selector: 'sections-list',
     template: require('./List.html'),
