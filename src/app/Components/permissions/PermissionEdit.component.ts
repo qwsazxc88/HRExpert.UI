@@ -5,14 +5,12 @@ import { RouteParams } from '@angular/router-deprecated';
 import { API } from '../../Services';
 import { Permission, Section } from '../../Model';
 
-
 @Component({
     selector: 'permission-edit',
     template: require('./Edit.html'),
-    directives: [/*BS_DIRECTIVES,*/ ],
+    // directives: [],
     providers: [API]
 })
-
 export class PermissionEditComponent implements OnInit {
     constructor(private Api: API, private _routeParams: RouteParams) {
         this.Model = new Permission(0, '');

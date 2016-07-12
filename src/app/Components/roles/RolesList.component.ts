@@ -4,16 +4,15 @@ import { Router,  } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 
 // Libs
-
 import { API } from '../../Services';
 import { Role } from '../../Model';
+
 @Component({
     selector: 'roles-list',
     template: require('./List.html'),
-    providers: [API],
-    directives: [ /*BS_DIRECTIVES,*/ ]
+    providers: [API]
+    // directives: []
 })
-
 export class RolesListComponent implements OnInit {
     constructor(private Api: API, private _router: Router) {
     }

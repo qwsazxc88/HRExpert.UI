@@ -14,7 +14,6 @@ import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
     pipes: [ArrayFilterPipe],
     providers: [API]
 })
-
 export class UserEditComponent implements OnInit {
     constructor(private Api: API, private _routeParams: RouteParams) {
         this.Model = new User(0, '');

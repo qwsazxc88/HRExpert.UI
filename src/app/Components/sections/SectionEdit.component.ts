@@ -3,17 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
 // Libs
-
 import { API } from '../../Services';
 import { Section } from '../../Model';
 
 @Component({
     selector: 'section-edit',
     template: require('./Edit.html'),
-    directives: [/*BS_DIRECTIVES,*/ ],
+    // directives: [],
     providers: [API]
 })
-
 export class SectionEditComponent implements OnInit {
     constructor(private Api: API, private _routeParams: RouteParams) {
         this.Model = new Section(0, '');

@@ -3,10 +3,8 @@ import { Component, Input } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 // Libs
-
 import { API } from '../../Services';
 import { Role, Section, Permission } from '../../Model';
-
 import { RemoveFromArray } from '../../Utils/ArrayUtils/ArrayUtils';
 import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
 import { IdFilterPipe } from '../../Utils/ArrayUtils/IdFilterPipe';
@@ -15,10 +13,9 @@ import { IdFilterPipe } from '../../Utils/ArrayUtils/IdFilterPipe';
     selector: 'roles-edit',
     template: require('././Edit.html'),
     pipes: [ArrayFilterPipe, IdFilterPipe],
-    directives: [/*BS_DIRECTIVES,*/ ],
+    // directives: [],
     providers: [API]
 })
-
 export class RoleEditComponent implements OnInit {
     constructor(private Api: API, private _routeParams: RouteParams) {
         this.Model = new Role(0, '');

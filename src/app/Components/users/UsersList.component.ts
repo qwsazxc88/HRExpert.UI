@@ -12,7 +12,6 @@ import { User } from '../../Model';
     // directives: [],
     providers: [API]
 })
-
 export class UsersListComponent implements OnInit {
     constructor(private Api: API, private _router: Router) {
     }
