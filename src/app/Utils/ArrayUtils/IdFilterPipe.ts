@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-// import { Referency } from '../../Model';
+// import { Referency } from '../Model';
 
 @Pipe({
   name: 'idFilter',
