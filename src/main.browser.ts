@@ -44,16 +44,15 @@ export function main(initialHmrState?: any): Promise<any> {
  * Also see custom-typings.d.ts as you also need to do `typings install x` where `x` is your module
  */
 
-
 /*
  * Hot Module Reload
  * experimental version by @gdi2290
  */
 if ('development' === ENV && HMR === true) {
-  // activate hot module reload
-  let ngHmr = require('angular2-hmr');
-  ngHmr.hotModuleReplacement(main, module);
+    // activate hot module reload
+    let ngHmr = require('angular2-hmr');
+    ngHmr.hotModuleReplacement(main, module);
 } else {
-  // bootstrap when documetn is ready
-  document.addEventListener('DOMContentLoaded', () => main());
+    // bootstrap when documetn is ready
+    document.addEventListener('DOMContentLoaded', () => main());
 }

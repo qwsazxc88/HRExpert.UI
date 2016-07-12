@@ -30,6 +30,7 @@ import {
 import { MD_COMPONENTS } from '../MD_COMPONENTS';
 import { API } from '../../Services';
 import { Profile } from '../../Model';
+import { AppState } from './app.service';
 
 @Component({
     selector: 'hre-app',
@@ -61,8 +62,7 @@ export class App {
     decodedJwt: any;
     profile: Profile;
     currentRole: number;
-    constructor(private viewContainerRef: ViewContainerRef) {
-        //this.viewContainerRef = viewContainerRef;
+    constructor(public appState: AppState) {
         let token = localStorage.getItem('jwt');
         if (token) {
             this.jwt = token;
