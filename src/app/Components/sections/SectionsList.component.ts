@@ -1,17 +1,17 @@
-//Vendor libs
+// Vendor libs
 import { Component } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 // import { NgClass } from '@angular/common';
-//Libs
-import { MD_COMPONENTS } from '../';
+// Libs
+// import { BS_DIRECTIVES } from '../';
 import { API } from '../../Services';
 import { Section } from '../../Model';
 @Component({
     selector: 'sections-list',
     template: require('./List.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
+    directives: [ROUTER_DIRECTIVES, /*BS_DIRECTIVES,*/ ]
 })
 
 export class SectionsListComponent implements OnInit {

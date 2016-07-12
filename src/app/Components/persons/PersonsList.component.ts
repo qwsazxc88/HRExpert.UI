@@ -1,11 +1,11 @@
-//Vendor libs
+// Vendor libs
 import { Component } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES, RouteParams } from '@angular/router-deprecated';
 import { OnInit, Input } from '@angular/core';
 // import { NgClass } from '@angular/common';
-//Libs
+// Libs
 import { API } from '../../Services';
-import { MD_COMPONENTS } from '../MD_COMPONENTS';
+import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
 import { APP_UI_COMPONENTS } from '../APP_UI_COMPONENTS';
 import { Person } from '../../Model';
 import { PositionsViewComponent } from '../positions/PositionsView.component';
@@ -13,7 +13,7 @@ import { PositionsViewComponent } from '../positions/PositionsView.component';
     selector: 'persons-list',
     template: require('./List.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, MD_COMPONENTS, PositionsViewComponent]
+    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, /*BS_DIRECTIVES,*/ PositionsViewComponent]
 })
 
 export class PersonsListComponent implements OnInit {

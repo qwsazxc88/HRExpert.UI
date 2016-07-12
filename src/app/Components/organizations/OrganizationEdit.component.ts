@@ -1,16 +1,16 @@
-//Vendor libs
+// Vendor libs
 import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
-//Libs
+// Libs
 import { API } from '../../Services';
 import { Organization, Department } from '../../Model';
-import { MD_COMPONENTS } from '../MD_COMPONENTS';
+import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
 import { DepartmentsListComponent } from '../departments/DepartmentsList.component';
 @Component({
     selector: 'organization-edit',
     template: require('./Edit.html'),
-    directives: [DepartmentsListComponent, MD_COMPONENTS],
+    directives: [DepartmentsListComponent, /*BS_DIRECTIVES,*/ ],
     providers: [API]
 })
 

@@ -2,11 +2,8 @@
  * These are globally available services in any component or any other service
  */
 
-
-import { provide } from '@angular/core';
-
 // Angular 2
-import { FORM_PROVIDERS, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { /* FORM_PROVIDERS, HashLocationStrategy,*/ LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 // Angular 2 Http
 import { HTTP_PROVIDERS } from '@angular/http';
@@ -30,24 +27,27 @@ import { APP_RESOLVER_PROVIDERS } from '../app/app.resolver';*/
 * Application Providers/Directives/Pipes
 * providers/directives/pipes that only live in our browser environment
 */
-//import { MATERIAL_PROVIDERS } from 'ng2-material';
-import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
-//import { OVERLAY_PROVIDERS } from "@angular2-material/core/overlay/overlay";
+// import { MATERIAL_PROVIDERS } from 'ng2-material';
+// import { OVERLAY_PROVIDERS } from "@angular2-material/core/overlay/overlay";
+// import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
 export const APPLICATION_PROVIDERS = [
-  ...FORM_PROVIDERS,
-  ...HTTP_PROVIDERS,
-  // ...OVERLAY_PROVIDERS,
-   ...BS_VIEW_PROVIDERS,
-  ...ROUTER_PROVIDERS,
-  provide(LocationStrategy, { useClass: HashLocationStrategy }),
+
+    ...ROUTER_PROVIDERS,
     /* New ROUTER !!!!!!!!!!
     ...APP_RESOLVER_PROVIDERS,
 
     provideRouter(routes),
     provideWebpack(asyncRoutes),
     providePrefetchIdleCallbacks(prefetchRouteCallbacks),*/
+
+    ...HTTP_PROVIDERS,
+
+    // ...BS_VIEW_PROVIDERS,
+    // ...OVERLAY_PROVIDERS,
+
+    { provide: LocationStrategy, useClass: PathLocationStrategy }
 ];
 
 export const PROVIDERS = [
-  ...APPLICATION_PROVIDERS
+    ...APPLICATION_PROVIDERS
 ];

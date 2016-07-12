@@ -4,7 +4,7 @@ import { Router } from '@angular/router-deprecated';
 import { HTTP_PROVIDERS  } from '@angular/http';
 
 // Libs
-import { MD_COMPONENTS } from '../';
+// import { BS_DIRECTIVES } from '../';
 import { API } from '../../Services';
 import { Login, Profile } from '../../Model';
 import { TokenHelper } from '../../Utils/Token/TokenHelper';
@@ -12,7 +12,7 @@ import { TokenHelper } from '../../Utils/Token/TokenHelper';
 @Component({
     template: require('./Login.html'),
     selector: 'hre-login',
-    directives: [MD_COMPONENTS],
+    directives: [/*BS_DIRECTIVES,*/ ],
     providers: [API, HTTP_PROVIDERS]
 })
 export class LoginComponent implements OnInit {

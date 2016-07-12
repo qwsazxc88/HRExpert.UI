@@ -1,9 +1,9 @@
-//Vendor libs
+// Vendor libs
 import { Component, Input } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
-//Libs
-import { MD_COMPONENTS } from '../';
+// Libs
+// import { BS_DIRECTIVES } from '../';
 import { API } from '../../Services';
 import { Role, Section, Permission } from '../../Model';
 
@@ -15,7 +15,7 @@ import { IdFilterPipe } from '../../Utils/ArrayUtils/IdFilterPipe';
     selector: 'roles-edit',
     template: require('././Edit.html'),
     pipes: [ArrayFilterPipe, IdFilterPipe],
-    directives: [MD_COMPONENTS],
+    directives: [/*BS_DIRECTIVES,*/ ],
     providers: [API]
 })
 

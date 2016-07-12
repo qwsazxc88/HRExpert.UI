@@ -1,15 +1,15 @@
-//Vendor libs
+// Vendor libs
 import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
-//Libs
+// Libs
 import { API } from '../../Services';
 import { Permission, Section } from '../../Model';
-import { MD_COMPONENTS } from '../';
+// import { BS_DIRECTIVES } from '../';
 
 @Component({
     selector: 'permission-edit',
     template: require('./Edit.html'),
-    directives: [MD_COMPONENTS],
+    directives: [/*BS_DIRECTIVES,*/ ],
     providers: [API]
 })
 

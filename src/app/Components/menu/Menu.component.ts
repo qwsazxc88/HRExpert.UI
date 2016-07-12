@@ -1,20 +1,20 @@
-//Vendor libs
+// Vendor libs
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { NgSelectOption, NgModel } from '@angular/common';
-import { RouteParams } from '@angular/router-deprecated';
-//libs
+// import { NgSelectOption, NgModel } from '@angular/common';
+// import { RouteParams } from '@angular/router-deprecated';
+// Libs
 import { ComponentBase } from '../componentbase';
 import { RouterActive } from '../APP_UI_COMPONENTS';
 import { LoginComponent } from '../login/Login.component';
 import { Profile } from '../../Model';
-import { API } from '../../Services';
+// import { API } from '../../Services';
+
 @Component({
     selector: 'app-menu',
     styles: [require('./menu.css')],
     template: require('./Menu.html'),
     directives: [LoginComponent, RouterActive]
 })
-
 export class MenuComponent extends ComponentBase {
     @Input() profile: Profile;
     @Input() currentRole: number;

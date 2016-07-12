@@ -1,16 +1,16 @@
-//Vendor libs
+// Vendor libs
 import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
-//Libs
-import { MD_COMPONENTS } from '../';
+// Libs
+// import { BS_DIRECTIVES } from '../';
 import { API } from '../../Services';
 import { Section } from '../../Model';
 
 @Component({
     selector: 'section-edit',
     template: require('./Edit.html'),
-    directives: [MD_COMPONENTS],
+    directives: [/*BS_DIRECTIVES,*/ ],
     providers: [API]
 })
 

@@ -1,15 +1,15 @@
-//Vendor libs
+// Vendor libs
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
-//Libs
-import { MD_COMPONENTS } from '../MD_COMPONENTS';
+// Libs
+import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
 import { API } from '../../Services';
 import { Organization } from '../../Model';
 @Component({
     selector: 'organization-list',
     template: require('./List.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
+    directives: [ROUTER_DIRECTIVES, /*BS_DIRECTIVES,*/ ]
 })
 
 export class OrganizationListComponent implements OnInit {

@@ -1,18 +1,18 @@
-//Vendor libs
+// Vendor libs
 import { Component } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 // import { NgClass } from '@angular/common';
 
-//Libs
+// Libs
 import { API } from '../../Services';
 import { Permission } from '../../Model';
-import { MD_COMPONENTS } from '../';
+// import { BS_DIRECTIVES } from '../';
 @Component({
     selector: 'sections-list',
     template: require('./List.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, MD_COMPONENTS]
+    directives: [ROUTER_DIRECTIVES, /*BS_DIRECTIVES,*/ ]
 })
 
 export class PermissionsListComponent implements OnInit {
