@@ -1,8 +1,8 @@
-//Vendor libs
+// Vendor libs
 import { Component } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
-//Libs
+// Libs
 import { MD_COMPONENTS } from '../';
 import { API } from '../../Services';
 import { User } from '../../Model';

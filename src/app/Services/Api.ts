@@ -1,10 +1,10 @@
-//Vendor libs
+// Vendor libs
 import { Component, Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http, Headers, RequestOptions, Response, ResponseOptions} from '@angular/http';
 
-//Libs
+// Libs
 import {
     Document, FileDto,
     User, Role, Section, Permission, Person, Department, StaffEstablishedPost, Organization, Position, Profile,
@@ -34,10 +34,10 @@ class FormDataConverter {
                     this.form.append(name, obj);
                 } else if (obj instanceof Date) {
                     this.form.append(name, obj.toISOString());
-                } else
+                } else{
                     for (var prop in obj) {
                         this.GetForm(obj[prop], name + (name.length > 0 ? '.' : '') + prop);
-                    }
+                    }}
                 break;
             default: break;
         }
@@ -55,8 +55,9 @@ export class Resource {
     CreateOptions() {
         let jwt = localStorage.getItem('jwt');
         let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
-        if (jwt)
+        if (jwt) {
             headers.append('Authorization', 'Bearer ' + jwt);
+        }
         let options = new RequestOptions({ headers: headers });
         return options;
     }
@@ -107,8 +108,9 @@ export class ApiResource<T> extends Resource {
             };*/
             xhr.open(method, url, true);
             let jwt = localStorage.getItem('jwt');
-            if (jwt)
+            if (jwt) {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + jwt);
+            }
             xhr.send(formData);
         }));
     }
@@ -119,14 +121,15 @@ export class ApiResource<T> extends Resource {
             .map(res => <T[]>res.json())
             .catch(this.handleError);
     }
-    //CRUD
+    // CRUD
     Create(entity: T, IsFileSend: boolean = false) {
-        //if file request
-        if (IsFileSend)
+        // if file request
+        if (IsFileSend) {
             return this.makeFileRequest(entity, 'POST')
                 .map(res => <T>res.json())
                 .catch(this.handleError);
-        //if no files provided
+        }
+        // if no files provided
         let body = JSON.stringify(entity);
         var options = this.CreateOptions();
         var url = this.createUrl() + this.createAdditionUrlOptions();
@@ -135,7 +138,7 @@ export class ApiResource<T> extends Resource {
             .catch(this.handleError);
     }
     Read() {
-        //console.log(url); // BUG
+        // console.log(url); // BUG
         var options = this.CreateOptions();
         var url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.get(url, options)
@@ -143,12 +146,13 @@ export class ApiResource<T> extends Resource {
             .catch(this.handleError);
     }
     Update(entity: T, IsFileSend: boolean = false) {
-        //if file request
-        if (IsFileSend)
+        // if file request
+        if (IsFileSend) {
             return this.makeFileRequest(entity, 'PUT')
                 .map(res => <T>res.json())
                 .catch(this.handleError);
-        //if no files provided
+        }
+        // if no files provided
         let body = JSON.stringify(entity);
         var options = this.CreateOptions();
         var url = this.createUrl();
@@ -230,7 +234,6 @@ export class SicklistService extends ApiResource<Document<Sicklist>> {
         super('/sicklists', parent);
     }
     GetFileKey(filetype) {
-        //console.log(url);
         var options = this.CreateOptions();
         var url = this.createUrl() + '/files/' + filetype + this.createAdditionUrlOptions();
         return this.http.get(url, options)
