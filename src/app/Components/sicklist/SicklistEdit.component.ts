@@ -1,13 +1,13 @@
 // Vendor libs
 import { Component } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES, RouteParams  } from '@angular/router-deprecated';
+import { Router, RouteParams  } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 import { NgClass, DatePipe } from '@angular/common';
 // import * as moment from 'moment';
 // import 'rxjs/Rx';
 // import { Observable } from 'rxjs/Observable';
 // Libs
-import { BS_DIRECTIVES } from '../';
+// import { BS_DIRECTIVES } from '../';
 import { FileSelectDirective } from '../UI/fileselector.component';
 import { API } from '../../Services';
 import { DocumentApprovement, FileDto, Document, Person,
@@ -19,7 +19,7 @@ import { DocumentApprovement, FileDto, Document, Person,
     template: require('./Edit.html'),
     providers: [API],
     pipes: [DatePipe],
-    directives: [ROUTER_DIRECTIVES, BS_DIRECTIVES, FileSelectDirective]
+    directives: [/*, /*BS_DIRECTIVES*/ FileSelectDirective]
 })
 export class SicklistEditComponent implements OnInit {
     constructor(private Api: API, private _routeParams: RouteParams) {

@@ -1,4 +1,4 @@
-export * from './UI/CustomRouter/LoggedInOutlet';
+/*export * from './UI/CustomRouter/LoggedInOutlet';
 export * from './UI/CustomRouter/router-active.directive';
 export * from './UI/TreeView/TreeView.component';
 import { LoggedInRouterOutlet } from './UI/CustomRouter/LoggedInOutlet';
@@ -11,3 +11,4 @@ export const APP_UI_COMPONENTS = [
     RouterActive,
     TreeView,
     FileSelectDirective];
+*/

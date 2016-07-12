@@ -13,13 +13,14 @@ export * from './departments/DepartmentsList.component';
 export * from './login/Login.component';
 export * from './home/home.component';
 export * from './departments/DepartmentEdit.component';
-export * from './positions/PositionsView.component';
+// export * from './positions/PositionsView.component';
 export * from './staffestablishedposts/StaffEstablishedPostsList.component';
 export * from './staffestablishedposts/StaffEstablishedPostEdit.component';
-export * from './persons/PersonsList.component';
+// export * from './persons/PersonsList.component';
 export * from './sicklist/SicklistList.component';
 export * from './sicklist/SicklistEdit.component';
 
+/*
 import { MenuComponent } from './menu/Menu.component';
 import { UsersListComponent } from './users/UsersList.component';
 import { UserEditComponent } from './users/UserEdit.component';
@@ -33,16 +34,16 @@ import { OrganizationEditComponent } from './organizations/OrganizationEdit.comp
 import { OrganizationListComponent } from './organizations/OrganizationsList.component';
 import { DepartmentsListComponent } from './departments/DepartmentsList.component';
 import { DepartmentEditComponent } from './departments/DepartmentEdit.component';
-import { PositionsViewComponent } from './positions/PositionsView.component';
+// import { PositionsViewComponent } from './positions/PositionsView.component';
 import { StaffEstablishedPostListComponent } from './staffestablishedposts/StaffEstablishedPostsList.component';
 import { StaffEstablishedPostEditComponent } from './staffestablishedposts/StaffEstablishedPostEdit.component';
-import { PersonsListComponent } from './persons/PersonsList.component';
+// import { PersonsListComponent } from './persons/PersonsList.component';
 import { LoginComponent } from './login/Login.component';
 import { Home } from './home/home.component';
 import { SicklistListComponent } from './sicklist/SicklistList.component';
 import { SicklistEditComponent } from './sicklist/SicklistEdit.component';
-
-export const APP_COMPONENTS = [
+*/
+/*export const APP_COMPONENTS = [
     MenuComponent,
     UsersListComponent,
     UserEditComponent,
@@ -57,11 +58,11 @@ export const APP_COMPONENTS = [
     DepartmentsListComponent,
     DepartmentEditComponent,
     LoginComponent,
-    PositionsViewComponent,
+    // PositionsViewComponent,
     StaffEstablishedPostEditComponent,
     StaffEstablishedPostListComponent,
     SicklistEditComponent,
     SicklistListComponent,
-    PersonsListComponent,
+    // PersonsListComponent,
     Home
-];
+];*/

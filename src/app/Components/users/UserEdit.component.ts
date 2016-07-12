@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 //Libs
 import { API } from '../../Services';
-import { MD_COMPONENTS } from '../';
+// import { MD_COMPONENTS } from '../';
 import { User, Role } from '../../Model';
 import { RemoveFromArray } from '../../Utils/ArrayUtils/ArrayUtils';
 import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
@@ -12,7 +12,7 @@ import { ArrayFilterPipe } from '../../Utils/ArrayUtils/ArrayFilterPipe';
 @Component({
     selector: 'users-edit',
     template: require('./Edit.html'),
-    directives: [MD_COMPONENTS],
+    directives: [/*MD_COMPONENTS*/],
     pipes: [ArrayFilterPipe],
     providers: [API]
 })

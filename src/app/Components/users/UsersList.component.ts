@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { OnInit } from '@angular/core';
 // Libs
-import { MD_COMPONENTS } from '../';
+// import { MD_COMPONENTS } from '../';
 import { API } from '../../Services';
 import { User } from '../../Model';
 
 @Component({
     selector: 'users-list',
     template: require('./List.html'),
-    directives: [MD_COMPONENTS],
+    directives: [/*MD_COMPONENTS*/],
     providers: [API]
 })
 

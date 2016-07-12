@@ -1,19 +1,19 @@
 // Vendor libs
 import { Component } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES, RouteParams } from '@angular/router-deprecated';
+import { Router, RouteParams } from '@angular/router-deprecated';
 import { OnInit, Input } from '@angular/core';
 // import { NgClass } from '@angular/common';
 // Libs
-import { API } from '../../Services';
-import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
-import { APP_UI_COMPONENTS } from '../APP_UI_COMPONENTS';
-import { Position } from '../../Model';
+import { API } from '../../../Services';
+// import { BS_DIRECTIVES } from '../BS_DIRECTIVES';
+// import { APP_UI_COMPONENTS } from '../../APP_UI_COMPONENTS';
+import { Position } from '../../../Model';
 
 @Component({
     selector: 'position-view',
     template: require('./View.html'),
     providers: [API],
-    directives: [ROUTER_DIRECTIVES, APP_UI_COMPONENTS, /*BS_DIRECTIVES,*/ ]
+    directives: [/*,  /*BS_DIRECTIVES,*/ ]
 })
 
 export class PositionsViewComponent implements OnInit {
