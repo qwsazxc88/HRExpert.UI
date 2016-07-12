@@ -1,5 +1,5 @@
 import { Directive, Attribute, ElementRef, ViewContainerRef, DynamicComponentLoader } from '@angular/core';
-import { Router, RouterOutlet, ComponentInstruction } from '@angular/router-deprecated';
+// import { Router, RouterOutlet, ComponentInstruction } from '@angular/router-deprecated';
 import { LoginComponent } from '../../';
 
 @Directive({ selector: 'loggedin-router-outlet' })

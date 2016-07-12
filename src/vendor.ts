@@ -9,13 +9,11 @@ import '@angular/platform-browser-dynamic';
 import '@angular/core';
 import '@angular/common';
 import '@angular/http';
-import '@angular/router-deprecated';
-// import '@angular/router';
+// import '@angular/router-deprecated';
+import '@angular/router';
 // AngularClass
-// import '@angularclass/webpack-toolkit';
-// import '@angularclass/request-idle-callback';
-
-// import 'ng2-material';
+import '@angularclass/webpack-toolkit';
+import '@angularclass/request-idle-callback';
 
 // RxJS
 import 'rxjs/add/operator/map';
@@ -23,7 +21,6 @@ import 'rxjs/add/operator/mergeMap';
 
 if ('production' === ENV) {
   // Production
-
 
 } else {
   // Development

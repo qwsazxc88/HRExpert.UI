@@ -8,7 +8,7 @@ import { /* FORM_PROVIDERS, HashLocationStrategy,*/ LocationStrategy, PathLocati
 // Angular 2 Http
 import { HTTP_PROVIDERS } from '@angular/http';
 // Angular 2 Router
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+// import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 // Angular 2 Material
 // import { MdRadioDispatcher } from '@angular2-material/radio/radio_dispatcher';

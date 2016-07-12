@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component  } from '@angular/core';
-import { Router, RouteParams  } from '@angular/router-deprecated';
+// import { Router, RouteParams  } from '@angular/router-deprecated';
 import { OnInit, Input } from '@angular/core';
 
 // Libs

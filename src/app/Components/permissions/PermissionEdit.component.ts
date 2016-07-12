@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, OnInit } from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
+// import { RouteParams } from '@angular/router-deprecated';
 // Libs
 import { API } from '../../Services';
 import { Permission, Section } from '../../Model';

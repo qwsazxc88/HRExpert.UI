@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, Input, Output, EventEmitter, OnInit, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+// import { Router } from '@angular/router-deprecated';
 import { HTTP_PROVIDERS  } from '@angular/http';
 
 // Libs
