@@ -10,13 +10,6 @@
   "exclude": [
     "node_modules"
   ],
-  "filesGlob": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom-typings.d.ts",
-    "typings/browser/index.d.ts"
-  ],
   "awesomeTypescriptLoaderOptions": {
     "resolveGlobs": true,
     /*"useWebpackText": true,*/

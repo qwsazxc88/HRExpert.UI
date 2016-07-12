@@ -1,8 +1,8 @@
 // Vendor libs
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 // Libs
-import { ComponentBase } from '../componentbase';
+import { ComponentBase } from './componentbase';
 import { RouterActive } from '../UI/CustomRouter/router-active.directive';
 import { LoginComponent } from '../login/Login.component';
 import { Profile } from '../../Model';
