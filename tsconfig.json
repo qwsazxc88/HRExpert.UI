@@ -4,12 +4,11 @@
     "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmitHelpers": true
   },
   "exclude": [
-    "node_modules",
-    "typings/main.d.ts",
-    "typings/main"
+    "node_modules"
   ],
   "filesGlob": [
     "./src/**/*.ts",
@@ -20,6 +19,7 @@
   ],
   "awesomeTypescriptLoaderOptions": {
     "resolveGlobs": true,
+    /*"useWebpackText": true,*/
     "forkChecker": true
   },
   "compileOnSave": false,
