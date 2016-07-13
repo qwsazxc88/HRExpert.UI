@@ -29,7 +29,7 @@ export function main(initialHmrState?: any): Promise<any> {
         ...APP_PROVIDERS
     ])
         .then(decorateComponentRef)
-        .catch(/*err*/() => console.error('Bootstrap promise error catcher: ', ++errorCounter /*err*/));
+        .catch(err => console.error('Bootstrap promise error catcher: ', ++errorCounter, `Error: \n ${err}`));
 
 }
 
