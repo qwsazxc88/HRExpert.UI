@@ -41,23 +41,6 @@ import { AppState } from './app.service';
     styles: [require('./app.css')],
     template: require('./app.html')
 })
-@RouteConfig([
-    { path: '/', name: 'Index', component: Home, useAsDefault: true },
-    { path: '/users', name: 'Users', component: UsersListComponent },
-    { path: '/users/:id', name: 'UserEdit', component: UserEditComponent },
-    { path: '/roles', name: 'Roles', component: RolesListComponent },
-    { path: '/roles/:id', name: 'RoleEdit', component: RoleEditComponent },
-    { path: '/sections', name: 'Sections', component: SectionsListComponent },
-    { path: '/sections/:id', name: 'SectionEdit', component: SectionEditComponent },
-    { path: '/permissions', name: 'Permissions', component: PermissionsListComponent },
-    { path: '/permissions/:id', name: 'PermissionEdit', component: PermissionEditComponent },
-    { path: '/organizations', name: 'Organizations', component: OrganizationListComponent },
-    { path: '/organizations/:organizationid', name: 'OrganizationEdit', component: OrganizationEditComponent },
-    { path: '/organizations/:organizationid/departments/:departmentid', name: 'DepartmentEdit', component: DepartmentEditComponent },
-    // { path: '/organizations/:organizationid/departments/:departmentid/staffestablishedpost/:positionid', name: 'StaffEstablishedPostEdit', component: StaffEstablishedPostEditComponent },
-    { path: '/sicklists', name: 'Sicklists', component: SicklistListComponent },
-    { path: '/sicklists/:id', name: 'SicklistEdit', component: SicklistEditComponent }
-])
 export class App {
     jwt: string;
     decodedJwt: any;

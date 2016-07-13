@@ -9,7 +9,9 @@ import { /* FORM_PROVIDERS, HashLocationStrategy,*/ LocationStrategy, PathLocati
 import { HTTP_PROVIDERS } from '@angular/http';
 // Angular 2 Router
 // import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
-
+import { provideRouter } from '@angular/router';
+// Angular 2 forms
+// import { disableDeprecatedForms, provideForms } from '@angular/forms';
 // Angular 2 Material
 // import { MdRadioDispatcher } from '@angular2-material/radio/radio_dispatcher';
 // const MATERIAL_PROVIDERS = [
@@ -17,11 +19,11 @@ import { HTTP_PROVIDERS } from '@angular/http';
 // ];
 
 // AngularClass
-/*import { provideWebpack } from '@angularclass/webpack-toolkit';
+import { provideWebpack } from '@angularclass/webpack-toolkit';
 import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callback';
 
-import { routes, asyncRoutes, prefetchRouteCallbacks } from '../app/app.routes';
-import { APP_RESOLVER_PROVIDERS } from '../app/app.resolver';*/
+import { routes, asyncRoutes, prefetchRouteCallbacks } from '../../app/app.routes';
+import { APP_RESOLVER_PROVIDERS } from '../../app/app.resolver';
 
 /*
 * Application Providers/Directives/Pipes
@@ -31,14 +33,15 @@ import { APP_RESOLVER_PROVIDERS } from '../app/app.resolver';*/
 // import { OVERLAY_PROVIDERS } from "@angular2-material/core/overlay/overlay";
 // import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
 export const APPLICATION_PROVIDERS = [
+    // new Angular 2 forms
+    // disableDeprecatedForms(),
+    // provideForms(),
+    // ...ROUTER_PROVIDERS,
 
-    ...ROUTER_PROVIDERS,
-    /* New ROUTER !!!!!!!!!!
     ...APP_RESOLVER_PROVIDERS,
-
     provideRouter(routes),
     provideWebpack(asyncRoutes),
-    providePrefetchIdleCallbacks(prefetchRouteCallbacks),*/
+    providePrefetchIdleCallbacks(prefetchRouteCallbacks),
 
     ...HTTP_PROVIDERS,
 
