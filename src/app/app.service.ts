@@ -6,8 +6,7 @@ export class AppState {
     // @HmrState() is used by HMR to track the state of any object during HMR (hot module replacement)
     @HmrState() _state = {};
 
-    constructor() {
-    }
+    constructor() { }
 
     // already return a clone of the current state
     get state() {

@@ -37,7 +37,7 @@
         Environment: <%= webpackConfig.metadata.ENV %>
     </hre-app>
     <!-- /#wrapper -->
-    <% if (webpackConfig.metadata.ENV === 'development') { %>
+    <% if (webpackConfig.metadata.ENV === 'development' && webpackConfig.metadata.HMR !== true) { %>
         <!-- Webpack Dev Server reload -->
         <script src="/webpack-dev-server.js"></script>
     <% } %>
