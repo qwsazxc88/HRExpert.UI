@@ -1,8 +1,9 @@
 import { Directive, Attribute, ElementRef, ViewContainerRef, DynamicComponentLoader } from '@angular/core';
-// import { Router, RouterOutlet, ComponentInstruction } from '@angular/router-deprecated';
-import { LoginComponent } from '../../';
+ // import { Router, RouterOutlet, ComponentInstruction } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
+// import { LoginComponent } from '../../';
 
-@Directive({ selector: 'loggedin-router-outlet' })
+@Directive({ selector: 'router-outlet' })
 
 export class LoggedInRouterOutlet extends RouterOutlet {
     publicRoutes: any;

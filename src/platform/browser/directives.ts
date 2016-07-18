@@ -11,6 +11,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 // ng2-bootstrap
 import ng2b from 'ng2-bootstrap';
 // application_directives: directives that are global through out the application
+// import { LoggedInRouterOutlet } from '../../app/UI/CustomRouter';
 export const APPLICATION_DIRECTIVES = [
   ...ROUTER_DIRECTIVES,
   ...ng2b.directives,

@@ -24,6 +24,7 @@ import { providePrefetchIdleCallbacks } from '@angularclass/request-idle-callbac
 
 import { routes, asyncRoutes, prefetchRouteCallbacks } from '../../app/app.routes';
 import { APP_RESOLVER_PROVIDERS } from '../../app/app.resolver';
+import { AUTH_PROVIDERS } from '../../app/app.auth';
 
 /*
 * Application Providers/Directives/Pipes
@@ -39,7 +40,8 @@ export const APPLICATION_PROVIDERS = [
     // ...ROUTER_PROVIDERS,
 
     ...APP_RESOLVER_PROVIDERS,
-    provideRouter(routes),
+    provideRouter(routes, process.env.ENV === 'development' ? {enableTracing: true} : {} ),
+    ...AUTH_PROVIDERS,
     provideWebpack(asyncRoutes),
     providePrefetchIdleCallbacks(prefetchRouteCallbacks),
 

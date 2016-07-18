@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, Injectable } from '@angular/core';
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http, Headers, RequestOptions, Response, ResponseOptions} from '@angular/http';
 
@@ -10,6 +10,7 @@ import {
     User, Role, Section, Permission, Person, Department, StaffEstablishedPost, Organization, Position, Profile,
     Sicklist, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, SicklistType, TimesheetStatus
 } from '../Model';
+import { Auth } from '../app.auth';
 
 class FormDataConverter {
 
@@ -49,11 +50,12 @@ export class Resource {
     id: number;
     http: Http;
     parent: Resource;
+    auth: Auth;
     constructor(url: string) {
         this.url = url;
     }
     CreateOptions() {
-        let jwt = localStorage.getItem('jwt');
+        let jwt = this.auth.jwt;
         let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
         if (jwt) {
             headers.append('Authorization', 'Bearer ' + jwt);
@@ -107,7 +109,7 @@ export class ApiResource<T> extends Resource {
                 this.progressObserver.next(this.progress);
             };*/
             xhr.open(method, url, true);
-            let jwt = localStorage.getItem('jwt');
+            let jwt = this.auth.jwt;
             if (jwt) {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + jwt);
             }
@@ -383,9 +385,10 @@ export class ApiFactory {
 @Component({ providers: [HTTP_PROVIDERS] })
 @Injectable()
 export class API extends Resource {
-    constructor(_http: Http) {
+    constructor(_http: Http, _auth: Auth) {
         super('http://ruscount.com:9034/api/v1');
         this.http = _http;
+        this.auth = _auth;
     }
     public Users = ApiFactory.UsersFactory(this);
     public Roles = ApiFactory.RolesFactory(this);

@@ -3,16 +3,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 // Libs
 import { ComponentBase } from './componentbase';
-import { RouterActive } from '../UI/CustomRouter/router-active.directive';
-import { LoginComponent } from '../login/Login.component';
+// import { RouterActive } from '../UI/CustomRouter/router-active.directive';
+// import { LoginComponent } from '../login/Login.component';
 import { Profile } from '../Model';
 // import { API } from '../Services';
 
 @Component({
-    selector: 'app-menu',
+    selector: 'hre-menu',
     styles: [require('./menu.css')],
     template: require('./Menu.html'),
-    directives: [LoginComponent, RouterActive]
+    // directives: [LoginComponent, RouterActive]
 })
 export class MenuComponent extends ComponentBase {
     @Input() profile: Profile;
