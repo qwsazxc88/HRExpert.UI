@@ -5,9 +5,17 @@ import { Profile } from './Model';
 
 @Injectable()
 export class Auth {
-    profile: Profile;
+    private _profile: Profile;
+    get profile(): Profile {
+        return Object.assign({}, this._profile);
+    }
+    set profile(value: Profile) {
+        this._profile = value;
+    }
+
+    currentRole: number;
     jwt: string;
-    constructor() { }
+    // constructor() { }
 }
 
 @Injectable()

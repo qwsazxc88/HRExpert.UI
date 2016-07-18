@@ -22,7 +22,7 @@ if ('production' === ENV) {
 
 } else {
     // Development
-    enableProdMode(); /*// NOTE FIXME BUG HACK */
+    // enableProdMode(); /*// NOTE FIXME BUG HACK */
 
     _decorateComponentRef = (cmpRef) => {
         // rc2 workaround

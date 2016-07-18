@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, Injectable } from '@angular/core';
-// import 'rxjs/Rx';
+import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http, Headers, RequestOptions, Response, ResponseOptions} from '@angular/http';
 

@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, Input, Output, EventEmitter, OnInit, ViewContainerRef } from '@angular/core';
-import { RouterStateSnapshot } from '@angular/router';
+import { RouterStateSnapshot, Router } from '@angular/router';
 // import { HTTP_PROVIDERS  } from '@angular/http';
 
 // Libs
@@ -17,7 +17,7 @@ import { Auth } from '../app.auth';
     providers: [API]
 })
 export class LoginComponent implements OnInit {
-    constructor(private Api: API, private auth: Auth/*, private routerState: RouterStateSnapshot*/) {
+    constructor(private Api: API, private auth: Auth, private router: Router/*, private routerState: RouterStateSnapshot*/) {
         this.Model = new Login();
         // this.redirectUrl = routerState.fragment;
     }
@@ -53,7 +53,8 @@ export class LoginComponent implements OnInit {
                 // this.decodedJwtChange.emit(this.decodedJwt);
                 this.getProfile();
             },
-            error => this.errorMessage = <any>error
+            error => { this.errorMessage = <any>error; } ,
+            () => this.router.navigate([''])
         );
     }
 

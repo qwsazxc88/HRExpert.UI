@@ -16,7 +16,7 @@
 
      "typings-install": "npm run typings -- install",
 
-     "clean": "npm cache clean && npm run rimraf -- node_modules doc typings coverage dist",
+     "clean": "npm cache clean && npm run rimraf -- doc typings coverage dist node_modules",
        "clean:dist": "npm run rimraf -- dist",
          "preclean:install": "npm run clean",
        "clean:install": "npm set progress=false && npm install",

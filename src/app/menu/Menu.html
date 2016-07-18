@@ -1,4 +1,5 @@
 <div *ngIf="profile">
+MENU
     <div class="panel panel-default" *ngFor="let role of profile.Roles" (click)="ChangeRole(role.Id)" >
         <div class="panel-heading">{{role.Name}}</div>
 
