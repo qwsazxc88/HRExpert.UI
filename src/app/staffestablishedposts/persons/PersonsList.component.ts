@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component } from '@angular/core';
-// import { Router, RouteParams } from '@angular/router';
+import { Router, RouteParams } from '@angular/router';
 import { OnInit, Input } from '@angular/core';
 
 // Libs

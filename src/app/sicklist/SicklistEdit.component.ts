@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component } from '@angular/core';
-// import { Router, RouteParams  } from '@angular/router';
+import { Router, RouteParams  } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 // import * as moment from 'moment';

@@ -14,11 +14,11 @@ export class Auth {
     constructor(private http: Http) {
         console.log('Auth constructor');
         const token = localStorage.getItem('jwt');
-        // сделать что нибудь если в вместо токена мусор
+        // сделать что нибудь если в токене мусор
         if (token) {
             try {
                 if (!tokenHelper.isTokenExpired(token)) this._jwt = token;
-                this.getProfile(Promise.resolve);
+                this.getProfile(() => {});
             } catch (e) { };
         }
     }
@@ -37,7 +37,7 @@ export class Auth {
         localStorage.setItem('jwt', value);
     }
 
-    getProfile(resolve?) {
+    getProfile(resolve) {
         this.requestProfile().subscribe(
             data => {
                 this.profile = data;
@@ -78,7 +78,7 @@ export class Auth {
     }
 
     canNavigate(): boolean {
-        return this.jwt ? !tokenHelper.isTokenExpired(this.jwt) : false;
+        return (this.jwt ? !tokenHelper.isTokenExpired(this.jwt) : false) && this.profile ? true : false;
     }
 
     private getToken(login: string, password: string): Observable<string> {

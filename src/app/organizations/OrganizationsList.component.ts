@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 // Libs
 
 import { API } from '../Services';
