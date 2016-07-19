@@ -20,7 +20,6 @@ import { App, APP_PROVIDERS /*,API*/ } from './app';
  * our Services and Providers into Angular's dependency injection
  */
 export function main(initialHmrState?: any): Promise<any> {
-    let errorCounter = 0;
     // console.dir(PLATFORM_PROVIDERS, ENV_PROVIDERS);
     return bootstrap(App, [
         // To add more vendor providers please look in the platform/ folder
@@ -29,7 +28,7 @@ export function main(initialHmrState?: any): Promise<any> {
         ...APP_PROVIDERS
     ])
         .then(decorateComponentRef)
-        .catch(err => console.error('Bootstrap promise error catcher: ', ++errorCounter, `Error: \n ${err}`));
+        .catch(err => console.error('Bootstrap promise error catcher -- Error:\n', err));
 
 }
 

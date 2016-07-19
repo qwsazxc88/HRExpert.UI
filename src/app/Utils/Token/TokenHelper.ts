@@ -11,12 +11,19 @@ export function urlBase64Decode(str: string) {
     return decodeURIComponent(window.atob(output)); // polifyll https://github.com/davidchambers/Base64.js
 }
 
+export function isValid(token: string) {
+    try {
+        decodeToken(urlBase64Decode(token));
+    } catch (e) { return false; }
+    return true;
+}
+
 export function decodeToken(token: string) {
     const parts = token.split('.');
     if (parts.length !== 3) {
         throw new Error('JWT must have 3 parts');
     }
-    const decoded = this.urlBase64Decode(parts[1]);
+    const decoded = urlBase64Decode(parts[1]);
     if (!decoded) {
         throw new Error('Cannot decode the token');
     }
@@ -24,7 +31,7 @@ export function decodeToken(token: string) {
 }
 
 export function getTokenExpirationDate(token: string) {
-    const decoded = this.decodeToken(token);
+    const decoded = decodeToken(token);
 
     if (typeof decoded.exp === 'undefined') {
         return null;
@@ -35,9 +42,9 @@ export function getTokenExpirationDate(token: string) {
     return date;
 }
 
-export function isTokenExpired(token: string, offsetSeconds ?: number) {
-    const date = this.getTokenExpirationDate(token);
-    offsetSeconds = offsetSeconds || 0;
+export function isTokenExpired(token: string, offsetSeconds: number = 0) {
+    if (isValid(token)) return true;
+    const date = getTokenExpirationDate(token);
     if (date === null) {
         return false;
     }

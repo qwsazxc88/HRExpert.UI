@@ -27,39 +27,37 @@ import { JsonPipe } from '@angular/common';
     SicklistListComponent
 } from './';*/
 // import { LoginComponent } from './login/Login.component';
-import { MenuComponent } from './menu/Menu.component';
+// import { MenuComponent } from './menu/Menu.component';
 // import { LoggedInRouterOutlet } from './UI/CustomRouter/LoggedInOutlet';
 
 // import { API } from '../Services';
-import { Profile } from './Model';
+// import { Profile } from './Model';
 import { AppState } from './app.service';
-import { Auth } from './app.auth';
+// import { Auth } from './app.auth';
 
 @Component({
     selector: 'hre-app',
     pipes: [JsonPipe],
     // providers: [API],
-    directives: [MenuComponent],
+    directives: [/*MenuComponent*/],
     // encapsulation: ViewEncapsulation.None, // Global styles
     styles: [require('./app.css')],
     template: require('./app.html')
 })
-export class App implements OnInit {
-    jwt: string;
+export class App /*implements OnInit */{
+    // jwt: string;
     // decodedJwt: any;
-    profile: Profile;
+    // profile: Profile;
     // currentRole: number;
-    constructor(public appState: AppState, public auth: Auth) {
-        let token = auth.jwt;
+    constructor(public appState: AppState/*, public auth: Auth*/) {
+        console.log('App constructor');
+        /*let token = auth.jwt;
         if (token) {
             this.jwt = token;
-        }
+        }*/
     }
-    ngOnInit() {
+    /*ngOnInit() {
         this.profile = this.auth.profile;
-    }
-
-    // ngOnInit() {
-    // }
-
+        console.dir(this.profile);
+    }*/
 }

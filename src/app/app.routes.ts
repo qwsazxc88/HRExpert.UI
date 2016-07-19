@@ -9,7 +9,7 @@ import { AuthGuard } from './app.auth';
 
 export const routes: RouterConfig = [
     { path: 'login', component: C.LoginComponent },
-    { path: '', canActivate: [AuthGuard], children: [
+    { path: '', canActivate: [AuthGuard], component: C.MenuComponent , children: [
         { path: '',      component: C.Home },
         // { path: 'users',  component: C.UsersListComponent },
         // { path: 'roles',  component: C.RolesListComponent },

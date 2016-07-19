@@ -1,5 +1,5 @@
 export * from './app.component';
-// export * from './menu/Menu.component';
+export * from './menu/Menu.component';
 // export * from './users/UsersList.component';
 // export * from './users/UserEdit.component';
 // export * from './roles/RolesList.component';

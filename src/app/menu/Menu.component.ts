@@ -1,5 +1,5 @@
 // Vendor libs
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 // Libs
 // import { ComponentBase } from './componentbase';
@@ -15,15 +15,22 @@ import { Auth } from '../app.auth';
     template: require('./Menu.html'),
     // directives: [LoginComponent, RouterActive]
 })
-export class MenuComponent/* extends ComponentBase*/ {
-    @Input() public profile: Profile;
+export class MenuComponent implements OnInit/* extends ComponentBase*/ {
+    // @Input() profile: Profile;
     // @Input() currentRole: number;
     // @Output() RoleChanged = new EventEmitter();
     // public oneAtATime: boolean = true;
+    profile: Profile;
     constructor(private auth: Auth) {
-        console.dir('#####################', this.profile);
+        console.log('MenuComponent constructor');
+        this.profile = this.auth.profile;
         // super();
     }
+
+    ngOnInit() {
+            console.log('MenuOninit');
+        }
+
     ChangeRole(roleid) {
         console.log('change role ' + roleid);
         this.auth.currentRole = roleid;
