@@ -4,19 +4,12 @@
     "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "noImplicitReturns": true
   },
   "exclude": [
-    "node_modules",
-    "typings/main.d.ts",
-    "typings/main"
-  ],
-  "filesGlob": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom-typings.d.ts",
-    "typings/browser/index.d.ts"
+    "node_modules"
   ],
   "awesomeTypescriptLoaderOptions": {
     "resolveGlobs": true,
@@ -39,5 +32,16 @@
     "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
     "placeOpenBraceOnNewLineForFunctions": false,
     "placeOpenBraceOnNewLineForControlBlocks": false
+  }
+  ,"comments": {
+    "awesomeTypescriptLoaderOptions": {
+        "useWebpackText": true
+    },
+    "compilerOptions": {
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true
+    }
   }
 }

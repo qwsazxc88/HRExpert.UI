@@ -1,25 +1,28 @@
 /**
  * @author: @AngularClass
  */
+console.log('webpack.prod.js');
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
-var helpers = require('./helpers'); // Helper: root(), and rootDir() are defined at the bottom
-var webpackMerge = require('webpack-merge'); //Used to merge webpack configs
-var commonConfig = require('./webpack.common.js'); //The settings that are common to prod and dev
+const helpers = require('./helpers'); // Helper: root(), and rootDir() are defined at the bottom
+const webpackMerge = require('webpack-merge'); //Used to merge webpack configs
+const commonConfig = require('./webpack.common.js'); //The settings that are common to prod and dev
 
 /**
  * Webpack Plugins
  */
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin = require('webpack/lib/DefinePlugin');
-var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-var CompressionPlugin = require('compression-webpack-plugin');
-var WebpackMd5Hash = require('webpack-md5-hash');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
+const IgnorePlugin = require('webpack/lib/IgnorePlugin');
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 
 /**
  * Webpack Constants
  */
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || '*';
 const PORT = process.env.PORT || 9034;
 const METADATA = webpackMerge(commonConfig.metadata, {
@@ -30,7 +33,8 @@ const METADATA = webpackMerge(commonConfig.metadata, {
 });
 
 module.exports = webpackMerge(commonConfig, {
-  metadata: webpackMerge(commonConfig.metadata, METADATA),
+  metadata: METADATA,
+
   // Switch loaders to debug mode.
   //
   // See: http://webpack.github.io/docs/configuration.html#debug
@@ -194,15 +198,39 @@ module.exports = webpackMerge(commonConfig, {
       comments: false //prod
     }),
 
-    // Plugin: CompressionPlugin
-    // Description: Prepares compressed versions of assets to serve
-    // them with Content-Encoding
-    //
-    // See: https://github.com/webpack/compression-webpack-plugin
-    new CompressionPlugin({
-      regExp: /\.css$|\.html$|\.js$|\.map$/,
-      threshold: 2 * 1024
-    })
+    /**
+    * Plugin: NormalModuleReplacementPlugin
+    * Description: Replace resources that matches resourceRegExp with newResource
+    *
+    * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
+    */
+
+    new NormalModuleReplacementPlugin(
+        /angular2-hmr/,
+        helpers.root('config/modules/angular2-hmr-prod.js')
+    ),
+
+    /**
+    * Plugin: IgnorePlugin
+    * Description: Don’t generate modules for requests matching the provided RegExp.
+    *
+    * See: http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin
+    */
+
+    // new IgnorePlugin(/angular2-hmr/),
+
+    /**
+    * Plugin: CompressionPlugin
+    * Description: Prepares compressed versions of assets to serve
+    * them with Content-Encoding
+    *
+    * See: https://github.com/webpack/compression-webpack-plugin
+    */
+    //  install compression-webpack-plugin
+    // new CompressionPlugin({
+    //   regExp: /\.css$|\.html$|\.js$|\.map$/,
+    //   threshold: 2 * 1024
+    // })
 
   ],
 
@@ -240,4 +268,5 @@ module.exports = webpackMerge(commonConfig, {
     clearImmediate: false,
     setImmediate: false
   }
+
 });

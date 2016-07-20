@@ -1,0 +1,22 @@
+<!-- <div *ngIf="profile"> -->
+MENU
+<div class="col-md-2">
+    <!-- <div *ngIf="profile"> -->
+        <!-- <hre-menu [profile]="profile"></hre-menu> -->
+        <div class="panel panel-default" *ngFor="let role of profile.Roles" (click)="ChangeRole(role.Id)" >
+            <div class="panel-heading">{{role.Name}}</div>
+
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let section of role.Sections" >
+                    <a [routerLink]="[section.RouteName.toLowerCase()]">{{section.Name}}</a>
+                </li>
+            </ul>
+        </div>
+    <!-- </div> -->
+</div>
+<div class="col-md-10">
+    <router-outlet></router-outlet>
+</div>
+
+
+<!-- </div> -->

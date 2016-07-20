@@ -1,20 +1,22 @@
-//Vendor libs
-import { Component, Injectable } from '@angular/core';
-import 'rxjs/Rx';
+// Vendor libs
+import { Component, Injectable, Inject } from '@angular/core';
+import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import {HTTP_PROVIDERS, Http, Headers, RequestOptions, Response, ResponseOptions} from '@angular/http';
 
-//Libs
+// Libs
 import {
     Document, FileDto,
     User, Role, Section, Permission, Person, Department, StaffEstablishedPost, Organization, Position, Profile,
     Sicklist, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, SicklistType, TimesheetStatus
 } from '../Model';
+import { Auth } from '../app.auth';
 
 class FormDataConverter {
 
     private form: FormData = new FormData();
     constructor(private obj: any) {
+        console.log('FormDataConverter constructor');
     }
 
     Start(name: string) { this.GetForm(this.obj, name); return this.form; }
@@ -34,10 +36,10 @@ class FormDataConverter {
                     this.form.append(name, obj);
                 } else if (obj instanceof Date) {
                     this.form.append(name, obj.toISOString());
-                } else
+                } else{
                     for (var prop in obj) {
                         this.GetForm(obj[prop], name + (name.length > 0 ? '.' : '') + prop);
-                    }
+                    }}
                 break;
             default: break;
         }
@@ -49,14 +51,18 @@ export class Resource {
     id: number;
     http: Http;
     parent: Resource;
-    constructor(url: string) {
+    auth: Auth;
+    constructor(url: string, @Inject(Auth) _auth?: Auth) {
+        console.log('Resource constructor');
+        this.auth = _auth;
         this.url = url;
     }
     CreateOptions() {
-        let jwt = localStorage.getItem('jwt');
+        let jwt = this.auth.jwt;
         let headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'application/json' });
-        if (jwt)
+        if (jwt) {
             headers.append('Authorization', 'Bearer ' + jwt);
+        }
         let options = new RequestOptions({ headers: headers });
         return options;
     }
@@ -69,7 +75,7 @@ export class Resource {
         return result;
     }
     handleError(error: Response) {
-        console.error(error);
+        console.error('Error in Api call', error);
         return Observable.throw(error.json().error || 'Server error');
     }
 }
@@ -79,6 +85,7 @@ export class ApiResource<T> extends Resource {
     progress;
     progressObserver;
     constructor(url: string, parent: Resource) {
+        console.log('ApiResource constructor');
         super(url);
         this.parent = parent;
         this.http = parent.http;
@@ -106,9 +113,10 @@ export class ApiResource<T> extends Resource {
                 this.progressObserver.next(this.progress);
             };*/
             xhr.open(method, url, true);
-            let jwt = localStorage.getItem('jwt');
-            if (jwt)
+            let jwt = this.auth.jwt;
+            if (jwt) {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + jwt);
+            }
             xhr.send(formData);
         }));
     }
@@ -119,14 +127,15 @@ export class ApiResource<T> extends Resource {
             .map(res => <T[]>res.json())
             .catch(this.handleError);
     }
-    //CRUD
+    // CRUD
     Create(entity: T, IsFileSend: boolean = false) {
-        //if file request
-        if (IsFileSend)
+        // if file request
+        if (IsFileSend) {
             return this.makeFileRequest(entity, 'POST')
                 .map(res => <T>res.json())
                 .catch(this.handleError);
-        //if no files provided
+        }
+        // if no files provided
         let body = JSON.stringify(entity);
         var options = this.CreateOptions();
         var url = this.createUrl() + this.createAdditionUrlOptions();
@@ -135,7 +144,7 @@ export class ApiResource<T> extends Resource {
             .catch(this.handleError);
     }
     Read() {
-        //console.log(url); // BUG
+        // console.log(url); // BUG
         var options = this.CreateOptions();
         var url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.get(url, options)
@@ -143,12 +152,13 @@ export class ApiResource<T> extends Resource {
             .catch(this.handleError);
     }
     Update(entity: T, IsFileSend: boolean = false) {
-        //if file request
-        if (IsFileSend)
+        // if file request
+        if (IsFileSend) {
             return this.makeFileRequest(entity, 'PUT')
                 .map(res => <T>res.json())
                 .catch(this.handleError);
-        //if no files provided
+        }
+        // if no files provided
         let body = JSON.stringify(entity);
         var options = this.CreateOptions();
         var url = this.createUrl();
@@ -230,7 +240,6 @@ export class SicklistService extends ApiResource<Document<Sicklist>> {
         super('/sicklists', parent);
     }
     GetFileKey(filetype) {
-        //console.log(url);
         var options = this.CreateOptions();
         var url = this.createUrl() + '/files/' + filetype + this.createAdditionUrlOptions();
         return this.http.get(url, options)
@@ -377,12 +386,14 @@ export class ApiFactory {
     }
 }
 
-@Component({ providers: [HTTP_PROVIDERS] })
+// @Component({ providers: [forwardRef(() => Auth)] })
 @Injectable()
 export class API extends Resource {
-    constructor(_http: Http) {
+    constructor(_http: Http, _auth: Auth) {
         super('http://ruscount.com:9034/api/v1');
+        console.log('API constructor');
         this.http = _http;
+        this.auth = _auth;
     }
     public Users = ApiFactory.UsersFactory(this);
     public Roles = ApiFactory.RolesFactory(this);
@@ -400,36 +411,36 @@ export class API extends Resource {
     public SicklistPaymentRestrictTypes = ApiFactory.SicklistPaymentRestrictTypeFactory(this);
     public TimesheetStatuses = ApiFactory.TimesheetStatusFactory(this);
 
-    transformRequest(obj) {
-        var str = [];
-        for (var p in obj)
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-        return str.join('&');
-    }
-
     download(key) {
         window.open('http://ruscount.com:9034/download/' + key, '_blank');
     }
-
-    login(model): Observable<string> {
-        //console.log(this.http);
-        let body = this.transformRequest({
-            username: model.UserName,
-            password: model.Password,
-            grant_type: 'password'
-        });
-        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://ruscount.com:9034/connect/token', body, options)
-            .map(res => <string>(res.json().access_token))
-            .catch(error => Observable.throw(error.json().error || 'Server error'));
-    }
-
-    profile(): Observable<Profile> {
-        var options = this.CreateOptions();
-        var url = this.url + '/profile';
-        return this.http.get(url, options)
-            .map(res => <Profile>res.json())
-            .catch(this.handleError);
-    }
+    // transformRequest(obj) {
+    //     var str = [];
+    //     for (var p in obj)
+    //         str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+    //     return str.join('&');
+    // }
+    //
+    //
+    // login(login: string, password: string): Observable<string> {
+    //     // console.log(this.http);
+    //     let body = this.transformRequest({
+    //         username: login,
+    //         password: password,
+    //         grant_type: 'password'
+    //     });
+    //     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    //     let options = new RequestOptions({ headers: headers });
+    //     return this.http.post('http://ruscount.com:9034/connect/token', body, options)
+    //         .map(res => <string>(res.json().access_token))
+    //         .catch(error => Observable.throw(error.json().error || 'Server error'));
+    // }
+    //
+    // profile(): Observable<Profile> {
+    //     var options = this.CreateOptions();
+    //     var url = this.url + '/profile';
+    //     return this.http.get(url, options)
+    //         .map(res => <Profile>res.json())
+    //         .catch(this.handleError);
+    // }
 }

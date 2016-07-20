@@ -2,6 +2,9 @@
  * @author: @AngularClass
  */
 
+console.log('webpack.test.js');
+const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+
 var helpers = require('./helpers');
 
 /**
@@ -13,7 +16,6 @@ var DefinePlugin = require('webpack/lib/DefinePlugin');
 /**
  * Webpack Constants
  */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 /**
  * Webpack configuration

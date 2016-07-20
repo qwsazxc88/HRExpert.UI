@@ -2,38 +2,33 @@
  * Providers provided by Angular
  */
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
 /*
 * Platform and Environment
 * our providers/directives/pipes
 */
-import { DIRECTIVES, PIPES, PROVIDERS } from './platform/browser';
-import { ENV_PROVIDERS } from './platform/environment';
-// import { HTTP_PROVIDERS } from '@angular/http';
+import { PLATFORM_PROVIDERS } from './platform/browser';
+import { ENV_PROVIDERS, decorateComponentRef } from './platform/environment';
+
 /*
 * App Component
 * our top level component that holds all of our components
 */
-import { App, API, APP_UI_COMPONENTS, APP_COMPONENTS, MD_COMPONENTS } from './app';
+import { App, APP_PROVIDERS /*,API*/ } from './app';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
 export function main(initialHmrState?: any): Promise<any> {
-  if ('development' !== ENV) enableProdMode();
-  let errorCounter = 0;
-  return bootstrap(App, [
-    ...ENV_PROVIDERS,
-    ...PROVIDERS,
-    ...DIRECTIVES,
-    ...PIPES,
-    // ...HTTP_PROVIDERS,
-    ...MD_COMPONENTS,
-    ...APP_COMPONENTS,
-    ...APP_UI_COMPONENTS
-  ])
-    .catch(err => console.error('Bootstrap promise error catcher: ', ++errorCounter/*err*/));
+    // console.dir(PLATFORM_PROVIDERS, ENV_PROVIDERS);
+    return bootstrap(App, [
+        // To add more vendor providers please look in the platform/ folder
+        ...PLATFORM_PROVIDERS,
+        ...ENV_PROVIDERS,
+        ...APP_PROVIDERS
+    ])
+        .then(decorateComponentRef)
+        .catch(err => console.error('Bootstrap promise error catcher -- Error:\n', err));
 
 }
 
@@ -44,16 +39,15 @@ export function main(initialHmrState?: any): Promise<any> {
  * Also see custom-typings.d.ts as you also need to do `typings install x` where `x` is your module
  */
 
-
 /*
  * Hot Module Reload
  * experimental version by @gdi2290
  */
 if ('development' === ENV && HMR === true) {
-  // activate hot module reload
-  let ngHmr = require('angular2-hmr');
-  ngHmr.hotModuleReplacement(main, module);
+    // activate hot module reload
+    let ngHmr = require('angular2-hmr');
+    ngHmr.hotModuleReplacement(main, module);
 } else {
-  // bootstrap when documetn is ready
-  document.addEventListener('DOMContentLoaded', () => main());
+    // bootstrap when documetn is ready
+    document.addEventListener('DOMContentLoaded', () => main());
 }
