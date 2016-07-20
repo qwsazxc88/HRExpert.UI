@@ -1,5 +1,5 @@
 {
-"extends" : ["tslint:latest"]/*, "./codelyzer.json"]*/,
+"extends" : ["tslint:latest", "./codelyzer.json"],
 
 	"rules" : {
 
@@ -16,6 +16,8 @@
 		"ordered-imports" : false,
 		"object-literal-sort-keys" : false,
 		"member-access" : false,
+		"curly" : false,
+		"no-console" : false,
 
 		"no-construct" : true,
 		"no-duplicate-key" : true,

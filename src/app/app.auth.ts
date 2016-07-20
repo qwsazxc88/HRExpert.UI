@@ -13,15 +13,8 @@ import * as tokenHelper from './Utils/Token/TokenHelper';
 export class Auth {
     constructor(private http: Http) {
         console.log('Auth constructor');
-        const token = localStorage.getItem('jwt');
-        // сделать что нибудь если в токене мусор
-        if (token) {
-            try {
-                if (!tokenHelper.isTokenExpired(token)) this._jwt = token;
-                this.getProfile(() => {});
-            } catch (e) { };
-        }
     }
+
     currentRole: number;
     profile: Profile;
     private _jwt: string;
@@ -37,6 +30,15 @@ export class Auth {
         localStorage.setItem('jwt', value);
     }
 
+    Init() {
+        const token = localStorage.getItem('jwt');
+        // сделать что нибудь если в токене мусор
+        if (token) {
+            if (!tokenHelper.isTokenExpired(token)) this._jwt = token;
+            this.getProfile(() => { });
+        }
+    }
+
     getProfile(resolve) {
         this.requestProfile().subscribe(
             data => {
@@ -50,7 +52,7 @@ export class Auth {
 
     login(login: string, pass: string): Promise<void> {
         return new Promise<void>((res, rej) =>
-            this.getToken(login, pass).subscribe(
+            this.requestToken(login, pass).subscribe(
                 jwt => {
                     this.jwt = jwt;
                     this.getProfile(() => res());
@@ -66,7 +68,7 @@ export class Auth {
             let exp = tokenHelper.isTokenExpired(this.jwt);
             if (exp) { this.logout(); }
         }
-        setTimeout(() => { this.checkExpiration(); }, 30e3);
+        setTimeout(() => { this.checkExpiration(); }, 30e4);
     }
 
     logout() {
@@ -81,7 +83,7 @@ export class Auth {
         return (this.jwt ? !tokenHelper.isTokenExpired(this.jwt) : false) && this.profile ? true : false;
     }
 
-    private getToken(login: string, password: string): Observable<string> {
+    private requestToken(login: string, password: string): Observable<string> {
         // console.log(this.http);
         let body = this.transformRequest({
             username: login,

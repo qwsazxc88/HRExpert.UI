@@ -33,7 +33,7 @@ import { JsonPipe } from '@angular/common';
 // import { API } from '../Services';
 // import { Profile } from './Model';
 import { AppState } from './app.service';
-// import { Auth } from './app.auth';
+import { Auth } from './app.auth';
 
 @Component({
     selector: 'hre-app',
@@ -44,20 +44,20 @@ import { AppState } from './app.service';
     styles: [require('./app.css')],
     template: require('./app.html')
 })
-export class App /*implements OnInit */{
+export class App implements OnInit {
     // jwt: string;
     // decodedJwt: any;
     // profile: Profile;
     // currentRole: number;
-    constructor(public appState: AppState/*, public auth: Auth*/) {
+    constructor(public appState: AppState, public auth: Auth) {
         console.log('App constructor');
         /*let token = auth.jwt;
         if (token) {
             this.jwt = token;
         }*/
     }
-    /*ngOnInit() {
-        this.profile = this.auth.profile;
-        console.dir(this.profile);
-    }*/
+    ngOnInit() {
+        console.log('App ngOnInit()');
+        this.auth.Init();
+    }
 }
