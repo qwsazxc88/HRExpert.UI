@@ -67,8 +67,9 @@ export class Resource {
         return options;
     }
     createAdditionUrlOptions() {
-        const role = this.auth.currentRole;
-        return role ? '?for_roleid=' + role : '';
+        // const role = this.auth.currentRole;
+        // return role ? '?for_roleid=' + role : '';
+        return '';
     }
     createUrl() {
         const result = (this.parent ? this.parent.createUrl() : '') + this.url + (this.id ? '(' + this.id + ')' : '');

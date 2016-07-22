@@ -31,11 +31,11 @@ export class MenuComponent implements OnInit/* extends ComponentBase*/ {
         this.profile = this.auth.profile;
     }
 
-    ChangeRole(roleid) {
+    /*ChangeRole(roleid) {
         console.log('change role ' + roleid);
         this.auth.currentRole = roleid;
         // this.currentRole = roleid;
         // this.RoleChanged.emit(this.currentRole);
-    }
+    }*/
 
 }

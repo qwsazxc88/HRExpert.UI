@@ -16,7 +16,7 @@ export class Auth {
         console.log('Auth constructor');
     }
 
-    currentRole: number;
+    // currentRole: number;
 
     get profile() {
         console.info('get profile');
