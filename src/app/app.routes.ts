@@ -11,9 +11,10 @@ export const routes: RouterConfig = [
     { path: 'login', component: C.LoginComponent },
     { path: '', canActivate: [AuthGuard], component: C.MenuComponent , children: [
         { path: '',      component: C.Home },
-        { path: 'sicklists', canActivate: [ WebpackAsyncRoute ],
+        { path: 'sicklists', //canActivate: [ WebpackAsyncRoute ],
         children: [
-            { path: '', component: 'SicklistListComponent' }  // must be included
+            { path: '', component: 'SicklistListComponent' }, // must be included
+            { path: ':id', component: 'SicklistEditComponent' }  // must be included
         ]},
         { path: 'users',  component: 'UsersListComponent' },
         { path: 'roles',  component: 'RolesListComponent' },
@@ -60,6 +61,7 @@ export const routes: RouterConfig = [
 export const asyncRoutes: AsyncRoutes = {
   // we have to use the alternative syntax for es6-promise-loader to grab the routes
   'SicklistListComponent': require('es6-promise-loader!./sicklist/SicklistList.component'),
+  'SicklistEditComponent': require('es6-promise-loader!./sicklist/SicklistEdit.component'),
   'UsersListComponent': require('es6-promise-loader!./users/UsersList.component'),
   'RolesListComponent': require('es6-promise-loader!./roles/RolesList.component'),
   'SectionsListComponent': require('es6-promise-loader!./sections/SectionsList.component'),

@@ -23,13 +23,13 @@ export class MenuComponent implements OnInit/* extends ComponentBase*/ {
     profile: Profile;
     constructor(private auth: Auth) {
         console.log('MenuComponent constructor');
-        this.profile = this.auth.profile;
         // super();
     }
 
     ngOnInit() {
-            console.log('MenuOninit');
-        }
+        console.log('MenuOninit');
+        this.profile = this.auth.profile;
+    }
 
     ChangeRole(roleid) {
         console.log('change role ' + roleid);

@@ -11,7 +11,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 // import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { provideRouter } from '@angular/router';
 // Angular 2 forms
-// import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 // Angular 2 Material
 // import { MdRadioDispatcher } from '@angular2-material/radio/radio_dispatcher';
 // const MATERIAL_PROVIDERS = [
@@ -35,8 +35,8 @@ import { AUTH_PROVIDERS } from '../../app/app.auth';
 // import { BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
 export const APPLICATION_PROVIDERS = [
     // new Angular 2 forms
-    // disableDeprecatedForms(),
-    // provideForms(),
+    disableDeprecatedForms(),
+    provideForms(),
     // ...ROUTER_PROVIDERS,
 
     ...APP_RESOLVER_PROVIDERS,

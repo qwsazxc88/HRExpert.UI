@@ -89,6 +89,7 @@ export class ApiResource<T> extends Resource {
         super(url);
         this.parent = parent;
         this.http = parent.http;
+        this.auth = parent.auth;
     }
 
     private makeFileRequest<T>(model: T, method: string): Observable<Response> {

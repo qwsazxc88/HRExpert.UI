@@ -17,6 +17,7 @@
 		"object-literal-sort-keys" : false,
 		"member-access" : false,
 		"curly" : false,
+		"interface-name" : false,
 		"no-console" : false,
 
 		"no-construct" : true,

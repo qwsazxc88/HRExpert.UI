@@ -3,6 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { Http, Headers, RequestOptions, Response, ResponseOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import { Profile } from './Model';
 // import { API } from './Services';
@@ -11,31 +12,41 @@ import * as tokenHelper from './Utils/Token/TokenHelper';
 // @Component({ providers: [forwardRef(() => API)] })
 @Injectable()
 export class Auth {
-    constructor(private http: Http) {
+    constructor(private http: Http, private router: Router) {
         console.log('Auth constructor');
     }
 
     currentRole: number;
-    profile: Profile;
-    private _jwt: string;
+
+    get profile() {
+        console.info('get profile');
+        return this._profile;
+    }
+    set profile(v: Profile) {
+        this._profile = v;
+    }
+    _profile: Profile;
 
     get jwt() {
-        console.log('get jwt');
+        console.info('get jwt');
         return this._jwt;
     }
-
     set jwt(value: string) {
-        console.log('set jwt');
+        console.info('set jwt');
         this._jwt = value;
         localStorage.setItem('jwt', value);
     }
+    private _jwt: string;
 
-    Init() {
+    Init() {console.info('Auth#Init');
         const token = localStorage.getItem('jwt');
         // сделать что нибудь если в токене мусор
         if (token) {
+            this.jwt = token;
             if (!tokenHelper.isTokenExpired(token)) this._jwt = token;
-            this.getProfile(() => { });
+            this.getProfile(() => {
+                // this.router.navigate(['/']);
+            });
         }
     }
 
@@ -45,8 +56,8 @@ export class Auth {
                 this.profile = data;
                 //  this.profileChange.emit(this.profile);
             },
-            error => Observable.throw(error.json().error || 'Server error'),
-            () => resolve()
+            error => {console.dir(error);Observable.throw(error || 'Server error')},
+            () => {console.info('getProfile#resolve()');resolve()}
         );
     }
 
@@ -80,7 +91,18 @@ export class Auth {
     }
 
     canNavigate(): boolean {
-        return (this.jwt ? !tokenHelper.isTokenExpired(this.jwt) : false) && this.profile ? true : false;
+        console.debug('canNavigate');
+        if (this.jwt) {
+            console.debug('canNavigate#if (this.jwt)');
+            if (!tokenHelper.isTokenExpired(this.jwt)) {
+                console.debug('canNavigate#if isTokenExpired');
+                if (this.profile) {
+                    console.debug('canNavigate#if (this.profile)');
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private requestToken(login: string, password: string): Observable<string> {
@@ -94,7 +116,7 @@ export class Auth {
         let options = new RequestOptions({ headers: headers });
         return this.http.post('http://ruscount.com:9034/connect/token', body, options)
             .map(res => <string>(res.json().access_token))
-            .catch(error => Observable.throw(error.json().error || 'Server error'));
+            .catch(error => Observable.throw(error || 'Server error'));
     }
 
     private requestProfile(): Observable<Profile> {
@@ -103,8 +125,8 @@ export class Auth {
         return this.http.get(url, options)
             .map(res => <Profile>res.json())
             .catch(function(error: Response) {
-                console.error('Error in getprofile call', error);
-                return Observable.throw(error.json().error || 'Server error');
+                console.error('Error in requestProfile call', error);
+                return Observable.throw(error || 'Server error');
             });
     }
 
