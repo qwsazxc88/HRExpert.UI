@@ -1,12 +1,12 @@
 // Vendor libs
 import { Component } from '@angular/core';
-import { Router  } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { OnInit } from '@angular/core';
 
 // Libs
 
 import { API } from '../Services';
-import { Sicklist, Document } from '../Model';
+import { Sicklist, $Document } from '../Model';
 
 @Component({
     selector: 'sicklist-list',
@@ -16,14 +16,16 @@ import { Sicklist, Document } from '../Model';
 })
 export class SicklistListComponent implements OnInit {
     errorMessage: string;
-    Model: Document<Sicklist>[];
+    Model: $Document<Sicklist>[];
     stringAsDate(dateStr) {
         return new Date(dateStr);
     }
-    constructor(private Api: API, private _router: Router) {
+    constructor(private Api: API, private _router: Router, private r: ActivatedRoute) {
+        console.info('SicklistListComponent constructor');
     }
 
     ngOnInit() {
+        console.info('SicklistListComponent ngOnInit');
         this.Get();
     }
 
@@ -35,13 +37,13 @@ export class SicklistListComponent implements OnInit {
             );
     }
 
-    Edit(entity: Document<Sicklist>) {
-        let link = ['SicklistEdit', { id: entity.Data.Id }];
-        this._router.navigate(link);
+    Edit(entity: $Document<Sicklist>) {
+        let link = [ entity.data.id ];
+        this._router.navigate(link, {relativeTo : this.r });
     }
 
     Create() {
-        let link = ['SicklistEdit', { id: 0 }];
-        this._router.navigate(link);
+        // let link = ['SicklistEdit', { id: 0 }];
+        this._router.navigate([0], {relativeTo : this.r });
     }
 }

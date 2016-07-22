@@ -1,12 +1,12 @@
 // Vendor libs
-import { Component, Injectable, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
-import {HTTP_PROVIDERS, Http, Headers, RequestOptions, Response, ResponseOptions} from '@angular/http';
+import { Http, Headers, RequestOptions, Response, ResponseOptions } from '@angular/http';
 
 // Libs
 import {
-    Document, FileDto,
+    $Document, FileDto,
     User, Role, Section, Permission, Person, Department, StaffEstablishedPost, Organization, Position, Profile,
     Sicklist, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, SicklistType, TimesheetStatus
 } from '../Model';
@@ -21,13 +21,13 @@ class FormDataConverter {
 
     Start(name: string) { this.GetForm(this.obj, name); return this.form; }
     private GetForm(obj, name: string) {
-        var type = typeof obj;
+        const type = typeof obj;
         switch (type) {
             case 'number': this.form.append(name, obj); break;
             case 'string': this.form.append(name, obj); break;
             case 'object':
                 if (obj instanceof Array) {
-                    for (var i in obj) {
+                    for (const i in obj) {
                         this.GetForm(obj[i], name + '[' + i + ']');
                     }
                 } else if (obj instanceof File) {
@@ -36,8 +36,8 @@ class FormDataConverter {
                     this.form.append(name, obj);
                 } else if (obj instanceof Date) {
                     this.form.append(name, obj.toISOString());
-                } else{
-                    for (var prop in obj) {
+                } else {
+                    for (const prop in obj) {
                         this.GetForm(obj[prop], name + (name.length > 0 ? '.' : '') + prop);
                     }}
                 break;
@@ -67,11 +67,11 @@ export class Resource {
         return options;
     }
     createAdditionUrlOptions() {
-        var role = localStorage.getItem('forrole');
+        const role = localStorage.getItem('forrole');
         return role ? '?for_roleid=' + role : '';
     }
     createUrl() {
-        var result = (this.parent ? this.parent.createUrl() : '') + this.url + (this.id ? '(' + this.id + ')' : '');
+        const result = (this.parent ? this.parent.createUrl() : '') + this.url + (this.id ? '(' + this.id + ')' : '');
         return result;
     }
     handleError(error: Response) {
@@ -89,19 +89,20 @@ export class ApiResource<T> extends Resource {
         super(url);
         this.parent = parent;
         this.http = parent.http;
+        this.auth = parent.auth;
     }
 
     private makeFileRequest<T>(model: T, method: string): Observable<Response> {
         return Observable.fromPromise<Response>(new Promise<Response>((resolve, reject) => {
-            var url = this.createUrl() + this.createAdditionUrlOptions();
+            const url = this.createUrl() + this.createAdditionUrlOptions();
             let xhr: XMLHttpRequest = new XMLHttpRequest();
-            var Converter = new FormDataConverter(model);
-            var formData = Converter.Start('');
+            const Converter = new FormDataConverter(model);
+            const formData = Converter.Start('');
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        var opt = new ResponseOptions({ body: xhr.response, status: 200 });
-                        var resp = new Response(opt);
+                        const opt = new ResponseOptions({ body: xhr.response, status: 200 });
+                        const resp = new Response(opt);
                         resolve(resp);
                     } else {
                         reject(xhr.response);
@@ -121,8 +122,8 @@ export class ApiResource<T> extends Resource {
         }));
     }
     List() {
-        var options = this.CreateOptions();
-        var url = this.createUrl() + this.createAdditionUrlOptions();
+        const options = this.CreateOptions();
+        const url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.get(url, options)
             .map(res => <T[]>res.json())
             .catch(this.handleError);
@@ -137,16 +138,16 @@ export class ApiResource<T> extends Resource {
         }
         // if no files provided
         let body = JSON.stringify(entity);
-        var options = this.CreateOptions();
-        var url = this.createUrl() + this.createAdditionUrlOptions();
+        const options = this.CreateOptions();
+        const url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.post(url, body, options)
             .map(res => <T>res.json())
             .catch(this.handleError);
     }
     Read() {
         // console.log(url); // BUG
-        var options = this.CreateOptions();
-        var url = this.createUrl() + this.createAdditionUrlOptions();
+        const options = this.CreateOptions();
+        const url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.get(url, options)
             .map(res => <T>res.json())
             .catch(this.handleError);
@@ -160,15 +161,15 @@ export class ApiResource<T> extends Resource {
         }
         // if no files provided
         let body = JSON.stringify(entity);
-        var options = this.CreateOptions();
-        var url = this.createUrl();
+        const options = this.CreateOptions();
+        const url = this.createUrl();
         return this.http.put(url, body, options)
             .map(res => <T>res.json())
             .catch(this.handleError);
     }
     Delete() {
-        var options = this.CreateOptions();
-        var url = this.createUrl() + this.createAdditionUrlOptions();
+        const options = this.CreateOptions();
+        const url = this.createUrl() + this.createAdditionUrlOptions();
         return this.http.delete(url, options)
             .map(res => <T>res.json())
             .catch(this.handleError);
@@ -235,13 +236,13 @@ export class PositionsService extends ApiResource<Position> {
     }
 }
 
-export class SicklistService extends ApiResource<Document<Sicklist>> {
+export class SicklistService extends ApiResource<$Document<Sicklist>> {
     constructor(parent: Resource) {
         super('/sicklists', parent);
     }
     GetFileKey(filetype) {
-        var options = this.CreateOptions();
-        var url = this.createUrl() + '/files/' + filetype + this.createAdditionUrlOptions();
+        const options = this.CreateOptions();
+        const url = this.createUrl() + '/files/' + filetype + this.createAdditionUrlOptions();
         return this.http.get(url, options)
             .map(res => <string>res.json())
             .catch(this.handleError);
@@ -281,105 +282,105 @@ export class TimesheetStatusService extends ApiResource<TimesheetStatus> {
 export class ApiFactory {
     static PersonsFactory(parent: Resource) {
         return function(Id?: number) {
-            var service = new PersonsService(parent);
+            const service = new PersonsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static UsersFactory(parent: Resource) {
         return function(Id?: number) {
-            var service = new UsersService(parent);
+            const service = new UsersService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static RolesFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new RolesService(parent);
+            const service = new RolesService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static PermissionsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new PermissionsService(parent);
+            const service = new PermissionsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static SectionsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new SectionsService(parent);
+            const service = new SectionsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static DepartmentsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new DepartmentsService(parent);
+            const service = new DepartmentsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static OrganizationsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new OrganizationsService(parent);
+            const service = new OrganizationsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static StaffEstablishedPostsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new StaffEstablishedPostsService(parent);
+            const service = new StaffEstablishedPostsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static PositionsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new PositionsService(parent);
+            const service = new PositionsService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static SicklistsFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new SicklistService(parent);
+            const service = new SicklistService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static SicklistTypesFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new SicklistTypeService(parent);
+            const service = new SicklistTypeService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static SicklistPaymentPercentFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new SicklistPaymentPercentService(parent);
+            const service = new SicklistPaymentPercentService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static SicklistPaymentRestrictTypeFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new SicklistPaymentRestrictTypesService(parent);
+            const service = new SicklistPaymentRestrictTypesService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static SicklistBabyMindingTypeFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new SicklistBabyMindingTypesService(parent);
+            const service = new SicklistBabyMindingTypesService(parent);
             if (Id) service.id = Id;
             return service;
         };
     }
     static TimesheetStatusFactory(parent: Resource) {
         return function(Id: number = null) {
-            var service = new TimesheetStatusService(parent);
+            const service = new TimesheetStatusService(parent);
             if (Id) service.id = Id;
             return service;
         };
@@ -390,7 +391,7 @@ export class ApiFactory {
 @Injectable()
 export class API extends Resource {
     constructor(_http: Http, _auth: Auth) {
-        super('http://ruscount.com:9034/api/v1');
+        super('http://ruscount.com:9034/api/v1', _auth);
         console.log('API constructor');
         this.http = _http;
         this.auth = _auth;

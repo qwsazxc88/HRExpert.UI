@@ -18,12 +18,14 @@ export class DepartmentsListComponent implements OnInit {
     constructor(private Api: API, private _router: Router, private _routeParams: RouteParams) {
         this.toggled = false;
     }
+
     Organization: number;
     errorMessage: string;
     toggled: boolean;
     @Input() Model: Department[];
     @Input() ParentId: number;
     DepartmentList: Department[];
+
     ngOnInit() {
         this.Organization = + this._routeParams.get('organizationid');
 
@@ -32,8 +34,10 @@ export class DepartmentsListComponent implements OnInit {
             this.DepartmentList = this.Model.filter(x => x.ParentId == this.ParentId)
         }
     }
+
     Get() {
     }
+
     Edit(entity) {
         let link = ['DepartmentEdit', { departmentid: entity.Id, organizationid: this.Organization }];
         this._router.navigate(link);

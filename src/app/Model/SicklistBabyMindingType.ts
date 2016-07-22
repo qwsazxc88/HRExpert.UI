@@ -1,4 +1,4 @@
-export class SicklistBabyMindingType {
-    public Id: number;
-    public Name: string;
+export interface SicklistBabyMindingType {
+    id: number;
+    name: string;
 }

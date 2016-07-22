@@ -1,112 +1,112 @@
-<div *ngIf="!isModelReady" style="color: lightgray; text-align: center;">    
+<div *ngIf="!isModelReady" style="color: lightgray; text-align: center;">
     <progressbar max="100" class="progress-striped active" [value]="progress"><span style="color:white; white-space:nowrap;"></span>
     </progressbar>
 </div>
 <div *ngIf="isModelReady" class="panel panel-default dropshadow">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Больничный</div>
-  <!-- Default contents -->
-  <div class="panel-body" *ngIf="Model" >
-    <div class="form-group">
-        <label class="control-label">Сотрудник:</label>
-        <span *ngIf="Model.Person" >{{Model.Person.Name}}</span>
-        <select  class="form-control" [(ngModel)]="Model.Person">
-            <option *ngFor="let element of Persons"  [ngValue]="element">{{element.Name}}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Подразделение:</label>
-        <span *ngIf="Model.Person && Model.Person.StaffEstablishedPost" >{{Model.Person.StaffEstablishedPost.Department.Name}}</span>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Номер больничного листа:</label>
-        <input type="text" class="form-control" *ngIf="Model.Data" [(ngModel)]="Model.Data.SicklistNumber" />
-    </div>
-    <div style="display:inline-block; min-height:290px;">
-        <label class="control-label">Дата начала</label>
-        <datepicker  [(ngModel)]="Model.Data.BeginDate" ></datepicker>
-    </div>
-    <div style="display:inline-block; min-height:290px;">
-        <label class="control-label">Дата окончания</label>
-        <datepicker  [(ngModel)]="Model.Data.EndDate" ></datepicker>
-    </div>
+    <!-- Default panel contents -->
+    <div class="panel-heading">Больничный</div>
+    <!-- Default contents -->
+    <div class="panel-body" *ngIf="Model" >
+        <div class="form-group">
+            <label class="control-label">Сотрудник:</label>
+            <span *ngIf="Model.Person" >{{Model.Person.Name}}</span>
+            <select  class="form-control" [(ngModel)]="Model.Person">
+                <option *ngFor="let element of Persons"  [ngValue]="element">{{element.Name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Подразделение:</label>
+            <span *ngIf="Model.Person && Model.Person.StaffEstablishedPost" >{{Model.Person.StaffEstablishedPost.Department.Name}}</span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Номер больничного листа:</label>
+            <input type="text" class="form-control" *ngIf="Model.Data" [(ngModel)]="Model.Data.SicklistNumber" />
+        </div>
+        <div style="display:inline-block; min-height:290px;">
+            <label class="control-label">Дата начала</label>
+            <datepicker  [(ngModel)]="Model.Data.BeginDate" ></datepicker>
+        </div>
+        <div style="display:inline-block; min-height:290px;">
+            <label class="control-label">Дата окончания</label>
+            <datepicker  [(ngModel)]="Model.Data.EndDate" ></datepicker>
+        </div>
 
-    <div class="form-group">
-        <label class="control-label">Тип больничного листа:</label>        
-        <select  class="form-control" [(ngModel)]="Model.Data.SicklistType">
-            <option *ngFor="let element of SicklistTypes"  [ngValue]="element">{{element.Name}}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">В случае ухода за ребенком:</label>
-        <select  class="form-control" [(ngModel)]="Model.Data.SicklistBabyMindingType">
-            <option *ngFor="let element of SicklistBabyMindingTypes"  [ngValue]="element">{{element.Name}}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Ограничение оплаты:</label>
-        <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentRestrictType">
-            <option *ngFor="let element of SicklistPaymentRestrictTypes"  [ngValue]="element">{{element.Name}}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Процент оплаты:</label>
-        <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentPercent">
-            <option *ngFor="let element of SicklistPaymentPercents"  [ngValue]="element">{{element.Value}}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Заполнение табеля:</label>
-        <select  class="form-control" [(ngModel)]="Model.Data.TimesheetStatus">
-            <option *ngFor="let element of TimesheetStatuses"  [ngValue]="element">{{element.Name}}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Скан документа:</label>
-        <span *ngIf="Model.Files">
-            <div *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" >
-                <a *ngIf="file" >{{file.FileName}}</a>
-            </div>
-        </span>
-        <input fileselector type="file" [(SelectedFile)]="Model.Data.SicklistDocument"/>
-    </div>
-    <div class="well">
-        <label>Согласование:</label>
-        <table>
-        <tr>
-            <td>Сотрудник согласен</td>  
-            <td><select [(ngModel)]="PersonApprovement.isAccept">
-                <option value="true">Да</option>
-                <option value="false">Нет</option>
-            </select>    
-            </td>
-            <td><span *ngIf="PersonApprovement?.Person?.Name" >{{PersonApprovement.Person.Name}}</span></td>        
-        </tr> 
-        <tr>
-            <td>Руководитель согласен  </td>
-            <td><select [(ngModel)]="ManagerApprovement.isAccept">
-                <option value="true">Да</option>
-                <option value="false">Нет</option>
+        <div class="form-group">
+            <label class="control-label">Тип больничного листа:</label>
+            <select  class="form-control" [(ngModel)]="Model.Data.SicklistType">
+                <option *ngFor="let element of SicklistTypes"  [ngValue]="element">{{element.Name}}</option>
             </select>
-            </td>
-            <td>   
-            <span *ngIf="ManagerApprovement?.Person?.Name" >{{ManagerApprovement.Person.Name}}</span></td>         
-        </tr> 
-        <tr>
-            <td>Кадровик согласен  </td>
-            <td><select [(ngModel)]="PersonnelManagerApprovement.isAccept">
-                <option value="true">Да</option>
-                <option value="false">Нет</option>
+        </div>
+        <div class="form-group">
+            <label class="control-label">В случае ухода за ребенком:</label>
+            <select  class="form-control" [(ngModel)]="Model.Data.SicklistBabyMindingType">
+                <option *ngFor="let element of SicklistBabyMindingTypes"  [ngValue]="element">{{element.Name}}</option>
             </select>
-            </td> 
-            <td><span *ngIf="PersonnelManagerApprovement?.Person?.Name" >{{PersonnelManagerApprovement.Person.Name}}</span></td>           
+        </div>
+        <div class="form-group">
+            <label class="control-label">Ограничение оплаты:</label>
+            <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentRestrictType">
+                <option *ngFor="let element of SicklistPaymentRestrictTypes"  [ngValue]="element">{{element.Name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Процент оплаты:</label>
+            <select  class="form-control" [(ngModel)]="Model.Data.SicklistPaymentPercent">
+                <option *ngFor="let element of SicklistPaymentPercents"  [ngValue]="element">{{element.Value}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Заполнение табеля:</label>
+            <select  class="form-control" [(ngModel)]="Model.Data.TimesheetStatus">
+                <option *ngFor="let element of TimesheetStatuses"  [ngValue]="element">{{element.Name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Скан документа:</label>
+            <span *ngIf="Model.Files">
+                <div *ngFor="let file of Model.Files" (click)="DownloadFile(file.FileType)" >
+                    <a *ngIf="file" >{{file.FileName}}</a>
+                </div>
+            </span>
+            <input fileselector type="file" [(SelectedFile)]="Model.Data.SicklistDocument"/>
+        </div>
+        <div class="well">
+            <label>Согласование:</label>
+            <table>
+                <tr>
+                    <td>Сотрудник согласен</td>
+                    <td><select [(ngModel)]="PersonApprovement.isAccept">
+                        <option value="true">Да</option>
+                        <option value="false">Нет</option>
+                    </select>
+                </td>
+                <td><span *ngIf="PersonApprovement?.Person?.Name" >{{PersonApprovement.Person.Name}}</span></td>
+            </tr>
+            <tr>
+                <td>Руководитель согласен  </td>
+                <td><select [(ngModel)]="ManagerApprovement.isAccept">
+                    <option value="true">Да</option>
+                    <option value="false">Нет</option>
+                </select>
+            </td>
+            <td>
+                <span *ngIf="ManagerApprovement?.Person?.Name" >{{ManagerApprovement.Person.Name}}</span></td>
+            </tr>
+            <tr>
+                <td>Кадровик согласен  </td>
+                <td><select [(ngModel)]="PersonnelManagerApprovement.isAccept">
+                    <option value="true">Да</option>
+                    <option value="false">Нет</option>
+                </select>
+            </td>
+            <td><span *ngIf="PersonnelManagerApprovement?.Person?.Name" >{{PersonnelManagerApprovement.Person.Name}}</span></td>
         </tr>
-        
-        </table>
-  </div>
-  </div>
-  <div class="panel-footer">
-        <button class="btn btn-primary" (click)="Save()">Сохранить</button>
-        <button class="btn btn-danger" (click)="Delete()">Удалить</button>
-  </div>
+
+    </table>
+</div>
+</div>
+<div class="panel-footer">
+    <button class="btn btn-primary" (click)="Save()">Сохранить</button>
+    <button class="btn btn-danger" (click)="Delete()">Удалить</button>
+</div>
 </div>

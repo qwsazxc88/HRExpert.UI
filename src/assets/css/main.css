@@ -14,9 +14,6 @@ html, body{
 .modal-backdrop {
   z-index: -1;
 }
-a{
-    cursor:pointer;
-}
 table{
     width:100%;
     text-align: left !important;
@@ -27,7 +24,9 @@ table tr td{
 table tr th{
     text-align: left !important;
 }
+
 a {
+  cursor:pointer;
   position: relative;
   overflow: hidden;
 }
@@ -119,15 +118,6 @@ button:focus:after {
 	-webkit-box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
 	-moz-box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
 	box-shadow: 0px 1px 7px 1px rgba(0,0,0,0.09);
-}
-app-menu ul{
-    padding:0px;
-    list-style: none;
-}
-
-app-menu ul li
-{
-    padding:5px;
 }
 
  .cssload-thecube {

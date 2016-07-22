@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component } from '@angular/core';
-import { Router, RouteParams  } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 // import * as moment from 'moment';
@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
 // Libs
 import { FileSelectDirective } from '../UI/fileselector.component';
 import { API } from '../Services';
-import { DocumentApprovement, FileDto, Document, Person,
+import { DocumentApprovement, FileDto, $Document, Person,
     Sicklist, SicklistType, SicklistBabyMindingType, SicklistPaymentPercent, SicklistPaymentRestrictType, TimesheetStatus
 } from '../Model';
 
@@ -21,17 +21,20 @@ import { DocumentApprovement, FileDto, Document, Person,
     directives: [/*, /*BS_DIRECTIVES*/ FileSelectDirective]
 })
 export class SicklistEditComponent implements OnInit {
-    constructor(private Api: API, private _routeParams: RouteParams) {
-        this.Model = new Document<Sicklist>();
-        this.Model.Data = new Sicklist();
-        this.Model.Data.Id = 0;
+    constructor(private Api: API, ars: ActivatedRoute) {
+        console.info('SicklistEditComponent#constructor');
+        // this.Model = new $Document<Sicklist>();
+        // this.Model.data = new Sicklist();
+        this.Model.data.id = 0;
         this.PersonApprovement = new DocumentApprovement();
         this.PersonApprovement.ApprovePosition = 1;
         this.PersonnelManagerApprovement = new DocumentApprovement();
         this.PersonnelManagerApprovement.ApprovePosition = 3;
         this.ManagerApprovement = new DocumentApprovement();
         this.ManagerApprovement.ApprovePosition = 2;
+        this._routeParams = ars.snapshot.params;
     }
+    _routeParams: Params;
     errorMessage: string;
     progress: number;
     isModelReady: boolean;
@@ -40,7 +43,7 @@ export class SicklistEditComponent implements OnInit {
     PersonApprovement: DocumentApprovement = new DocumentApprovement();
     PersonnelManagerApprovement: DocumentApprovement = new DocumentApprovement();
 
-    Model: Document<Sicklist>;
+    Model: $Document<Sicklist>;
     SicklistTypes: SicklistType[];
     SicklistBabyMindingTypes: SicklistBabyMindingType[];
     SicklistPaymentPercents: SicklistPaymentPercent[];
@@ -50,7 +53,7 @@ export class SicklistEditComponent implements OnInit {
     ngOnInit() {
         this.progress = 0;
         this.isModelReady = false;
-        let id = +this._routeParams.get('id');
+        let id = +this._routeParams['id'];
         this.loadDictionaries();
         if (id > 0) {
             this.Get(id);

@@ -20,12 +20,14 @@
             </thead>
             <tbody>
                 <tr *ngFor="let element of Model">
-                    <td>{{element.Data.Id}}</td>
-                    <td>{{element.Person.Name}}</td>
-                    <td>{{element.Person.StaffEstablishedPost.Department.Name}}</td>
-                    <td>{{element.Data.SicklistType.Name}}</td>
-                    <td>{{stringAsDate(element.Data.BeginDate) | date}}</td>
-                    <td>{{stringAsDate(element.Data.EndDate) | date}}</td>
+                    <td>{{element.data.id}}</td>
+                    <td>{{element.person.name}}</td>
+                    <td>{{element.person.staffEstablishedPost.department.name}}</td>
+                    <td>{{element.data.sicklistType.name}}</td>
+                    <!-- <td>{{stringAsDate(element.data.beginDate) | date}}</td> -->
+                    <td>{{element.data.beginDate | date}}</td>
+                    <!-- <td>{{stringAsDate(element.data.endDate) | date}}</td> -->
+                    <td>{{element.data.endDate | date}}</td>
                     <td>
                         <a (click)="Edit(element)">
                             <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
