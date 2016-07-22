@@ -1,12 +1,12 @@
 import { Person } from './Person';
-import { FileDto } from './FileDto';
-import { DocumentApprovement } from './DocumentApprovement'
+import {FileDto} from './FileDto';
+import {DocumentApprovement} from './DocumentApprovement'
 
 export class $Document<T> {
-    createDate: Date;
-    creator: Person;
-    person: Person;
-    data: T;
-    files: FileDto[];
-    approvements: DocumentApprovement[];
+    CreateDate: Date;
+    Creator: Person;
+    Person: Person;
+    Data: T;
+    Files: FileDto[];
+    Approvements: DocumentApprovement[];
 }

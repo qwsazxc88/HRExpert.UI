@@ -6,14 +6,14 @@ import { TimesheetStatus } from './TimesheetStatus';
 // import { Document } from './Document';
 
 export class Sicklist {
-    id: number;
-    sicklistBabyMindingType: SicklistBabyMindingType;
-    sicklistPaymentPercent: SicklistPaymentPercent;
-    sicklistPaymentRestrictType: SicklistPaymentRestrictType;
-    timesheetStatus: TimesheetStatus;
-    sicklistType: SicklistType;
-    beginDate: Date;
-    endDate: Date;
-    sicklistNumber: string;
-    sicklistDocument: File;
+    Id: number;
+    SicklistBabyMindingType: SicklistBabyMindingType;
+    SicklistPaymentPercent: SicklistPaymentPercent;
+    SicklistPaymentRestrictType: SicklistPaymentRestrictType;
+    TimesheetStatus: TimesheetStatus;
+    SicklistType: SicklistType;
+    BeginDate: Date;
+    EndDate: Date;
+    SicklistNumber: string;
+    SicklistDocument: File;
 }
