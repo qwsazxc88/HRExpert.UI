@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="height: 60px;">Больничные
+        <button class="btn btn-primary" style="float:right;" (click)="Create()">Добавить</button>
+    </div>
+    <div class="panel-body">
+
+        <!-- Table -->
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 0;white-space: nowrap;">Номер заявки</th>
+                    <th>Сотрудник</th>
+                    <th>Подразделение</th>
+                    <th>Вид заявки</th>
+                    <th>Дата начала</th>
+                    <th>Дата Окончания</th>
+                    <th style="width: 0;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let element of Model">
+                    <td>{{element.data.id}}</td>
+                    <td>{{element.person.name}}</td>
+                    <td>{{element.person.staffEstablishedPost.department.name}}</td>
+                    <td>{{element.data.sicklistType.name}}</td>
+                    <!-- <td>{{stringAsDate(element.data.beginDate) | date}}</td> -->
+                    <td>{{element.data.beginDate | date}}</td>
+                    <!-- <td>{{stringAsDate(element.data.endDate) | date}}</td> -->
+                    <td>{{element.data.endDate | date}}</td>
+                    <td>
+                        <a (click)="Edit(element)">
+                            <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

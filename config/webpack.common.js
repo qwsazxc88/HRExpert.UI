@@ -2,15 +2,16 @@
  * @author: @AngularClass
  */
 
-var webpack = require('webpack');
-var helpers = require('./helpers');
+const webpack = require('webpack');
+const helpers = require('./helpers');
 
 /**
  * Webpack Plugins
  */
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const HtmlElementsPlugin = require('./html-elements-plugin');
 
 /**
  * Webpack Constants
@@ -18,7 +19,8 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const METADATA = {
   windowTitle: 'Система Кадровый Эксперт',
   // title: 'СКЭ 2.0-alpha-1',
-  baseUrl: '/'
+  baseUrl: '/',
+  isDevServer: helpers.isWebpackDevServer()
 };
 
 /**
@@ -95,7 +97,8 @@ module.exports = {
         exclude: [
           // these packages have problems with their sourcemaps
           helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular2-material')
+          helpers.root('node_modules/@angular2-material'),
+          helpers.root('node_modules/@angular')
         ]
       }
 
@@ -175,8 +178,9 @@ module.exports = {
     // See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
     // See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
     new webpack.optimize.CommonsChunkPlugin({
-      name: helpers.reverse(['polyfills', 'vendor', 'main']),
-      minChunks: Infinity
+    name: ['polyfills', 'vendor'].reverse()
+    //   name: helpers.reverse(['polyfills', 'vendor', 'main']),
+    //   minChunks: Infinity
     }),
 
     // Plugin: CopyWebpackPlugin
@@ -198,8 +202,35 @@ module.exports = {
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-       chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
-    })
+      chunksSortMode: 'dependency'
+    //   chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
+    }),
+
+    /*
+     * Plugin: HtmlHeadConfigPlugin
+     * Description: Generate html tags based on javascript maps.
+     *
+     * If a publicPath is set in the webpack output configuration, it will be automatically added to
+     * href attributes, you can disable that by adding a "=href": false property.
+     * You can also enable it to other attribute by settings "=attName": true.
+     *
+     * The configuration supplied is map between a location (key) and an element definition object (value)
+     * The location (key) is then exported to the template under then htmlElements property in webpack configuration.
+     *
+     * Example:
+     *  Adding this plugin configuration
+     *  new HtmlElementsPlugin({
+     *    headTags: { ... }
+     *  })
+     *
+     *  Means we can use it in the template like this:
+     *  <%= webpackConfig.htmlElements.headTags %>
+     *
+     * Dependencies: HtmlWebpackPlugin
+     */
+    new HtmlElementsPlugin({
+      headTags: require('./head-config.common')
+    }),
 
   ],
 

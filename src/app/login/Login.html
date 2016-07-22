@@ -1,0 +1,38 @@
+<!-- <nav class="navbar navbar-inverse navbar-fixed-top dropshadow">
+   <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">СКЭ 2.0-alpha-1</a>
+    </div>
+    <ul class="nav navbar-nav">
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right"> -->
+        <!-- <li *ngIf="!jwt" > -->
+        <li>
+            <form role="form" (submit)="submit($event, username.value, password.value)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" #username>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" #password><!-- (keyup.enter)="submit()" -->
+            </div>
+                <button type="submit" class="btn btn-default">Войти</button><!--  (click)="submit(login, pass)" -->
+            </form>
+        </li>
+        <alert *ngIf="errorMessage" type="danger">Ошибка при входе: {{errorMessage}}</alert>
+<!--
+        <li *ngIf="profile && jwt" dropdown (on-toggle)="toggled($event)">
+            <a href id="simple-dropdown" dropdownToggle>
+            <span class="glyphicon glyphicon-user"></span> {{profile.UserName}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+            <li>
+            <a *ngIf="jwt"  (click)="logout()">Выйти</a>
+            </li>
+            </ul>
+        </li>
+    </ul>
+  </div>
+</nav> -->
