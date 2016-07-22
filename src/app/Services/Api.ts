@@ -67,7 +67,7 @@ export class Resource {
         return options;
     }
     createAdditionUrlOptions() {
-        const role = localStorage.getItem('forrole');
+        const role = this.auth.currentRole;
         return role ? '?for_roleid=' + role : '';
     }
     createUrl() {

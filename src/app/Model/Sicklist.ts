@@ -5,7 +5,7 @@ import { SicklistPaymentPercent } from './SicklistPaymentPercent';
 import { TimesheetStatus } from './TimesheetStatus';
 // import { Document } from './Document';
 
-export interface Sicklist {
+export class Sicklist {
     id: number;
     sicklistBabyMindingType: SicklistBabyMindingType;
     sicklistPaymentPercent: SicklistPaymentPercent;

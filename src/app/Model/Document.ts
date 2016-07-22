@@ -2,7 +2,7 @@ import { Person } from './Person';
 import { FileDto } from './FileDto';
 import { DocumentApprovement } from './DocumentApprovement'
 
-export interface $Document<T> {
+export class $Document<T> {
     createDate: Date;
     creator: Person;
     person: Person;
