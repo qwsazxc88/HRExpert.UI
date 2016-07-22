@@ -38,7 +38,7 @@ export class SicklistListComponent implements OnInit {
     }
 
     Edit(entity: $Document<Sicklist>) {
-        let link = [ entity.data.id ];
+        let link = [ entity.Data.Id ];
         this._router.navigate(link, {relativeTo : this.r });
     }
 

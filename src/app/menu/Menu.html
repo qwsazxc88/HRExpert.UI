@@ -4,11 +4,11 @@
         <!-- <hre-menu [profile]="profile"></hre-menu> -->
         <!-- <div class="panel panel-default" *ngFor="let role of profile.Roles" (click)="ChangeRole(role.Id)" > -->
             <!-- <div class="panel-heading">{{role.Name}}</div> -->
-            <div class="panel-heading">{{profile.userName}}</div>
+            <div class="panel-heading">{{profile.UserName}}</div>
             <ul class="list-group">
                 <!-- <li class="list-group-item" *ngFor="let section of role.Sections" > -->
-                <li class="list-group-item" *ngFor="let section of profile.sections">
-                    <a [routerLink]="[section.route]">{{section.name}}</a>
+                <li class="list-group-item" *ngFor="let section of profile.Sections">
+                    <a [routerLink]="[section.Route]">{{section.Name}}</a>
                 </li>
             </ul>
         <!-- </div> -->

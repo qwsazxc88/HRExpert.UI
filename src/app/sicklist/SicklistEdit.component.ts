@@ -24,8 +24,8 @@ export class SicklistEditComponent implements OnInit {
     constructor(private Api: API, ars: ActivatedRoute) {
         console.info('SicklistEditComponent#constructor');
         this.Model = new $Document<Sicklist>();
-        this.Model.data = new Sicklist();
-        this.Model.data.id = 0;
+        this.Model.Data = new Sicklist();
+        this.Model.Data.id = 0;
         this.PersonApprovement = new DocumentApprovement();
         this.PersonApprovement.ApprovePosition = 1;
         this.PersonnelManagerApprovement = new DocumentApprovement();
