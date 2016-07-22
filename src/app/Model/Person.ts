@@ -1,7 +1,7 @@
-export interface Person {
-    id: number;
-    name: string;
-    positionId: number;
-    departmentId: number;
-    organizationId: number;
+export class Person {
+    public Id: number;
+    public Name: string;
+    public PositionId: number;
+    public DepartmentId: number;
+    public OrganizationId: number;
 }
