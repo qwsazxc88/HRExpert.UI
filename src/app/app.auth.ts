@@ -114,7 +114,7 @@ export class Auth {
         });
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://ruscount.com:9034/connect/token', body, options)
+        return this.http.post('http://ruscount.com:9034/api/v1/connect/token', body, options)
             .map(res => <string>(res.json().access_token))
             .catch(error => Observable.throw(error || 'Server error'));
     }
