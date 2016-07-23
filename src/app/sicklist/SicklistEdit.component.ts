@@ -25,7 +25,7 @@ export class SicklistEditComponent implements OnInit {
         console.info('SicklistEditComponent#constructor');
         this.Model = new $Document<Sicklist>();
         this.Model.Data = new Sicklist();
-        this.Model.Data.id = 0;
+        this.Model.Data.Id = 0;
         this.PersonApprovement = new DocumentApprovement();
         this.PersonApprovement.ApprovePosition = 1;
         this.PersonnelManagerApprovement = new DocumentApprovement();

@@ -11,6 +11,7 @@ import '@angular/common';
 import '@angular/http';
 // import '@angular/router-deprecated';
 import '@angular/router';
+import '@angular/forms';
 // AngularClass
 import '@angularclass/webpack-toolkit';
 import '@angularclass/request-idle-callback';
@@ -18,6 +19,8 @@ import '@angularclass/request-idle-callback';
 // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+
+import 'ng2-bootstrap';
 
 if ('production' === ENV) {
   // Production

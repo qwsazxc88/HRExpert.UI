@@ -2,17 +2,35 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "noEmitHelpers": true,
-    "noImplicitReturns": true
+    "skipDefaultLibCheck": true,
+    "lib": ["es6", "dom"],
+    "baseUrl": "./src",
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+
+    "paths": [
+    ],
+    "types": [
+  "core-js",
+  "hammerjs",
+  "jasmine",
+  "node",
+  "protractor",
+  "selenium-webdriver",
+  "source-map",
+  "uglify-js",
+  "webpack"
+]
   },
   "exclude": [
-    "node_modules"
+    "node_modules", "dist"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "resolveGlobs": true,
     "forkChecker": true
   },
   "compileOnSave": false,
@@ -40,8 +58,14 @@
     "compilerOptions": {
         "strictNullChecks": true,
         "noImplicitThis": true,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
         "noUnusedParameters": true,
-        "noUnusedLocals": true
+        "pretty": true,
+        "removeComments": true,
+        "noUnusedLocals": true,
+        "lib": ["es7"],
+        "noLib": true
     }
   }
 }
