@@ -27,7 +27,7 @@ class FormDataConverter {
             case 'string': this.form.append(name, obj); break;
             case 'object':
                 if (obj instanceof Array) {
-                    for (const i in obj) {
+                    for (let i in obj) {
                         this.GetForm(obj[i], name + '[' + i + ']');
                     }
                 } else if (obj instanceof File) {
@@ -37,7 +37,7 @@ class FormDataConverter {
                 } else if (obj instanceof Date) {
                     this.form.append(name, obj.toISOString());
                 } else {
-                    for (const prop in obj) {
+                    for (let prop in obj) {
                         this.GetForm(obj[prop], name + (name.length > 0 ? '.' : '') + prop);
                     }}
                 break;

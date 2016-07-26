@@ -1,12 +1,12 @@
 // Vendor libs
-import { Component, Input, Output, EventEmitter, OnInit, ViewContainerRef } from '@angular/core';
-import { RouterStateSnapshot, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 // import { HTTP_PROVIDERS  } from '@angular/http';
 
 // Libs
 
 // import { API } from '../Services';
-import { Profile } from '../Model';
+// import { Profile } from '../Model';
 import { Auth } from '../app.auth';
 
 @Component({
@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
     // private jwt: string;
 
     ngOnInit() {
+        this.redirectUrl = this.router.routerState.snapshot.queryParams['url'];
         // this.jwt = this.auth.jwt;
-        this.auth.checkExpiration();
+        // this.auth.checkExpiration();
         // if (this.jwt) {
         //     decodedJwt = tokenHelper.decodeToken(this.jwt);
         //     decodedJwtChange.emit(this.decodedJwt);
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
     submit(ev: Event, login: string, pass: string) {
         ev.preventDefault();
         this.auth.login(login, pass)
-         .then( () => this.router.navigate(['']) )
+         .then( () => this.router.navigate([this.redirectUrl ? this.redirectUrl : '']) )
          .catch( err => this.errorMessage = err);
     }
 

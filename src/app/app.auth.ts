@@ -1,6 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Http, Headers, RequestOptions, Response, ResponseOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -9,7 +9,6 @@ import { Profile } from './Model';
 // import { API } from './Services';
 import * as tokenHelper from './Utils/Token/TokenHelper';
 
-// @Component({ providers: [forwardRef(() => API)] })
 @Injectable()
 export class Auth {
     constructor(private http: Http, private router: Router) {
@@ -34,20 +33,18 @@ export class Auth {
     set jwt(value: string) {
         console.info('set jwt');
         this._jwt = value;
-        localStorage.setItem('jwt', value);
+        window.localStorage.setItem('jwt', value);
     }
     private _jwt: string;
 
-    Init() {console.info('Auth#Init');
+    Init() {
+        console.info('Auth#Init');
         const token = localStorage.getItem('jwt');
-        // сделать что нибудь если в токене мусор
-        if (token) {
-            this.jwt = token;
-            if (!tokenHelper.isTokenExpired(token)) this._jwt = token;
-            this.getProfile(() => {
-                // this.router.navigate(['/']);
-            });
+        if (token && !tokenHelper.isTokenExpired(token)) {
+            this._jwt = token;
+            this.getProfile(() => {});
         }
+        setTimeout(() => { this.checkExpiration(); }, 30e4);
     }
 
     getProfile(resolve) {
@@ -56,8 +53,8 @@ export class Auth {
                 this.profile = data;
                 //  this.profileChange.emit(this.profile);
             },
-            error => {console.dir(error);Observable.throw(error || 'Server error')},
-            () => {console.info('getProfile#resolve()');resolve()}
+            error => { console.dir(error); Observable.throw(error || 'Server error'); },
+            () => { console.info('getProfile#resolve()'); resolve(); }
         );
     }
 
@@ -66,7 +63,7 @@ export class Auth {
             this.requestToken(login, pass).subscribe(
                 jwt => {
                     this.jwt = jwt;
-                    this.getProfile(() => res());
+                    this.getProfile(res);
                     // this.jwtChange.emit(this.jwt);
                     // this.decodedJwt = tokenHelper.decodeToken(jwt);
                     // this.decodedJwtChange.emit(this.decodedJwt);
@@ -79,15 +76,13 @@ export class Auth {
             let exp = tokenHelper.isTokenExpired(this.jwt);
             if (exp) { this.logout(); }
         }
-        setTimeout(() => { this.checkExpiration(); }, 30e4);
     }
 
     logout() {
-        // this.jwt = null;
         this.jwt = null;
         this.profile = null;
+        this.router.navigate(['/login', this.router.url]);
         // this.jwtChange.emit(this.jwt);
-        // localStorage.removeItem('jwt');
     }
 
     canNavigate(): boolean {
@@ -132,8 +127,9 @@ export class Auth {
 
     private transformRequest(obj) {
         let str = [];
-        for (let p in obj)
-        { str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])); }
+        for (let p in obj) {
+            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+        }
         return str.join('&');
     }
     private CreateOptions() {
