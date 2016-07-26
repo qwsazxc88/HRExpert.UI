@@ -8,19 +8,19 @@
     </ul>
     <ul class="nav navbar-nav navbar-right"> -->
         <!-- <li *ngIf="!jwt" > -->
-        <li>
-            <form role="form" (submit)="submit($event, username.value, password.value)">
+        <div style="width:50%">
+            <form role="form form-horizontal" (submit)="submit($event, username.value, password.value)">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" #username>
+                <label class="control-label" for="username">Логин</label>
+                <input class="form-control" type="text" #username>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" #password><!-- (keyup.enter)="submit()" -->
+                <label class="control-label" for="password">Пароль</label>
+                <input class="form-control" type="password" #password><!-- (keyup.enter)="submit()" -->
             </div>
                 <button type="submit" class="btn btn-default">Войти</button><!--  (click)="submit(login, pass)" -->
             </form>
-        </li>
+        </div>
         <alert *ngIf="errorMessage" type="danger">Ошибка при входе: {{errorMessage}}</alert>
 <!--
         <li *ngIf="profile && jwt" dropdown (on-toggle)="toggled($event)">

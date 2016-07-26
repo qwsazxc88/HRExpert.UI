@@ -1,18 +1,8 @@
-<pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-<!-- <pre class="app-state">this.auth = {{ auth | json }}</pre> -->
-
-<!-- <hre-login [(jwt)]="jwt" [(decodedJwt)]="decodedJwt" [(profile)]="profile"></hre-login> -->
-<div style="height:60px;"></div>
+<div class="AppHeader">
+    <img class="logo" src="/assets/img/logo.svg" alt="Русконсалт">
+</div>
 <div class="container">
   <div class="row">
-    <!-- <div class="col-md-2">
-        <div *ngIf="profile">
-            <hre-menu [profile]="profile"></hre-menu>
-        </div>
-    </div>
-    <div class="col-md-10"> -->
         <router-outlet></router-outlet>
-        <!-- <loggedin-router-outlet></loggedin-router-outlet> -->
-    <!-- </div> -->
-  </div>
+  </div>  
 </div>
