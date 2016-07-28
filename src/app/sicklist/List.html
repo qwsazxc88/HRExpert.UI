@@ -24,10 +24,8 @@
                     <td>{{element.Person.Name}}</td>
                     <td>{{element.Person.StaffEstablishedPost.Department.Name}}</td>
                     <td>{{element.Data.SicklistType.Name}}</td>
-                    <!-- <td>{{stringAsDate(element.data.beginDate) | date}}</td> -->
-                    <td>{{element.Data.BeginDate | date}}</td>
-                    <!-- <td>{{stringAsDate(element.data.endDate) | date}}</td> -->
-                    <td>{{element.Data.EndDate | date}}</td>
+                    <td>{{element.Data.BeginDate | date:'dd.MM.yyyy'}}</td>
+                    <td>{{element.Data.EndDate | date:'dd.MM.yyyy'}}</td>
                     <td>
                         <a (click)="Edit(element)">
                             <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>

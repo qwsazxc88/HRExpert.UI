@@ -20,7 +20,7 @@ export const routes: RouterConfig = [
         { path: 'roles',  component: 'RolesListComponent' },
         { path: 'sections',  component: 'SectionsListComponent' },
         { path: 'permissions',  component: 'PermissionsListComponent' },
-        { path: 'organizations',  component: 'OrganizationListComponent' },
+        { path: 'organizations',  component: 'OrganizationsListComponent' },
 
         //        // { path: 'routePath',  component: C.TemplateComponent },
         //        // make sure you match the component type string to the require in asyncRoutes

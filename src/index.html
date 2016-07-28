@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
-
 <head>
-
     <title>
         <%= webpackConfig.metadata.windowTitle %>
     </title>
-
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="<%= webpackConfig.metadata.windowTitle %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
     <% if (webpackConfig.htmlElements.headTags) { %>
         <!-- Configured Head Tags "../config/head-config.common.js" -->
         <%= webpackConfig.htmlElements.headTags %>
         <!-- #end of auto generated tags -->
     <% } %>
-
     <!--[if lte IE 10]>
     <script src="/assets/base64.min.js"></script>>
     <![endif]-->
-
     <!-- base url -->
     <base href="<%= webpackConfig.metadata.baseUrl %>">
 </head>
-
 <body>
     <hre-app>
         <div class="cssload-thecube">
@@ -42,5 +35,4 @@
         <script src="/webpack-dev-server.js"></script>
     <% } %>
 </body>
-
 </html>
