@@ -8,10 +8,9 @@
     "sourceMap": true,
     "noEmitHelpers": true,
     "skipDefaultLibCheck": true,
-    "lib": ["es6", "dom"],
+    "lib": [ "es6", "es7", "dom" ],
     "baseUrl": "./src",
     "noImplicitReturns": true,
-    "skipLibCheck": true,
 
     "paths": [
     ],
@@ -64,7 +63,7 @@
         "pretty": true,
         "removeComments": true,
         "noUnusedLocals": true,
-        "lib": ["es7"],
+        "skipLibCheck": true,
         "noLib": true
     }
   }

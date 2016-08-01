@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, OnInit } from '@angular/core';
-// import { RouteParams } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 // Libs
 import { API } from '../Services';
@@ -13,15 +13,17 @@ import { Section } from '../Model';
     providers: [API]
 })
 export class SectionEditComponent implements OnInit {
-    constructor(private Api: API, private _routeParams: RouteParams) {
+    constructor(private Api: API, ars: ActivatedRoute) {
         this.Model = new Section(0, '');
+        this._routeParams = ars.snapshot.params;
     }
 
+    _routeParams: Params;
     errorMessage: string;
     Model: Section;
 
     ngOnInit() {
-        let id = +this._routeParams.get('id');
+        let id = + this._routeParams['id'];
         if (id > 0) {
             this.Get(id);
         }

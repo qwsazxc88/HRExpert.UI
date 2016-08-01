@@ -1,6 +1,6 @@
 // Vendor libs
-import { Component, Input, OnInit } from '@angular/core';
-// import { RouteParams } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 // Libs
 import { API } from '../Services';
 import { User, Role } from '../Model';
@@ -15,11 +15,13 @@ import { ArrayFilterPipe } from '../Utils/ArrayUtils/ArrayFilterPipe';
     providers: [API]
 })
 export class UserEditComponent implements OnInit {
-    constructor(private Api: API, private _routeParams: RouteParams) {
+    constructor(private Api: API, ars: ActivatedRoute) {
         this.Model = new User(0, '');
         this.Roles = [];
+        this._routeParams = ars.snapshot.params;
     }
 
+    _routeParams: Params;
     errorMessage: string;
     Model: User;
     Roles: Role[];
@@ -28,7 +30,7 @@ export class UserEditComponent implements OnInit {
     get UserRoles() { return this.Model.Roles; }
 
     ngOnInit() {
-        let id = + this._routeParams.get('id');
+        let id = + this._routeParams['id'];
         if (id > 0) {
             this.Get(id);
         }
@@ -40,7 +42,7 @@ export class UserEditComponent implements OnInit {
     }
 
     Save() {
-        var data = this.Model;
+        let data = this.Model;
         if (data.Id > 0) {
             this.Api.Users().Update(data)
                 .subscribe(
@@ -57,7 +59,7 @@ export class UserEditComponent implements OnInit {
     }
 
     Delete() {
-        var data = this.Model;
+        let data = this.Model;
         this.Api.Users(data.Id).Delete()
             .subscribe(
             error => this.errorMessage = <any>error

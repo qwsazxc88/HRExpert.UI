@@ -1,7 +1,6 @@
 // Vendor libs
-import { Component } from '@angular/core';
-import { Router,  } from '@angular/router';
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // Libs
 import { API } from '../Services';
@@ -14,7 +13,7 @@ import { Role } from '../Model';
     // directives: []
 })
 export class RolesListComponent implements OnInit {
-    constructor(private Api: API, private _router: Router) {
+    constructor(private Api: API, private _router: Router, private r: ActivatedRoute) {
     }
 
     errorMessage: string;
@@ -32,11 +31,11 @@ export class RolesListComponent implements OnInit {
             );
     }
     Edit(role: Role) {
-        let link = ['RoleEdit', { id: role.Id }];
-        this._router.navigate(link);
+        let link = [role.Id];
+        this._router.navigate(link, {relativeTo : this.r});
     }
     Create() {
-        let link = ['RoleEdit', { id: 0 }];
-        this._router.navigate(link);
+        let link = [0];
+        this._router.navigate(link, {relativeTo : this.r});
     }
 }

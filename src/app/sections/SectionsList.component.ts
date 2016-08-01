@@ -1,7 +1,6 @@
 // Vendor libs
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // Libs
 import { API } from '../Services';
@@ -14,7 +13,7 @@ import { Section } from '../Model';
 })
 
 export class SectionsListComponent implements OnInit {
-    constructor(private Api: API, private _router: Router) {
+    constructor(private Api: API, private _router: Router, private r: ActivatedRoute) {
     }
 
     errorMessage: string;
@@ -32,11 +31,11 @@ export class SectionsListComponent implements OnInit {
             );
     }
     Edit(entity: Section) {
-        let link = ['SectionEdit', { id: entity.Id }];
-        this._router.navigate(link);
+        let link = [entity.Id];
+        this._router.navigate(link, {relativeTo : this.r});
     }
     Create() {
-        let link = ['SectionEdit', { id: 0 }];
-        this._router.navigate(link);
+        let link = [0];
+        this._router.navigate(link, {relativeTo : this.r});
     }
 }

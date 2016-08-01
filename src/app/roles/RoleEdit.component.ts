@@ -1,7 +1,6 @@
 // Vendor libs
-import { Component, Input } from '@angular/core';
-// import { RouteParams } from '@angular/router';
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 // Libs
 import { API } from '../Services';
 import { Role, Section, Permission } from '../Model';
@@ -17,13 +16,15 @@ import { IdFilterPipe } from '../Utils/ArrayUtils/IdFilterPipe';
     providers: [API]
 })
 export class RoleEditComponent implements OnInit {
-    constructor(private Api: API, private _routeParams: RouteParams) {
+    constructor(private Api: API, ars: ActivatedRoute) {
         this.Model = new Role(0, '');
         this.Permissions = [];
         this.Sections = [];
         this.SelectedSections = [];
+        this._routeParams = ars.snapshot.params;
     }
 
+    _routeParams: Params;
     errorMessage: string;
     Model: Role;
     Sections: Section[];
@@ -32,7 +33,7 @@ export class RoleEditComponent implements OnInit {
     SelectedPermissionId: number;
 
     ngOnInit() {
-        let id = +this._routeParams.get('id');
+        let id = + this._routeParams['id'];
         if (id > 0) {
             this.Get(id);
         }

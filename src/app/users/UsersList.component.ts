@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { OnInit } from '@angular/core';
 // Libs
 import { API } from '../Services';
@@ -13,7 +13,7 @@ import { User } from '../Model';
     providers: [API]
 })
 export class UsersListComponent implements OnInit {
-    constructor(private Api: API, private _router: Router) {
+    constructor(private Api: API, private _router: Router, private r: ActivatedRoute) {
     }
 
     errorMessage: string;
@@ -30,11 +30,11 @@ export class UsersListComponent implements OnInit {
             );
     }
     Edit(user: User) {
-        let link = ['UserEdit', { id: user.Id }];
-        this._router.navigate(link);
+        let link = [user.Id];
+        this._router.navigate(link, {relativeTo : this.r});
     }
     Create() {
-        let link = ['UserEdit', { id: 0 }];
-        this._router.navigate(link);
+        // let link = [0];
+        this._router.navigate([0], {relativeTo : this.r});
     }
 }

@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, OnInit } from '@angular/core';
-// import { RouteParams } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 // Libs
 import { API } from '../Services';
 import { Permission, Section } from '../Model';
@@ -12,8 +12,9 @@ import { Permission, Section } from '../Model';
     providers: [API]
 })
 export class PermissionEditComponent implements OnInit {
-    constructor(private Api: API, private _routeParams: RouteParams) {
+    constructor(private Api: API, ars: ActivatedRoute) {
         this.Model = new Permission(0, '');
+        this._routeParams = ars.snapshot.params;
         Api.Sections().List()
             .subscribe(
             result => { this.Sections = result; },
@@ -21,13 +22,14 @@ export class PermissionEditComponent implements OnInit {
             );
     }
 
+    _routeParams: Params;
     errorMessage: string;
     Model: Permission;
     Sections: Section[];
     SelectedSection: number;
 
     ngOnInit() {
-        let id = +this._routeParams.get('id');
+        let id = +this._routeParams['id'];
         if (id > 0) {
             this.Get(id);
         }
