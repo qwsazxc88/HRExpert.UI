@@ -9,6 +9,9 @@ import { AuthGuard } from './app.auth';
 
 export const routes: RouterConfig = [
     { path: 'login', component: C.LoginComponent },
+    /**
+     * Маршруты требующие авторизации
+     */
     { path: '', canActivate: [AuthGuard], component: C.MenuComponent , children: [
         { path: '',      component: C.Home },
         { path: 'users',
@@ -56,6 +59,9 @@ export const routes: RouterConfig = [
         // ]},
         // { path: '**',    component: NoContent },
     ]},
+    /**
+     * No route matched -- redirecting to home
+     */
     { path: '**', redirectTo: '/' } // TODO: 404 page
 ];
 

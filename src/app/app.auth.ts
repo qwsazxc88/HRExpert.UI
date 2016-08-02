@@ -18,6 +18,12 @@ export class Auth {
     // currentRole: number;
 
     get profile() {
+        /*Observable.create(observer => {
+        // Yield a single value and complete
+        observer.onNext(42);
+        observer.onCompleted();
+        return;
+        */
         console.info('get profile');
         return this._profile;
     }
@@ -37,6 +43,9 @@ export class Auth {
     }
     private _jwt: string;
 
+    /**
+     * Called from AppComponent # ngOnInit
+     */
     Init() {
         console.info('Auth#Init');
         const token = localStorage.getItem('jwt');
@@ -47,7 +56,7 @@ export class Auth {
         setTimeout(() => { this.checkExpiration(); }, 30e4);
     }
 
-    getProfile(resolve) {
+    getProfile(resolve: () => void) {
         this.requestProfile().subscribe(
             data => {
                 this.profile = data;
@@ -90,7 +99,7 @@ export class Auth {
         if (this.jwt) {
             console.debug('canNavigate#if (this.jwt)');
             if (!tokenHelper.isTokenExpired(this.jwt)) {
-                console.debug('canNavigate#if isTokenExpired');
+                console.debug('canNavigate # Token not expired');
                 if (this.profile) {
                     console.debug('canNavigate#if (this.profile)');
                     return true;

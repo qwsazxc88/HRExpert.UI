@@ -1,19 +1,14 @@
-<div class="mdl-grid">	
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-        <md-card>
-        <md-card-subtitle>Модуль</md-card-subtitle>
-        <md-card-title>{{Model.Name}}</md-card-title>   
-        <md-card-content>
-            <div>
-                <label>Id:</label>
-                <span>{{Model.Id}}</span>
-            </div>
-                <md-input [(ngModel)]="Model.Name" placeholder="Название"></md-input>
-        </md-card-content>
-        <md-card-actions>
-                <button md-raised-button color="primary" (click)="Save()">Сохранить</button>
-                <button md-raised-button (click)="Delete()">Удалить</button>
-        </md-card-actions>
-        </md-card>
-    </div>  
+<div class="panel panel-default dropshadow">
+    <div class="panel-heading">Модуль: {{Model.Name}}</div>
+    <div class="panel-body" *ngIf="Model">
+        <div>
+            <label>Id: {{Model.Id}}</label>
+        </div>
+        <input [(ngModel)]="Model.Name" placeholder="Название">
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary" (click)="Save()">Сохранить</button>
+        <button class="btn btn-danger"  (click)="Delete()">Удалить</button>
+        <a class="btn btn-default" role="button" href="javascript:history.back();">Назад</a>
+    </div>
 </div>

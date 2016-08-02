@@ -6,7 +6,7 @@
     <!-- Default panel contents -->
     <div class="panel-heading">Больничный</div>
     <!-- Default contents -->
-    <div class="panel-body" *ngIf="Model" >
+    <div class="panel-body" *ngIf="Model">
         <div class="form-group">
             <label class="control-label">Сотрудник:</label>
             <span *ngIf="Model.Person" >{{Model.Person.Name}}</span>
@@ -75,38 +75,46 @@
             <table>
                 <tr>
                     <td>Сотрудник согласен</td>
-                    <td><select [(ngModel)]="PersonApprovement.isAccept">
-                        <option value="true">Да</option>
-                        <option value="false">Нет</option>
-                    </select>
-                </td>
-                <td><span *ngIf="PersonApprovement?.Person?.Name" >{{PersonApprovement.Person.Name}}</span></td>
-            </tr>
-            <tr>
-                <td>Руководитель согласен  </td>
-                <td><select [(ngModel)]="ManagerApprovement.isAccept">
-                    <option value="true">Да</option>
-                    <option value="false">Нет</option>
-                </select>
-            </td>
-            <td>
-                <span *ngIf="ManagerApprovement?.Person?.Name" >{{ManagerApprovement.Person.Name}}</span></td>
-            </tr>
-            <tr>
-                <td>Кадровик согласен  </td>
-                <td><select [(ngModel)]="PersonnelManagerApprovement.isAccept">
-                    <option value="true">Да</option>
-                    <option value="false">Нет</option>
-                </select>
-            </td>
-            <td><span *ngIf="PersonnelManagerApprovement?.Person?.Name" >{{PersonnelManagerApprovement.Person.Name}}</span></td>
-        </tr>
-
-    </table>
-</div>
-</div>
-<div class="panel-footer">
-    <button class="btn btn-primary" (click)="Save()">Сохранить</button>
-    <button class="btn btn-danger"  (click)="Delete()">Удалить</button>
-</div>
+                    <td>
+                        <select [(ngModel)]="PersonApprovement.isAccept">
+                            <option value="true">Да</option>
+                            <option value="false">Нет</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span *ngIf="PersonApprovement?.Person?.Name">{{PersonApprovement.Person.Name}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Руководитель согласен</td>
+                    <td>
+                        <select [(ngModel)]="ManagerApprovement.isAccept">
+                            <option value="true">Да</option>
+                            <option value="false">Нет</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span *ngIf="ManagerApprovement?.Person?.Name">{{ManagerApprovement.Person.Name}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Кадровик согласен</td>
+                    <td>
+                        <select [(ngModel)]="PersonnelManagerApprovement.isAccept">
+                            <option value="true">Да</option>
+                            <option value="false">Нет</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span *ngIf="PersonnelManagerApprovement?.Person?.Name">{{PersonnelManagerApprovement.Person.Name}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary" (click)="Save()">Сохранить</button>
+        <button class="btn btn-danger"  (click)="Delete()">Удалить</button>
+        <a class="btn btn-default" role="button" href="javascript:history.back();">Назад</a>
+    </div>
 </div>
