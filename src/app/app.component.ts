@@ -56,8 +56,13 @@ export class App implements OnInit {
             this.jwt = token;
         }*/
     }
+
     ngOnInit() {
         console.log('App ngOnInit()');
         this.auth.Init();
+    }
+
+    logout() {
+        this.auth.logout();
     }
 }

@@ -5,7 +5,7 @@ export function urlBase64Decode(str: string) {
         case 2: { output += '=='; break; }
         case 3: { output += '='; break; }
         default: { // case 1 only
-            throw 'Illegal base64url token string!';
+            throw new Error('Illegal base64url token string!');
         }
     }
     return decodeURIComponent(window.atob(output)); // polifyll https://github.com/davidchambers/Base64.js
@@ -38,7 +38,7 @@ export function getTokenExpirationDate(token: string) {
 export function isValid(token: string) {
     try {
         decodeTokenPayload(token);
-    } catch (e) { console.error(e);return false; }
+    } catch (e) { console.info(e.name, e.message); return false; }
     return true;
 }
 

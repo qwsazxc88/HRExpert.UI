@@ -5,10 +5,10 @@
         <!-- <div class="panel panel-default" *ngFor="let role of profile.Roles" (click)="ChangeRole(role.Id)" > -->
             <!-- <div class="panel-heading">{{role.Name}}</div> -->
         <div class="panel panel-default">
-            <div class="panel-heading">{{profile.UserName}}</div>
-            
+            <div class="panel-heading">{{profile?.UserName}}</div>
+
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let section of profile.Sections">
+                <li class="list-group-item" *ngFor="let section of profile?.Sections">
                     <a [routerLink]="[section.Route]">{{section.Name}}</a>
                 </li>
             </ul>

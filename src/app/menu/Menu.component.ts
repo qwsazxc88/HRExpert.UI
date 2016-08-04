@@ -1,5 +1,5 @@
 // Vendor libs
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Libs
 // import { ComponentBase } from './componentbase';
@@ -28,7 +28,7 @@ export class MenuComponent implements OnInit/* extends ComponentBase*/ {
 
     ngOnInit() {
         console.log('MenuOninit');
-        this.profile = this.auth.profile;
+        this.auth.profileP().then(p => { this.profile = p; });
     }
 
     /*ChangeRole(roleid) {

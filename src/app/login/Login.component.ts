@@ -1,6 +1,6 @@
 // Vendor libs
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // import { HTTP_PROVIDERS  } from '@angular/http';
 
 // Libs
@@ -16,7 +16,7 @@ import { Auth } from '../app.auth';
     // providers: [API]
 })
 export class LoginComponent implements OnInit {
-    constructor(/*private Api: API,*/ private auth: Auth, private router: Router/*, private routerState: RouterStateSnapshot*/) {
+    constructor(/*private Api: API,*/ private auth: Auth, private router: Router, private r: ActivatedRoute) {
         // this.Model = new Login();
         // this.redirectUrl = routerState.fragment;
     }
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     // private jwt: string;
 
     ngOnInit() {
-        this.redirectUrl = this.router.routerState.snapshot.queryParams['url'];
+        this.redirectUrl = this.r.snapshot.params['redirUrl'];
         // this.jwt = this.auth.jwt;
         // this.auth.checkExpiration();
         // if (this.jwt) {
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     submit(ev: Event, login: string, pass: string) {
         ev.preventDefault();
         this.auth.login(login, pass)
-         .then( () => this.router.navigate([this.redirectUrl ? this.redirectUrl : '']) )
+         .then( () => this.router.navigate([this.redirectUrl ? this.redirectUrl : '/']) )
          .catch( err => this.errorMessage = err);
     }
 

@@ -16,26 +16,35 @@ export class Auth {
     }
 
     // currentRole: number;
-
-    get profile() {
-        /*Observable.create(observer => {
-        // Yield a single value and complete
-        observer.onNext(42);
-        observer.onCompleted();
-        return;
-        */
+    private _profilePromise: Promise<Profile>;
+    private _profile: Profile;
+    profileP() {
         console.info('get profile');
-        return this._profile;
+        if (!this._profile) {
+            if (!this._profilePromise) {
+                this._profilePromise = new Promise((res, rej) => {
+                    this.requestProfile().subscribe(
+                        data => {
+                            // this._profile = data;
+                            res(data);
+                        },
+                        error => {
+                            console.dir(error);
+                            rej(error);
+                        },
+                        () => console.info('_getProfile#onComplete()')
+                    );
+                });
+            }
+            return this._profilePromise;
+        } else return Promise.resolve(this._profile);
+        // return this._profile;
     }
-    set profile(v: Profile) {
+    /*set profile(v: Profile) {
         this._profile = v;
-    }
-    _profile: Profile;
+    }*/
 
-    get jwt() {
-        console.info('get jwt');
-        return this._jwt;
-    }
+    get jwt() { console.info('get jwt'); return this._jwt; }
     set jwt(value: string) {
         console.info('set jwt');
         this._jwt = value;
@@ -51,59 +60,59 @@ export class Auth {
         const token = localStorage.getItem('jwt');
         if (token && !tokenHelper.isTokenExpired(token)) {
             this._jwt = token;
-            this.getProfile(() => {});
+            this.profileP().then(p => this._profile = p);
         }
-        setTimeout(() => { this.checkExpiration(); }, 30e4);
+        setInterval(() => { this.checkExpiration(); }, 30e4);
     }
 
-    getProfile(resolve: () => void) {
+    /*private _getProfile(onComplete: () => void) {
         this.requestProfile().subscribe(
             data => {
-                this.profile = data;
+                this._profile = data;
                 //  this.profileChange.emit(this.profile);
             },
             error => { console.dir(error); Observable.throw(error || 'Server error'); },
-            () => { console.info('getProfile#resolve()'); resolve(); }
+            () => { console.info('_getProfile#onComplete()'); onComplete(); }
         );
-    }
+    }*/
 
     login(login: string, pass: string): Promise<void> {
         return new Promise<void>((res, rej) =>
             this.requestToken(login, pass).subscribe(
                 jwt => {
                     this.jwt = jwt;
-                    this.getProfile(res);
-                    // this.jwtChange.emit(this.jwt);
-                    // this.decodedJwt = tokenHelper.decodeToken(jwt);
-                    // this.decodedJwtChange.emit(this.decodedJwt);
+                    this.profileP().then(p => {
+                        this._profile = p;
+                        res();
+                    });
                 }, error => rej(error))
         );
     }
 
     checkExpiration() {
         if (this.jwt) {
-            let exp = tokenHelper.isTokenExpired(this.jwt);
+            const exp = tokenHelper.isTokenExpired(this.jwt);
             if (exp) { this.logout(); }
         }
     }
 
     logout() {
         this.jwt = null;
-        this.profile = null;
-        this.router.navigate(['/login', this.router.url]);
-        // this.jwtChange.emit(this.jwt);
+        this._profile = null;
+        this.router.navigate(['/login', {redirUrl: this.router.url}]);
     }
 
     canNavigate(): boolean {
         console.debug('canNavigate');
         if (this.jwt) {
-            console.debug('canNavigate#if (this.jwt)');
+            console.debug('canNavigate# Token exists');
             if (!tokenHelper.isTokenExpired(this.jwt)) {
                 console.debug('canNavigate # Token not expired');
-                if (this.profile) {
-                    console.debug('canNavigate#if (this.profile)');
-                    return true;
-                }
+                // if (this.profile) {
+                //     console.debug('canNavigate#if (this.profile)');
+                //     return true;
+                // }
+                return true;
             }
         }
         return false;
