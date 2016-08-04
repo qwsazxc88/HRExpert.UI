@@ -9,7 +9,7 @@
 
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let section of profile?.Sections">
-                    <a [routerLink]="[section.Route]">{{section.Name}}</a>
+                    <a [routerLink]="'/'+section.Route">{{section.Name}}</a>
                 </li>
             </ul>
         </div>
